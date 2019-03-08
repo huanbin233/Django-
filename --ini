@@ -1,0 +1,636 @@
+*** Starting uWSGI 2.0.17 (64bit) on [Fri Mar  8 15:42:45 2019] ***
+compiled with version: 5.4.0 20160609 on 28 June 2018 07:38:20
+os: Linux-4.4.0-109-generic #132-Ubuntu SMP Tue Jan 9 19:52:39 UTC 2018
+nodename: JD
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 1
+current working directory: /root/mysite
+detected binary path: /usr/local/bin/uwsgi
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+chdir() to /root/mysite
+your processes number limit is 3812
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uWSGI http bound on :8000 fd 3
+uwsgi socket 0 bound to TCP address 127.0.0.1:8001 fd 6
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+Python version: 3.5.2 (default, Nov 23 2017, 16:37:01)  [GCC 5.4.0 20160609]
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0xff5390
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 671795 bytes (656 KB) for 4 cores
+*** Operational MODE: preforking ***
+WSGI app 0 (mountpoint='') ready in 0 seconds on interpreter 0xff5390 pid: 9917 (default app)
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 9917)
+spawned uWSGI worker 1 (pid: 9924, cores: 1)
+spawned uWSGI worker 2 (pid: 9925, cores: 1)
+spawned uWSGI worker 3 (pid: 9926, cores: 1)
+spawned uWSGI worker 4 (pid: 9927, cores: 1)
+spawned uWSGI http 1 (pid: 9928)
+[pid: 9927|app: 0|req: 1/1] 113.110.229.114 () {40 vars in 771 bytes} [Fri Mar  8 07:42:51 2019] GET /polls/index.html/ => generated 17641 bytes in 29 msecs (HTTP/1.1 200) 4 headers in 125 bytes (1 switches on core 0)
+Not Found: /static/css/bootstrap-select.min.css
+[pid: 9925|app: 0|req: 1/2] 113.110.229.114 () {38 vars in 733 bytes} [Fri Mar  8 07:42:51 2019] GET /static/css/bootstrap-select.min.css => generated 1826 bytes in 47 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default5.jpg
+[pid: 9927|app: 0|req: 2/3] 113.110.229.114 () {38 vars in 748 bytes} [Fri Mar  8 07:42:51 2019] GET /polls/index.html/v3/default5.jpg => generated 4184 bytes in 13 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default4.jpg
+[pid: 9924|app: 0|req: 1/4] 113.110.229.114 () {38 vars in 748 bytes} [Fri Mar  8 07:42:51 2019] GET /polls/index.html/v3/default4.jpg => generated 4184 bytes in 47 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default6.jpg
+[pid: 9925|app: 0|req: 2/5] 113.110.229.114 () {38 vars in 748 bytes} [Fri Mar  8 07:42:51 2019] GET /polls/index.html/v3/default6.jpg => generated 4184 bytes in 7 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+[pid: 9924|app: 0|req: 2/6] 113.110.229.114 () {42 vars in 806 bytes} [Fri Mar  8 07:43:01 2019] GET /polls/index.html/ => generated 17641 bytes in 11 msecs (HTTP/1.1 200) 4 headers in 125 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default4.jpg
+[pid: 9925|app: 0|req: 3/7] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 07:43:01 2019] GET /polls/index.html/v3/default4.jpg => generated 4184 bytes in 5 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default6.jpg
+[pid: 9927|app: 0|req: 3/8] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 07:43:01 2019] GET /polls/index.html/v3/default6.jpg => generated 4184 bytes in 4 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default5.jpg
+[pid: 9924|app: 0|req: 3/9] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 07:43:01 2019] GET /polls/index.html/v3/default5.jpg => generated 4184 bytes in 5 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default4.jpg
+[pid: 9925|app: 0|req: 4/10] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 07:43:01 2019] GET /polls/index.html/v3/default4.jpg => generated 4184 bytes in 5 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default6.jpg
+[pid: 9927|app: 0|req: 4/11] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 07:43:01 2019] GET /polls/index.html/v3/default6.jpg => generated 4184 bytes in 5 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+[pid: 9925|app: 0|req: 5/12] 113.110.229.114 () {44 vars in 837 bytes} [Fri Mar  8 07:48:50 2019] GET /polls/index.html/ => generated 17641 bytes in 12 msecs (HTTP/1.1 200) 4 headers in 125 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default4.jpg
+[pid: 9924|app: 0|req: 4/13] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 07:48:50 2019] GET /polls/index.html/v3/default4.jpg => generated 4184 bytes in 5 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default5.jpg
+[pid: 9927|app: 0|req: 5/14] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 07:48:50 2019] GET /polls/index.html/v3/default5.jpg => generated 4184 bytes in 4 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default6.jpg
+[pid: 9925|app: 0|req: 6/15] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 07:48:50 2019] GET /polls/index.html/v3/default6.jpg => generated 4184 bytes in 5 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default4.jpg
+[pid: 9924|app: 0|req: 5/16] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 07:48:50 2019] GET /polls/index.html/v3/default4.jpg => generated 4184 bytes in 5 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+[pid: 9927|app: 0|req: 6/17] 113.110.229.114 () {44 vars in 837 bytes} [Fri Mar  8 07:48:50 2019] GET /polls/index.html/ => generated 17641 bytes in 2 msecs (HTTP/1.1 200) 4 headers in 125 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default5.jpg
+[pid: 9925|app: 0|req: 7/18] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 07:48:51 2019] GET /polls/index.html/v3/default5.jpg => generated 4184 bytes in 9 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default4.jpg
+[pid: 9926|app: 0|req: 1/19] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 07:48:51 2019] GET /polls/index.html/v3/default4.jpg => generated 4184 bytes in 31 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default6.jpg
+[pid: 9925|app: 0|req: 8/20] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 07:48:51 2019] GET /polls/index.html/v3/default6.jpg => generated 4184 bytes in 5 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default5.jpg
+Not Found: /polls/index.html/v3/default4.jpg
+[pid: 9927|app: 0|req: 7/21] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 07:48:51 2019] GET /polls/index.html/v3/default5.jpg => generated 4184 bytes in 9 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+[pid: 9924|app: 0|req: 6/22] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 07:48:51 2019] GET /polls/index.html/v3/default4.jpg => generated 4184 bytes in 11 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+[pid: 9926|app: 0|req: 2/23] 113.110.229.114 () {44 vars in 837 bytes} [Fri Mar  8 07:48:51 2019] GET /polls/index.html/ => generated 17641 bytes in 11 msecs (HTTP/1.1 200) 4 headers in 125 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default4.jpg
+[pid: 9925|app: 0|req: 9/24] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 07:48:51 2019] GET /polls/index.html/v3/default4.jpg => generated 4184 bytes in 5 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default5.jpg
+[pid: 9924|app: 0|req: 7/25] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 07:48:51 2019] GET /polls/index.html/v3/default5.jpg => generated 4184 bytes in 6 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default6.jpg
+[pid: 9927|app: 0|req: 8/26] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 07:48:51 2019] GET /polls/index.html/v3/default6.jpg => generated 4184 bytes in 7 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default4.jpg
+[pid: 9925|app: 0|req: 10/27] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 07:48:51 2019] GET /polls/index.html/v3/default4.jpg => generated 4184 bytes in 4 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+[pid: 9925|app: 0|req: 11/28] 113.110.229.114 () {44 vars in 837 bytes} [Fri Mar  8 07:49:06 2019] GET /polls/index.html/ => generated 17641 bytes in 2 msecs (HTTP/1.1 200) 4 headers in 125 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default5.jpg
+[pid: 9926|app: 0|req: 3/29] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 07:49:06 2019] GET /polls/index.html/v3/default5.jpg => generated 4184 bytes in 5 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default4.jpg
+[pid: 9925|app: 0|req: 12/30] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 07:49:06 2019] GET /polls/index.html/v3/default4.jpg => generated 4184 bytes in 4 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default6.jpg
+[pid: 9924|app: 0|req: 8/31] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 07:49:06 2019] GET /polls/index.html/v3/default6.jpg => generated 4184 bytes in 5 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+[pid: 9927|app: 0|req: 9/32] 113.110.229.114 () {44 vars in 837 bytes} [Fri Mar  8 07:49:07 2019] GET /polls/index.html/ => generated 17641 bytes in 2 msecs (HTTP/1.1 200) 4 headers in 125 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default4.jpg
+[pid: 9926|app: 0|req: 4/33] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 07:49:07 2019] GET /polls/index.html/v3/default4.jpg => generated 4184 bytes in 5 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default5.jpg
+[pid: 9925|app: 0|req: 13/34] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 07:49:07 2019] GET /polls/index.html/v3/default5.jpg => generated 4184 bytes in 5 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default6.jpg
+[pid: 9924|app: 0|req: 9/35] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 07:49:07 2019] GET /polls/index.html/v3/default6.jpg => generated 4184 bytes in 4 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+[pid: 9927|app: 0|req: 10/36] 113.110.229.114 () {44 vars in 837 bytes} [Fri Mar  8 07:49:07 2019] GET /polls/index.html/ => generated 17641 bytes in 2 msecs (HTTP/1.1 200) 4 headers in 125 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default4.jpg
+[pid: 9926|app: 0|req: 5/37] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 07:49:07 2019] GET /polls/index.html/v3/default4.jpg => generated 4184 bytes in 5 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default5.jpg
+[pid: 9925|app: 0|req: 14/38] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 07:49:07 2019] GET /polls/index.html/v3/default5.jpg => generated 4184 bytes in 4 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default6.jpg
+[pid: 9924|app: 0|req: 10/39] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 07:49:07 2019] GET /polls/index.html/v3/default6.jpg => generated 4184 bytes in 5 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default4.jpg
+[pid: 9927|app: 0|req: 11/40] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 07:49:07 2019] GET /polls/index.html/v3/default4.jpg => generated 4184 bytes in 4 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+[pid: 9925|app: 0|req: 15/41] 113.110.229.114 () {44 vars in 837 bytes} [Fri Mar  8 07:49:07 2019] GET /polls/index.html/ => generated 17641 bytes in 1 msecs (HTTP/1.1 200) 4 headers in 125 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default4.jpg
+[pid: 9926|app: 0|req: 6/42] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 07:49:07 2019] GET /polls/index.html/v3/default4.jpg => generated 4184 bytes in 5 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default6.jpg
+[pid: 9925|app: 0|req: 16/43] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 07:49:07 2019] GET /polls/index.html/v3/default6.jpg => generated 4184 bytes in 10 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default5.jpg
+[pid: 9924|app: 0|req: 11/44] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 07:49:07 2019] GET /polls/index.html/v3/default5.jpg => generated 4184 bytes in 20 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default4.jpg
+[pid: 9927|app: 0|req: 12/45] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 07:49:07 2019] GET /polls/index.html/v3/default4.jpg => generated 4184 bytes in 9 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+[pid: 9924|app: 0|req: 12/46] 113.110.229.114 () {44 vars in 837 bytes} [Fri Mar  8 07:49:07 2019] GET /polls/index.html/ => generated 17641 bytes in 1 msecs (HTTP/1.1 200) 4 headers in 125 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default4.jpg
+[pid: 9926|app: 0|req: 7/47] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 07:49:07 2019] GET /polls/index.html/v3/default4.jpg => generated 4184 bytes in 9 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default5.jpg
+[pid: 9925|app: 0|req: 17/48] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 07:49:07 2019] GET /polls/index.html/v3/default5.jpg => generated 4184 bytes in 7 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default6.jpg
+[pid: 9924|app: 0|req: 13/49] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 07:49:07 2019] GET /polls/index.html/v3/default6.jpg => generated 4184 bytes in 9 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default4.jpg
+[pid: 9927|app: 0|req: 13/50] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 07:49:07 2019] GET /polls/index.html/v3/default4.jpg => generated 4184 bytes in 9 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+[pid: 9925|app: 0|req: 18/51] 113.110.229.114 () {44 vars in 837 bytes} [Fri Mar  8 07:49:08 2019] GET /polls/index.html/ => generated 17641 bytes in 2 msecs (HTTP/1.1 200) 4 headers in 125 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default4.jpg
+[pid: 9926|app: 0|req: 8/52] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 07:49:08 2019] GET /polls/index.html/v3/default4.jpg => generated 4184 bytes in 6 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default5.jpg
+[pid: 9925|app: 0|req: 19/53] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 07:49:08 2019] GET /polls/index.html/v3/default5.jpg => generated 4184 bytes in 5 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default6.jpg
+[pid: 9924|app: 0|req: 14/54] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 07:49:08 2019] GET /polls/index.html/v3/default6.jpg => generated 4184 bytes in 5 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default5.jpg
+Not Found: /polls/index.html/v3/default4.jpg
+[pid: 9926|app: 0|req: 9/55] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 07:49:08 2019] GET /polls/index.html/v3/default5.jpg => generated 4184 bytes in 10 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+[pid: 9927|app: 0|req: 14/56] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 07:49:08 2019] GET /polls/index.html/v3/default4.jpg => generated 4184 bytes in 11 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+[pid: 9925|app: 0|req: 20/57] 113.110.229.114 () {44 vars in 837 bytes} [Fri Mar  8 07:49:51 2019] GET /polls/index.html/ => generated 17641 bytes in 1 msecs (HTTP/1.1 200) 4 headers in 125 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default4.jpg
+[pid: 9924|app: 0|req: 15/58] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 07:49:51 2019] GET /polls/index.html/v3/default4.jpg => generated 4184 bytes in 5 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default6.jpg
+[pid: 9925|app: 0|req: 21/59] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 07:49:51 2019] GET /polls/index.html/v3/default6.jpg => generated 4184 bytes in 4 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default5.jpg
+[pid: 9927|app: 0|req: 15/60] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 07:49:51 2019] GET /polls/index.html/v3/default5.jpg => generated 4184 bytes in 5 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default4.jpg
+[pid: 9924|app: 0|req: 16/61] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 07:49:51 2019] GET /polls/index.html/v3/default4.jpg => generated 4184 bytes in 4 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default6.jpg
+[pid: 9925|app: 0|req: 22/62] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 07:49:51 2019] GET /polls/index.html/v3/default6.jpg => generated 4184 bytes in 5 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+[pid: 9925|app: 0|req: 23/63] 113.110.229.114 () {44 vars in 837 bytes} [Fri Mar  8 07:52:12 2019] GET /polls/index.html/ => generated 17641 bytes in 1 msecs (HTTP/1.1 200) 4 headers in 125 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default4.jpg
+[pid: 9926|app: 0|req: 10/64] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 07:52:12 2019] GET /polls/index.html/v3/default4.jpg => generated 4184 bytes in 5 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default5.jpg
+[pid: 9925|app: 0|req: 24/65] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 07:52:12 2019] GET /polls/index.html/v3/default5.jpg => generated 4184 bytes in 5 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default6.jpg
+[pid: 9924|app: 0|req: 17/66] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 07:52:12 2019] GET /polls/index.html/v3/default6.jpg => generated 4184 bytes in 5 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default4.jpg
+[pid: 9927|app: 0|req: 16/67] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 07:52:12 2019] GET /polls/index.html/v3/default4.jpg => generated 4184 bytes in 5 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default6.jpg
+Not Found: /polls/index.html/v3/default5.jpg
+[pid: 9925|app: 0|req: 25/68] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 07:52:12 2019] GET /polls/index.html/v3/default5.jpg => generated 4184 bytes in 11 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+[pid: 9926|app: 0|req: 11/69] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 07:52:12 2019] GET /polls/index.html/v3/default6.jpg => generated 4184 bytes in 10 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+[pid: 9924|app: 0|req: 18/70] 113.110.229.114 () {44 vars in 837 bytes} [Fri Mar  8 07:52:13 2019] GET /polls/index.html/ => generated 17641 bytes in 1 msecs (HTTP/1.1 200) 4 headers in 125 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default4.jpg
+[pid: 9927|app: 0|req: 17/71] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 07:52:13 2019] GET /polls/index.html/v3/default4.jpg => generated 4184 bytes in 5 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default5.jpg
+[pid: 9924|app: 0|req: 19/72] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 07:52:13 2019] GET /polls/index.html/v3/default5.jpg => generated 4184 bytes in 4 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default6.jpg
+[pid: 9925|app: 0|req: 26/73] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 07:52:13 2019] GET /polls/index.html/v3/default6.jpg => generated 4184 bytes in 4 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+[pid: 9927|app: 0|req: 18/74] 113.110.229.114 () {44 vars in 837 bytes} [Fri Mar  8 07:52:13 2019] GET /polls/index.html/ => generated 17641 bytes in 2 msecs (HTTP/1.1 200) 4 headers in 125 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default4.jpg
+[pid: 9926|app: 0|req: 12/75] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 07:52:13 2019] GET /polls/index.html/v3/default4.jpg => generated 4184 bytes in 9 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default5.jpg
+[pid: 9925|app: 0|req: 27/76] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 07:52:13 2019] GET /polls/index.html/v3/default5.jpg => generated 4184 bytes in 19 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default6.jpg
+[pid: 9924|app: 0|req: 20/77] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 07:52:13 2019] GET /polls/index.html/v3/default6.jpg => generated 4184 bytes in 10 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default4.jpg
+[pid: 9927|app: 0|req: 19/78] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 07:52:13 2019] GET /polls/index.html/v3/default4.jpg => generated 4184 bytes in 9 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+[pid: 9925|app: 0|req: 28/79] 113.110.229.114 () {44 vars in 837 bytes} [Fri Mar  8 07:52:14 2019] GET /polls/index.html/ => generated 17641 bytes in 2 msecs (HTTP/1.1 200) 4 headers in 125 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default4.jpg
+[pid: 9926|app: 0|req: 13/80] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 07:52:14 2019] GET /polls/index.html/v3/default4.jpg => generated 4184 bytes in 5 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default5.jpg
+Not Found: /polls/index.html/v3/default6.jpg
+[pid: 9924|app: 0|req: 21/81] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 07:52:14 2019] GET /polls/index.html/v3/default5.jpg => generated 4184 bytes in 11 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+[pid: 9925|app: 0|req: 29/82] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 07:52:14 2019] GET /polls/index.html/v3/default6.jpg => generated 4184 bytes in 7 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default4.jpg
+[pid: 9927|app: 0|req: 20/83] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 07:52:14 2019] GET /polls/index.html/v3/default4.jpg => generated 4184 bytes in 5 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+[pid: 9924|app: 0|req: 22/84] 113.110.229.114 () {44 vars in 837 bytes} [Fri Mar  8 07:52:14 2019] GET /polls/index.html/ => generated 17641 bytes in 2 msecs (HTTP/1.1 200) 4 headers in 125 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default4.jpg
+[pid: 9926|app: 0|req: 14/85] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 07:52:14 2019] GET /polls/index.html/v3/default4.jpg => generated 4184 bytes in 5 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default5.jpg
+[pid: 9925|app: 0|req: 30/86] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 07:52:14 2019] GET /polls/index.html/v3/default5.jpg => generated 4184 bytes in 5 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default6.jpg
+[pid: 9924|app: 0|req: 23/87] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 07:52:14 2019] GET /polls/index.html/v3/default6.jpg => generated 4184 bytes in 5 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default4.jpg
+[pid: 9927|app: 0|req: 21/88] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 07:52:14 2019] GET /polls/index.html/v3/default4.jpg => generated 4184 bytes in 5 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+[pid: 9925|app: 0|req: 31/89] 113.110.229.114 () {44 vars in 865 bytes} [Fri Mar  8 07:52:14 2019] GET /polls/index.html/ => generated 17641 bytes in 2 msecs (HTTP/1.1 200) 4 headers in 125 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default4.jpg
+[pid: 9926|app: 0|req: 15/90] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 07:52:14 2019] GET /polls/index.html/v3/default4.jpg => generated 4184 bytes in 5 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default5.jpg
+[pid: 9924|app: 0|req: 24/91] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 07:52:14 2019] GET /polls/index.html/v3/default5.jpg => generated 4184 bytes in 5 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default6.jpg
+[pid: 9925|app: 0|req: 32/92] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 07:52:15 2019] GET /polls/index.html/v3/default6.jpg => generated 4184 bytes in 4 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+./polls/views.py:244: UnorderedObjectListWarning: Pagination may yield inconsistent results with an unordered object_list: <class 'polls.models.Job_position'> QuerySet.
+  p = Paginator(job_list_all,8)# p就是每页的对象，
+[pid: 9927|app: 0|req: 22/93] 113.110.229.114 () {44 vars in 863 bytes} [Fri Mar  8 07:52:15 2019] GET /polls/list.html/ => generated 11071 bytes in 11 msecs (HTTP/1.1 200) 4 headers in 125 bytes (1 switches on core 0)
+./polls/views.py:244: UnorderedObjectListWarning: Pagination may yield inconsistent results with an unordered object_list: <class 'polls.models.Job_position'> QuerySet.
+  p = Paginator(job_list_all,8)# p就是每页的对象，
+[pid: 9925|app: 0|req: 33/94] 113.110.229.114 () {46 vars in 894 bytes} [Fri Mar  8 07:52:25 2019] GET /polls/list.html/ => generated 11071 bytes in 12 msecs (HTTP/1.1 200) 4 headers in 125 bytes (1 switches on core 0)
+./polls/views.py:244: UnorderedObjectListWarning: Pagination may yield inconsistent results with an unordered object_list: <class 'polls.models.Job_position'> QuerySet.
+  p = Paginator(job_list_all,8)# p就是每页的对象，
+[pid: 9924|app: 0|req: 25/95] 113.110.229.114 () {46 vars in 894 bytes} [Fri Mar  8 07:52:26 2019] GET /polls/list.html/ => generated 11071 bytes in 11 msecs (HTTP/1.1 200) 4 headers in 125 bytes (1 switches on core 0)
+[pid: 9925|app: 0|req: 34/96] 113.110.229.114 () {44 vars in 862 bytes} [Fri Mar  8 07:53:08 2019] GET /polls/index.html => generated 0 bytes in 1 msecs (HTTP/1.1 301) 3 headers in 123 bytes (1 switches on core 0)
+[pid: 9926|app: 0|req: 16/97] 113.110.229.114 () {44 vars in 864 bytes} [Fri Mar  8 07:53:08 2019] GET /polls/index.html/ => generated 17641 bytes in 1 msecs (HTTP/1.1 200) 4 headers in 125 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default4.jpg
+[pid: 9927|app: 0|req: 23/98] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 07:53:08 2019] GET /polls/index.html/v3/default4.jpg => generated 4184 bytes in 5 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default5.jpg
+[pid: 9925|app: 0|req: 35/99] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 07:53:08 2019] GET /polls/index.html/v3/default5.jpg => generated 4184 bytes in 5 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default6.jpg
+[pid: 9924|app: 0|req: 26/100] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 07:53:08 2019] GET /polls/index.html/v3/default6.jpg => generated 4184 bytes in 5 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default4.jpg
+[pid: 9927|app: 0|req: 24/101] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 07:53:08 2019] GET /polls/index.html/v3/default4.jpg => generated 4184 bytes in 5 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default4.jpg
+[pid: 9925|app: 0|req: 36/102] 113.110.229.114 () {44 vars in 895 bytes} [Fri Mar  8 07:53:13 2019] GET /polls/index.html/v3/default4.jpg => generated 4184 bytes in 5 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+[pid: 9926|app: 0|req: 17/103] 113.110.229.114 () {38 vars in 740 bytes} [Fri Mar  8 07:53:31 2019] GET /polls/index.html/ => generated 17641 bytes in 2 msecs (HTTP/1.1 200) 4 headers in 125 bytes (1 switches on core 0)
+[pid: 9924|app: 0|req: 27/104] 113.110.229.114 () {38 vars in 719 bytes} [Fri Mar  8 07:53:32 2019] GET /static/css/bootstrap.min.css => generated 150502 bytes in 5 msecs via sendfile() (HTTP/1.1 200) 4 headers in 142 bytes (0 switches on core 0)
+[pid: 9927|app: 0|req: 25/105] 113.110.229.114 () {38 vars in 707 bytes} [Fri Mar  8 07:53:32 2019] GET /static/css/mystyle.css => generated 211 bytes in 5 msecs via sendfile() (HTTP/1.1 200) 4 headers in 139 bytes (0 switches on core 0)
+Not Found: /static/css/bootstrap-select.min.css
+[pid: 9925|app: 0|req: 37/106] 113.110.229.114 () {38 vars in 733 bytes} [Fri Mar  8 07:53:32 2019] GET /static/css/bootstrap-select.min.css => generated 1826 bytes in 3 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+[pid: 9924|app: 0|req: 28/107] 113.110.229.114 () {38 vars in 700 bytes} [Fri Mar  8 07:53:32 2019] GET /static/jquery-3.3.1.min.js => generated 86927 bytes in 0 msecs via sendfile() (HTTP/1.1 200) 4 headers in 155 bytes (0 switches on core 0)
+[pid: 9926|app: 0|req: 18/108] 113.110.229.114 () {38 vars in 700 bytes} [Fri Mar  8 07:53:32 2019] GET /static/js/bootstrap.min.js => generated 37045 bytes in 7 msecs via sendfile() (HTTP/1.1 200) 4 headers in 155 bytes (0 switches on core 0)
+[pid: 9924|app: 0|req: 29/109] 113.110.229.114 () {38 vars in 714 bytes} [Fri Mar  8 07:53:32 2019] GET /static/js/bootstrap-select.min.js => generated 48535 bytes in 0 msecs via sendfile() (HTTP/1.1 200) 4 headers in 155 bytes (0 switches on core 0)
+[pid: 9925|app: 0|req: 38/110] 113.110.229.114 () {38 vars in 734 bytes} [Fri Mar  8 07:53:32 2019] GET /static/image/login_bg.jpg => generated 43757 bytes in 11 msecs via sendfile() (HTTP/1.1 200) 4 headers in 143 bytes (0 switches on core 0)
+Not Found: /polls/index.html/v3/default4.jpg
+[pid: 9924|app: 0|req: 30/111] 113.110.229.114 () {38 vars in 748 bytes} [Fri Mar  8 07:53:32 2019] GET /polls/index.html/v3/default4.jpg => generated 4184 bytes in 9 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default5.jpg
+[pid: 9927|app: 0|req: 26/112] 113.110.229.114 () {38 vars in 748 bytes} [Fri Mar  8 07:53:32 2019] GET /polls/index.html/v3/default5.jpg => generated 4184 bytes in 7 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default6.jpg
+[pid: 9925|app: 0|req: 39/113] 113.110.229.114 () {38 vars in 748 bytes} [Fri Mar  8 07:53:32 2019] GET /polls/index.html/v3/default6.jpg => generated 4184 bytes in 6 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+[pid: 9924|app: 0|req: 31/114] 113.110.229.114 () {38 vars in 742 bytes} [Fri Mar  8 07:53:32 2019] GET /static/image/city_beijing.png => generated 26031 bytes in 1 msecs via sendfile() (HTTP/1.1 200) 4 headers in 142 bytes (0 switches on core 0)
+[pid: 9927|app: 0|req: 27/115] 113.110.229.114 () {38 vars in 746 bytes} [Fri Mar  8 07:53:32 2019] GET /static/image/city_changchun.png => generated 49115 bytes in 1 msecs via sendfile() (HTTP/1.1 200) 4 headers in 142 bytes (0 switches on core 0)
+[pid: 9926|app: 0|req: 19/116] 113.110.229.114 () {38 vars in 744 bytes} [Fri Mar  8 07:53:32 2019] GET /static/image/city_changsha.png => generated 23199 bytes in 1 msecs via sendfile() (HTTP/1.1 200) 4 headers in 142 bytes (0 switches on core 0)
+[pid: 9926|app: 0|req: 20/117] 113.110.229.114 () {38 vars in 742 bytes} [Fri Mar  8 07:53:32 2019] GET /static/image/city_chengdu.png => generated 28235 bytes in 0 msecs via sendfile() (HTTP/1.1 200) 4 headers in 142 bytes (0 switches on core 0)
+[pid: 9924|app: 0|req: 32/118] 113.110.229.114 () {38 vars in 746 bytes} [Fri Mar  8 07:53:32 2019] GET /static/image/city_chongqing.png => generated 91527 bytes in 1 msecs via sendfile() (HTTP/1.1 200) 4 headers in 142 bytes (0 switches on core 0)
+[pid: 9927|app: 0|req: 28/119] 113.110.229.114 () {38 vars in 746 bytes} [Fri Mar  8 07:53:32 2019] GET /static/image/city_guangzhou.png => generated 21545 bytes in 1 msecs via sendfile() (HTTP/1.1 200) 4 headers in 142 bytes (0 switches on core 0)
+[pid: 9926|app: 0|req: 21/120] 113.110.229.114 () {38 vars in 744 bytes} [Fri Mar  8 07:53:32 2019] GET /static/image/city_hangzhou.png => generated 20752 bytes in 1 msecs via sendfile() (HTTP/1.1 200) 4 headers in 142 bytes (0 switches on core 0)
+[pid: 9924|app: 0|req: 33/121] 113.110.229.114 () {38 vars in 744 bytes} [Fri Mar  8 07:53:32 2019] GET /static/image/city_shenzhen.png => generated 28459 bytes in 1 msecs via sendfile() (HTTP/1.1 200) 4 headers in 142 bytes (0 switches on core 0)
+[pid: 9927|app: 0|req: 29/122] 113.110.229.114 () {38 vars in 738 bytes} [Fri Mar  8 07:53:32 2019] GET /static/image/city_jinan.png => generated 86364 bytes in 0 msecs via sendfile() (HTTP/1.1 200) 4 headers in 142 bytes (0 switches on core 0)
+[pid: 9925|app: 0|req: 40/123] 113.110.229.114 () {38 vars in 742 bytes} [Fri Mar  8 07:53:32 2019] GET /static/image/city_nanjing.png => generated 31614 bytes in 1 msecs via sendfile() (HTTP/1.1 200) 4 headers in 142 bytes (0 switches on core 0)
+[pid: 9927|app: 0|req: 30/124] 113.110.229.114 () {40 vars in 793 bytes} [Fri Mar  8 07:53:32 2019] GET /static/fonts/glyphicons-halflings-regular.woff2 => generated 18028 bytes in 2 msecs via sendfile() (HTTP/1.1 200) 4 headers in 157 bytes (0 switches on core 0)
+[pid: 9926|app: 0|req: 22/125] 113.110.229.114 () {38 vars in 742 bytes} [Fri Mar  8 07:53:32 2019] GET /static/image/city_qingdao.png => generated 79323 bytes in 0 msecs via sendfile() (HTTP/1.1 200) 4 headers in 142 bytes (0 switches on core 0)
+[pid: 9924|app: 0|req: 34/126] 113.110.229.114 () {38 vars in 744 bytes} [Fri Mar  8 07:53:32 2019] GET /static/image/city_shanghai.png => generated 27094 bytes in 0 msecs via sendfile() (HTTP/1.1 200) 4 headers in 142 bytes (0 switches on core 0)
+Not Found: /polls/index.html/v3/default4.jpg
+[pid: 9926|app: 0|req: 23/127] 113.110.229.114 () {38 vars in 748 bytes} [Fri Mar  8 07:53:32 2019] GET /polls/index.html/v3/default4.jpg => generated 4184 bytes in 5 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default5.jpg
+[pid: 9925|app: 0|req: 41/128] 113.110.229.114 () {38 vars in 748 bytes} [Fri Mar  8 07:53:32 2019] GET /polls/index.html/v3/default5.jpg => generated 4184 bytes in 4 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default6.jpg
+[pid: 9924|app: 0|req: 35/129] 113.110.229.114 () {38 vars in 748 bytes} [Fri Mar  8 07:53:33 2019] GET /polls/index.html/v3/default6.jpg => generated 4184 bytes in 5 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+[pid: 9927|app: 0|req: 31/130] 113.110.229.114 () {44 vars in 865 bytes} [Fri Mar  8 07:53:49 2019] GET /polls/index.html/ => generated 17641 bytes in 2 msecs (HTTP/1.1 200) 4 headers in 125 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default4.jpg
+[pid: 9926|app: 0|req: 24/131] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 07:53:49 2019] GET /polls/index.html/v3/default4.jpg => generated 4184 bytes in 5 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default5.jpg
+[pid: 9925|app: 0|req: 42/132] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 07:53:49 2019] GET /polls/index.html/v3/default5.jpg => generated 4184 bytes in 5 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default6.jpg
+[pid: 9924|app: 0|req: 36/133] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 07:53:49 2019] GET /polls/index.html/v3/default6.jpg => generated 4184 bytes in 5 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+[pid: 9925|app: 0|req: 43/134] 113.110.229.114 () {40 vars in 771 bytes} [Fri Mar  8 07:59:08 2019] GET /polls/index.html/ => generated 17641 bytes in 2 msecs (HTTP/1.1 200) 4 headers in 125 bytes (1 switches on core 0)
+Not Found: /static/css/bootstrap-select.min.css
+[pid: 9927|app: 0|req: 32/135] 113.110.229.114 () {38 vars in 733 bytes} [Fri Mar  8 07:59:08 2019] GET /static/css/bootstrap-select.min.css => generated 1826 bytes in 3 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default4.jpg
+[pid: 9924|app: 0|req: 37/136] 113.110.229.114 () {38 vars in 748 bytes} [Fri Mar  8 07:59:08 2019] GET /polls/index.html/v3/default4.jpg => generated 4184 bytes in 4 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default5.jpg
+[pid: 9926|app: 0|req: 25/137] 113.110.229.114 () {38 vars in 748 bytes} [Fri Mar  8 07:59:08 2019] GET /polls/index.html/v3/default5.jpg => generated 4184 bytes in 4 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default6.jpg
+[pid: 9925|app: 0|req: 44/138] 113.110.229.114 () {38 vars in 748 bytes} [Fri Mar  8 07:59:09 2019] GET /polls/index.html/v3/default6.jpg => generated 4184 bytes in 4 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+[pid: 9924|app: 0|req: 38/139] 113.110.229.114 () {46 vars in 895 bytes} [Fri Mar  8 07:59:11 2019] GET /polls/index.html/ => generated 17641 bytes in 2 msecs (HTTP/1.1 200) 4 headers in 125 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default4.jpg
+[pid: 9927|app: 0|req: 33/140] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 07:59:11 2019] GET /polls/index.html/v3/default4.jpg => generated 4184 bytes in 5 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default5.jpg
+[pid: 9924|app: 0|req: 39/141] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 07:59:11 2019] GET /polls/index.html/v3/default5.jpg => generated 4184 bytes in 5 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default6.jpg
+[pid: 9925|app: 0|req: 45/142] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 07:59:11 2019] GET /polls/index.html/v3/default6.jpg => generated 4184 bytes in 4 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default5.jpg
+[pid: 9927|app: 0|req: 34/143] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 07:59:11 2019] GET /polls/index.html/v3/default5.jpg => generated 4184 bytes in 5 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default4.jpg
+[pid: 9924|app: 0|req: 40/144] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 07:59:11 2019] GET /polls/index.html/v3/default4.jpg => generated 4184 bytes in 5 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+[pid: 9925|app: 0|req: 46/145] 113.110.229.114 () {46 vars in 895 bytes} [Fri Mar  8 08:01:50 2019] GET /polls/index.html/ => generated 17641 bytes in 1 msecs (HTTP/1.1 200) 4 headers in 125 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default4.jpg
+[pid: 9926|app: 0|req: 26/146] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 08:01:50 2019] GET /polls/index.html/v3/default4.jpg => generated 4184 bytes in 5 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default5.jpg
+[pid: 9925|app: 0|req: 47/147] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 08:01:50 2019] GET /polls/index.html/v3/default5.jpg => generated 4184 bytes in 5 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default6.jpg
+[pid: 9924|app: 0|req: 41/148] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 08:01:50 2019] GET /polls/index.html/v3/default6.jpg => generated 4184 bytes in 5 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default4.jpg
+[pid: 9927|app: 0|req: 35/149] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 08:01:50 2019] GET /polls/index.html/v3/default4.jpg => generated 4184 bytes in 5 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+[pid: 9925|app: 0|req: 48/150] 113.110.229.114 () {46 vars in 895 bytes} [Fri Mar  8 08:01:50 2019] GET /polls/index.html/ => generated 17641 bytes in 2 msecs (HTTP/1.1 200) 4 headers in 125 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default4.jpg
+[pid: 9926|app: 0|req: 27/151] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 08:01:51 2019] GET /polls/index.html/v3/default4.jpg => generated 4184 bytes in 5 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default5.jpg
+[pid: 9924|app: 0|req: 42/152] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 08:01:51 2019] GET /polls/index.html/v3/default5.jpg => generated 4184 bytes in 5 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default6.jpg
+[pid: 9925|app: 0|req: 49/153] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 08:01:51 2019] GET /polls/index.html/v3/default6.jpg => generated 4184 bytes in 4 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default5.jpg
+[pid: 9927|app: 0|req: 36/154] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 08:01:51 2019] GET /polls/index.html/v3/default5.jpg => generated 4184 bytes in 5 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default4.jpg
+[pid: 9924|app: 0|req: 43/155] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 08:01:51 2019] GET /polls/index.html/v3/default4.jpg => generated 4184 bytes in 5 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+[pid: 9925|app: 0|req: 50/156] 113.110.229.114 () {46 vars in 895 bytes} [Fri Mar  8 08:01:51 2019] GET /polls/index.html/ => generated 17641 bytes in 2 msecs (HTTP/1.1 200) 4 headers in 125 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default4.jpg
+[pid: 9926|app: 0|req: 28/157] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 08:01:51 2019] GET /polls/index.html/v3/default4.jpg => generated 4184 bytes in 5 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default5.jpg
+[pid: 9925|app: 0|req: 51/158] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 08:01:51 2019] GET /polls/index.html/v3/default5.jpg => generated 4184 bytes in 6 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default6.jpg
+[pid: 9924|app: 0|req: 44/159] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 08:01:51 2019] GET /polls/index.html/v3/default6.jpg => generated 4184 bytes in 5 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default4.jpg
+[pid: 9927|app: 0|req: 37/160] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 08:01:51 2019] GET /polls/index.html/v3/default4.jpg => generated 4184 bytes in 7 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+[pid: 9925|app: 0|req: 52/161] 113.110.229.114 () {44 vars in 865 bytes} [Fri Mar  8 08:01:53 2019] GET /polls/index.html/ => generated 17641 bytes in 2 msecs (HTTP/1.1 200) 4 headers in 125 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default4.jpg
+[pid: 9926|app: 0|req: 29/162] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 08:01:53 2019] GET /polls/index.html/v3/default4.jpg => generated 4184 bytes in 6 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default5.jpg
+[pid: 9925|app: 0|req: 53/163] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 08:01:53 2019] GET /polls/index.html/v3/default5.jpg => generated 4184 bytes in 13 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default6.jpg
+[pid: 9927|app: 0|req: 38/164] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 08:01:53 2019] GET /polls/index.html/v3/default6.jpg => generated 4184 bytes in 11 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+[pid: 9925|app: 0|req: 54/165] 113.110.229.114 () {46 vars in 895 bytes} [Fri Mar  8 08:15:30 2019] GET /polls/index.html/ => generated 17641 bytes in 2 msecs (HTTP/1.1 200) 4 headers in 125 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default4.jpg
+[pid: 9926|app: 0|req: 30/166] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 08:15:30 2019] GET /polls/index.html/v3/default4.jpg => generated 4184 bytes in 5 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default5.jpg
+[pid: 9924|app: 0|req: 45/167] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 08:15:30 2019] GET /polls/index.html/v3/default5.jpg => generated 4184 bytes in 5 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default6.jpg
+[pid: 9925|app: 0|req: 55/168] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 08:15:30 2019] GET /polls/index.html/v3/default6.jpg => generated 4184 bytes in 4 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default4.jpg
+[pid: 9927|app: 0|req: 39/169] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 08:15:30 2019] GET /polls/index.html/v3/default4.jpg => generated 4184 bytes in 5 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+[pid: 9924|app: 0|req: 46/170] 113.110.229.114 () {46 vars in 895 bytes} [Fri Mar  8 08:15:33 2019] GET /polls/index.html/ => generated 17641 bytes in 1 msecs (HTTP/1.1 200) 4 headers in 125 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default5.jpg
+[pid: 9926|app: 0|req: 31/171] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 08:15:33 2019] GET /polls/index.html/v3/default5.jpg => generated 4184 bytes in 5 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default4.jpg
+[pid: 9925|app: 0|req: 56/172] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 08:15:33 2019] GET /polls/index.html/v3/default4.jpg => generated 4184 bytes in 5 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default6.jpg
+[pid: 9924|app: 0|req: 47/173] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 08:15:33 2019] GET /polls/index.html/v3/default6.jpg => generated 4184 bytes in 4 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+[pid: 9927|app: 0|req: 40/174] 113.110.229.114 () {44 vars in 863 bytes} [Fri Mar  8 08:15:37 2019] GET /polls/login.html => generated 0 bytes in 0 msecs (HTTP/1.1 301) 3 headers in 123 bytes (1 switches on core 0)
+[pid: 9926|app: 0|req: 32/175] 113.110.229.114 () {44 vars in 865 bytes} [Fri Mar  8 08:15:37 2019] GET /polls/login.html/ => generated 4460 bytes in 25 msecs (HTTP/1.1 200) 5 headers in 292 bytes (1 switches on core 0)
+[pid: 9925|app: 0|req: 57/176] 113.110.229.114 () {44 vars in 861 bytes} [Fri Mar  8 08:15:40 2019] GET /polls/list.html => generated 0 bytes in 0 msecs (HTTP/1.1 301) 3 headers in 122 bytes (1 switches on core 0)
+[pid: 9927|app: 0|req: 41/177] 113.110.229.114 () {44 vars in 863 bytes} [Fri Mar  8 08:15:40 2019] GET /polls/list.html/ => generated 11071 bytes in 6 msecs (HTTP/1.1 200) 4 headers in 125 bytes (1 switches on core 0)
+[pid: 9925|app: 0|req: 58/178] 113.110.229.114 () {44 vars in 864 bytes} [Fri Mar  8 08:15:41 2019] GET /polls/index.html/ => generated 17641 bytes in 1 msecs (HTTP/1.1 200) 4 headers in 125 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default4.jpg
+[pid: 9924|app: 0|req: 48/179] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 08:15:41 2019] GET /polls/index.html/v3/default4.jpg => generated 4184 bytes in 5 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default5.jpg
+[pid: 9925|app: 0|req: 59/180] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 08:15:41 2019] GET /polls/index.html/v3/default5.jpg => generated 4184 bytes in 4 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default6.jpg
+[pid: 9927|app: 0|req: 42/181] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 08:15:41 2019] GET /polls/index.html/v3/default6.jpg => generated 4184 bytes in 6 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default5.jpg
+[pid: 9925|app: 0|req: 60/182] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 08:15:41 2019] GET /polls/index.html/v3/default5.jpg => generated 4184 bytes in 4 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default4.jpg
+[pid: 9924|app: 0|req: 49/183] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 08:15:41 2019] GET /polls/index.html/v3/default4.jpg => generated 4184 bytes in 5 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+[pid: 9925|app: 0|req: 61/184] 113.110.229.114 () {40 vars in 770 bytes} [Fri Mar  8 08:19:08 2019] GET /polls/index.html/ => generated 17641 bytes in 2 msecs (HTTP/1.1 200) 4 headers in 125 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default4.jpg
+[pid: 9926|app: 0|req: 33/185] 113.110.229.114 () {38 vars in 747 bytes} [Fri Mar  8 08:19:08 2019] GET /polls/index.html/v3/default4.jpg => generated 4184 bytes in 5 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /static/css/bootstrap-select.min.css
+[pid: 9924|app: 0|req: 50/186] 113.110.229.114 () {38 vars in 732 bytes} [Fri Mar  8 08:19:08 2019] GET /static/css/bootstrap-select.min.css => generated 1826 bytes in 4 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default5.jpg
+[pid: 9925|app: 0|req: 62/187] 113.110.229.114 () {38 vars in 747 bytes} [Fri Mar  8 08:19:08 2019] GET /polls/index.html/v3/default5.jpg => generated 4184 bytes in 4 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default6.jpg
+[pid: 9927|app: 0|req: 43/188] 113.110.229.114 () {38 vars in 747 bytes} [Fri Mar  8 08:19:08 2019] GET /polls/index.html/v3/default6.jpg => generated 4184 bytes in 5 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+[pid: 9924|app: 0|req: 51/189] 113.110.229.114 () {40 vars in 770 bytes} [Fri Mar  8 08:19:10 2019] GET /polls/index.html/ => generated 17641 bytes in 2 msecs (HTTP/1.1 200) 4 headers in 125 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default4.jpg
+[pid: 9926|app: 0|req: 34/190] 113.110.229.114 () {38 vars in 747 bytes} [Fri Mar  8 08:19:10 2019] GET /polls/index.html/v3/default4.jpg => generated 4184 bytes in 5 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /static/css/bootstrap-select.min.css
+[pid: 9925|app: 0|req: 63/191] 113.110.229.114 () {38 vars in 732 bytes} [Fri Mar  8 08:19:10 2019] GET /static/css/bootstrap-select.min.css => generated 1826 bytes in 3 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default5.jpg
+[pid: 9924|app: 0|req: 52/192] 113.110.229.114 () {38 vars in 747 bytes} [Fri Mar  8 08:19:10 2019] GET /polls/index.html/v3/default5.jpg => generated 4184 bytes in 4 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default6.jpg
+[pid: 9927|app: 0|req: 44/193] 113.110.229.114 () {38 vars in 747 bytes} [Fri Mar  8 08:19:10 2019] GET /polls/index.html/v3/default6.jpg => generated 4184 bytes in 4 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+[pid: 9925|app: 0|req: 64/194] 113.110.229.114 () {46 vars in 895 bytes} [Fri Mar  8 08:23:07 2019] GET /polls/index.html/ => generated 17641 bytes in 1 msecs (HTTP/1.1 200) 4 headers in 125 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default4.jpg
+[pid: 9926|app: 0|req: 35/195] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 08:23:07 2019] GET /polls/index.html/v3/default4.jpg => generated 4184 bytes in 6 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default5.jpg
+[pid: 9925|app: 0|req: 65/196] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 08:23:07 2019] GET /polls/index.html/v3/default5.jpg => generated 4184 bytes in 5 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default6.jpg
+[pid: 9924|app: 0|req: 53/197] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 08:23:07 2019] GET /polls/index.html/v3/default6.jpg => generated 4184 bytes in 5 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+[pid: 9927|app: 0|req: 45/198] 113.110.229.114 () {46 vars in 895 bytes} [Fri Mar  8 08:23:08 2019] GET /polls/index.html/ => generated 17641 bytes in 2 msecs (HTTP/1.1 200) 4 headers in 125 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default4.jpg
+[pid: 9926|app: 0|req: 36/199] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 08:23:08 2019] GET /polls/index.html/v3/default4.jpg => generated 4184 bytes in 5 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default5.jpg
+[pid: 9925|app: 0|req: 66/200] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 08:23:08 2019] GET /polls/index.html/v3/default5.jpg => generated 4184 bytes in 4 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default6.jpg
+[pid: 9924|app: 0|req: 54/201] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 08:23:08 2019] GET /polls/index.html/v3/default6.jpg => generated 4184 bytes in 5 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+[pid: 9927|app: 0|req: 46/202] 113.110.229.114 () {44 vars in 863 bytes} [Fri Mar  8 08:23:08 2019] GET /polls/list.html/ => generated 11071 bytes in 6 msecs (HTTP/1.1 200) 4 headers in 125 bytes (1 switches on core 0)
+[pid: 9925|app: 0|req: 67/203] 113.110.229.114 () {44 vars in 864 bytes} [Fri Mar  8 08:23:09 2019] GET /polls/index.html/ => generated 17641 bytes in 2 msecs (HTTP/1.1 200) 4 headers in 125 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default4.jpg
+[pid: 9924|app: 0|req: 55/204] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 08:23:09 2019] GET /polls/index.html/v3/default4.jpg => generated 4184 bytes in 5 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default5.jpg
+[pid: 9925|app: 0|req: 68/205] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 08:23:09 2019] GET /polls/index.html/v3/default5.jpg => generated 4184 bytes in 4 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default6.jpg
+[pid: 9927|app: 0|req: 47/206] 113.110.229.114 () {42 vars in 814 bytes} [Fri Mar  8 08:23:09 2019] GET /polls/index.html/v3/default6.jpg => generated 4184 bytes in 5 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+[pid: 9925|app: 0|req: 69/207] 113.110.229.114 () {44 vars in 863 bytes} [Fri Mar  8 08:25:37 2019] GET /polls/list.html/ => generated 11071 bytes in 7 msecs (HTTP/1.1 200) 4 headers in 125 bytes (1 switches on core 0)
+[pid: 9924|app: 0|req: 56/208] 113.110.229.114 () {44 vars in 864 bytes} [Fri Mar  8 08:25:39 2019] GET /polls/login.html/ => generated 4460 bytes in 27 msecs (HTTP/1.1 200) 5 headers in 292 bytes (1 switches on core 0)
+[pid: 9925|app: 0|req: 70/209] 113.110.229.114 () {52 vars in 1053 bytes} [Fri Mar  8 08:25:50 2019] POST /polls/login.html/ => generated 0 bytes in 170 msecs (HTTP/1.1 302) 7 headers in 466 bytes (1 switches on core 0)
+[pid: 9924|app: 0|req: 57/210] 113.110.229.114 () {46 vars in 938 bytes} [Fri Mar  8 08:25:50 2019] GET /polls/index.html => generated 0 bytes in 0 msecs (HTTP/1.1 301) 3 headers in 123 bytes (1 switches on core 0)
+[pid: 9926|app: 0|req: 37/211] 113.110.229.114 () {46 vars in 940 bytes} [Fri Mar  8 08:25:50 2019] GET /polls/index.html/ => generated 17994 bytes in 10 msecs (HTTP/1.1 200) 4 headers in 125 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default5.jpg
+Not Found: /polls/index.html/v3/default4.jpg
+[pid: 9927|app: 0|req: 48/212] 113.110.229.114 () {42 vars in 858 bytes} [Fri Mar  8 08:25:51 2019] GET /polls/index.html/v3/default5.jpg => generated 4184 bytes in 9 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+[pid: 9925|app: 0|req: 71/213] 113.110.229.114 () {42 vars in 858 bytes} [Fri Mar  8 08:25:51 2019] GET /polls/index.html/v3/default4.jpg => generated 4184 bytes in 12 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default6.jpg
+[pid: 9924|app: 0|req: 58/214] 113.110.229.114 () {42 vars in 858 bytes} [Fri Mar  8 08:25:51 2019] GET /polls/index.html/v3/default6.jpg => generated 4184 bytes in 7 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+[pid: 9925|app: 0|req: 72/215] 113.110.229.114 () {44 vars in 913 bytes} [Fri Mar  8 08:25:54 2019] GET /polls/selfinfo.html => generated 0 bytes in 1 msecs (HTTP/1.1 301) 3 headers in 126 bytes (1 switches on core 0)
+[pid: 9926|app: 0|req: 38/216] 113.110.229.114 () {44 vars in 915 bytes} [Fri Mar  8 08:25:54 2019] GET /polls/selfinfo.html/ => generated 8205 bytes in 13 msecs (HTTP/1.1 200) 5 headers in 292 bytes (1 switches on core 0)
+[pid: 9925|app: 0|req: 73/217] 113.110.229.114 () {44 vars in 912 bytes} [Fri Mar  8 08:25:55 2019] GET /polls/index.html/ => generated 17994 bytes in 6 msecs (HTTP/1.1 200) 4 headers in 125 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default4.jpg
+[pid: 9924|app: 0|req: 59/218] 113.110.229.114 () {42 vars in 858 bytes} [Fri Mar  8 08:25:55 2019] GET /polls/index.html/v3/default4.jpg => generated 4184 bytes in 5 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default5.jpg
+[pid: 9927|app: 0|req: 49/219] 113.110.229.114 () {42 vars in 858 bytes} [Fri Mar  8 08:25:55 2019] GET /polls/index.html/v3/default5.jpg => generated 4184 bytes in 5 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default6.jpg
+[pid: 9925|app: 0|req: 74/220] 113.110.229.114 () {42 vars in 858 bytes} [Fri Mar  8 08:25:55 2019] GET /polls/index.html/v3/default6.jpg => generated 4184 bytes in 4 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default4.jpg
+[pid: 9924|app: 0|req: 60/221] 113.110.229.114 () {42 vars in 858 bytes} [Fri Mar  8 08:25:55 2019] GET /polls/index.html/v3/default4.jpg => generated 4184 bytes in 5 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+[pid: 9927|app: 0|req: 50/222] 113.110.229.114 () {44 vars in 907 bytes} [Fri Mar  8 08:25:56 2019] GET /polls/list.html/ => generated 11550 bytes in 10 msecs (HTTP/1.1 200) 4 headers in 125 bytes (1 switches on core 0)
+[pid: 9925|app: 0|req: 75/223] 113.110.229.114 () {44 vars in 908 bytes} [Fri Mar  8 08:25:57 2019] GET /polls/index.html/ => generated 17994 bytes in 5 msecs (HTTP/1.1 200) 4 headers in 125 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default4.jpg
+[pid: 9924|app: 0|req: 61/224] 113.110.229.114 () {42 vars in 858 bytes} [Fri Mar  8 08:25:57 2019] GET /polls/index.html/v3/default4.jpg => generated 4184 bytes in 5 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default5.jpg
+[pid: 9927|app: 0|req: 51/225] 113.110.229.114 () {42 vars in 858 bytes} [Fri Mar  8 08:25:57 2019] GET /polls/index.html/v3/default5.jpg => generated 4184 bytes in 5 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default6.jpg
+[pid: 9925|app: 0|req: 76/226] 113.110.229.114 () {42 vars in 858 bytes} [Fri Mar  8 08:25:57 2019] GET /polls/index.html/v3/default6.jpg => generated 4184 bytes in 5 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+[pid: 9924|app: 0|req: 62/227] 113.110.229.114 () {44 vars in 915 bytes} [Fri Mar  8 08:25:59 2019] GET /polls/selfinfo.html/ => generated 8205 bytes in 13 msecs (HTTP/1.1 200) 5 headers in 292 bytes (1 switches on core 0)
+[pid: 9925|app: 0|req: 77/228] 113.110.229.114 () {44 vars in 932 bytes} [Fri Mar  8 08:26:02 2019] GET /polls/resumeinfo.html/check => generated 20769 bytes in 64 msecs (HTTP/1.1 200) 5 headers in 293 bytes (1 switches on core 0)
+[pid: 9924|app: 0|req: 63/229] 113.110.229.114 () {44 vars in 925 bytes} [Fri Mar  8 08:26:06 2019] GET /polls/selfinfo.html/ => generated 8205 bytes in 10 msecs (HTTP/1.1 200) 5 headers in 292 bytes (1 switches on core 0)
+[pid: 9925|app: 0|req: 78/230] 113.110.229.114 () {44 vars in 932 bytes} [Fri Mar  8 08:26:07 2019] GET /polls/resumeinfo.html/check => generated 20769 bytes in 74 msecs (HTTP/1.1 200) 5 headers in 293 bytes (1 switches on core 0)
+[pid: 9924|app: 0|req: 64/231] 113.110.229.114 () {44 vars in 917 bytes} [Fri Mar  8 08:26:22 2019] GET /polls/list.html/ => generated 11550 bytes in 8 msecs (HTTP/1.1 200) 4 headers in 125 bytes (1 switches on core 0)
+[pid: 9925|app: 0|req: 79/232] 113.110.229.114 () {44 vars in 908 bytes} [Fri Mar  8 08:26:23 2019] GET /polls/index.html/ => generated 17994 bytes in 6 msecs (HTTP/1.1 200) 4 headers in 125 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default4.jpg
+[pid: 9924|app: 0|req: 65/233] 113.110.229.114 () {42 vars in 858 bytes} [Fri Mar  8 08:26:23 2019] GET /polls/index.html/v3/default4.jpg => generated 4184 bytes in 5 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default5.jpg
+[pid: 9927|app: 0|req: 52/234] 113.110.229.114 () {42 vars in 858 bytes} [Fri Mar  8 08:26:23 2019] GET /polls/index.html/v3/default5.jpg => generated 4184 bytes in 5 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default6.jpg
+[pid: 9925|app: 0|req: 80/235] 113.110.229.114 () {42 vars in 858 bytes} [Fri Mar  8 08:26:23 2019] GET /polls/index.html/v3/default6.jpg => generated 4184 bytes in 4 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+[pid: 9925|app: 0|req: 81/236] 113.110.229.114 () {38 vars in 762 bytes} [Fri Mar  8 08:28:54 2019] GET /polls/ => generated 17994 bytes in 6 msecs (HTTP/1.1 200) 4 headers in 125 bytes (1 switches on core 0)
+Not Found: /static/css/bootstrap-select.min.css
+[pid: 9924|app: 0|req: 66/237] 113.110.229.114 () {38 vars in 766 bytes} [Fri Mar  8 08:28:54 2019] GET /static/css/bootstrap-select.min.css => generated 1826 bytes in 4 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/v3/default4.jpg
+[pid: 9927|app: 0|req: 53/238] 113.110.229.114 () {38 vars in 759 bytes} [Fri Mar  8 08:28:54 2019] GET /polls/v3/default4.jpg => generated 4151 bytes in 5 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/v3/default5.jpg
+[pid: 9925|app: 0|req: 82/239] 113.110.229.114 () {38 vars in 759 bytes} [Fri Mar  8 08:28:54 2019] GET /polls/v3/default5.jpg => generated 4151 bytes in 5 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/v3/default6.jpg
+[pid: 9924|app: 0|req: 67/240] 113.110.229.114 () {38 vars in 759 bytes} [Fri Mar  8 08:28:54 2019] GET /polls/v3/default6.jpg => generated 4151 bytes in 4 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+[pid: 9927|app: 0|req: 54/241] 113.110.229.114 () {40 vars in 830 bytes} [Fri Mar  8 08:28:58 2019] GET /polls/list.html/ => generated 11550 bytes in 8 msecs (HTTP/1.1 200) 4 headers in 125 bytes (1 switches on core 0)
+Not Found: /static/css/bootstrap-select.min.css
+[pid: 9925|app: 0|req: 83/242] 113.110.229.114 () {38 vars in 776 bytes} [Fri Mar  8 08:28:58 2019] GET /static/css/bootstrap-select.min.css => generated 1826 bytes in 4 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+[pid: 9924|app: 0|req: 68/243] 113.110.229.114 () {40 vars in 842 bytes} [Fri Mar  8 08:28:59 2019] GET /polls/index.html/ => generated 17994 bytes in 10 msecs (HTTP/1.1 200) 4 headers in 125 bytes (1 switches on core 0)
+Not Found: /static/css/bootstrap-select.min.css
+Not Found: /polls/index.html/v3/default4.jpg
+Not Found: /polls/index.html/v3/default5.jpg
+[pid: 9925|app: 0|req: 84/244] 113.110.229.114 () {38 vars in 777 bytes} [Fri Mar  8 08:28:59 2019] GET /static/css/bootstrap-select.min.css => generated 1826 bytes in 32 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+[pid: 9927|app: 0|req: 55/245] 113.110.229.114 () {38 vars in 792 bytes} [Fri Mar  8 08:28:59 2019] GET /polls/index.html/v3/default5.jpg => generated 4184 bytes in 22 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+[pid: 9926|app: 0|req: 39/246] 113.110.229.114 () {38 vars in 792 bytes} [Fri Mar  8 08:28:59 2019] GET /polls/index.html/v3/default4.jpg => generated 4184 bytes in 30 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default6.jpg
+[pid: 9924|app: 0|req: 69/247] 113.110.229.114 () {38 vars in 792 bytes} [Fri Mar  8 08:28:59 2019] GET /polls/index.html/v3/default6.jpg => generated 4184 bytes in 12 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+[pid: 9925|app: 0|req: 85/248] 113.110.229.114 () {40 vars in 841 bytes} [Fri Mar  8 08:28:59 2019] GET /polls/list.html/ => generated 11550 bytes in 8 msecs (HTTP/1.1 200) 4 headers in 125 bytes (1 switches on core 0)
+Not Found: /static/css/bootstrap-select.min.css
+[pid: 9924|app: 0|req: 70/249] 113.110.229.114 () {38 vars in 776 bytes} [Fri Mar  8 08:28:59 2019] GET /static/css/bootstrap-select.min.css => generated 1826 bytes in 3 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+[pid: 9927|app: 0|req: 56/250] 113.110.229.114 () {40 vars in 842 bytes} [Fri Mar  8 08:29:02 2019] GET /polls/index.html/ => generated 17994 bytes in 6 msecs (HTTP/1.1 200) 4 headers in 125 bytes (1 switches on core 0)
+Not Found: /static/css/bootstrap-select.min.css
+[pid: 9925|app: 0|req: 86/251] 113.110.229.114 () {38 vars in 777 bytes} [Fri Mar  8 08:29:02 2019] GET /static/css/bootstrap-select.min.css => generated 1826 bytes in 3 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default4.jpg
+[pid: 9924|app: 0|req: 71/252] 113.110.229.114 () {38 vars in 792 bytes} [Fri Mar  8 08:29:02 2019] GET /polls/index.html/v3/default4.jpg => generated 4184 bytes in 5 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default5.jpg
+[pid: 9926|app: 0|req: 40/253] 113.110.229.114 () {38 vars in 792 bytes} [Fri Mar  8 08:29:02 2019] GET /polls/index.html/v3/default5.jpg => generated 4184 bytes in 4 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default6.jpg
+[pid: 9925|app: 0|req: 87/254] 113.110.229.114 () {38 vars in 792 bytes} [Fri Mar  8 08:29:02 2019] GET /polls/index.html/v3/default6.jpg => generated 4184 bytes in 5 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+[pid: 9924|app: 0|req: 72/255] 113.110.229.114 () {40 vars in 847 bytes} [Fri Mar  8 08:29:03 2019] GET /polls/selfinfo.html => generated 0 bytes in 0 msecs (HTTP/1.1 301) 3 headers in 126 bytes (1 switches on core 0)
+[pid: 9927|app: 0|req: 57/256] 113.110.229.114 () {40 vars in 849 bytes} [Fri Mar  8 08:29:03 2019] GET /polls/selfinfo.html/ => generated 8205 bytes in 12 msecs (HTTP/1.1 200) 5 headers in 292 bytes (1 switches on core 0)
+Not Found: /static/css/bootstrap-select.min.css
+[pid: 9925|app: 0|req: 88/257] 113.110.229.114 () {38 vars in 780 bytes} [Fri Mar  8 08:29:03 2019] GET /static/css/bootstrap-select.min.css => generated 1826 bytes in 3 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+[pid: 9924|app: 0|req: 73/258] 113.110.229.114 () {40 vars in 866 bytes} [Fri Mar  8 08:29:05 2019] GET /polls/resumeinfo.html/check => generated 20769 bytes in 53 msecs (HTTP/1.1 200) 5 headers in 293 bytes (1 switches on core 0)
+Not Found: /static/css/bootstrap-select.min.css
+[pid: 9925|app: 0|req: 89/259] 113.110.229.114 () {38 vars in 787 bytes} [Fri Mar  8 08:29:05 2019] GET /static/css/bootstrap-select.min.css => generated 1826 bytes in 4 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+[pid: 9927|app: 0|req: 58/260] 113.110.229.114 () {40 vars in 859 bytes} [Fri Mar  8 08:29:06 2019] GET /polls/selfinfo.html/ => generated 8205 bytes in 11 msecs (HTTP/1.1 200) 5 headers in 292 bytes (1 switches on core 0)
+Not Found: /static/css/bootstrap-select.min.css
+[pid: 9925|app: 0|req: 90/261] 113.110.229.114 () {38 vars in 780 bytes} [Fri Mar  8 08:29:06 2019] GET /static/css/bootstrap-select.min.css => generated 1826 bytes in 3 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+[pid: 9924|app: 0|req: 74/262] 113.110.229.114 () {40 vars in 844 bytes} [Fri Mar  8 08:29:07 2019] GET /polls/list.html/ => generated 11550 bytes in 10 msecs (HTTP/1.1 200) 4 headers in 125 bytes (1 switches on core 0)
+Not Found: /static/css/bootstrap-select.min.css
+[pid: 9925|app: 0|req: 91/263] 113.110.229.114 () {38 vars in 776 bytes} [Fri Mar  8 08:29:07 2019] GET /static/css/bootstrap-select.min.css => generated 1826 bytes in 3 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+[pid: 9927|app: 0|req: 59/264] 113.110.229.114 () {40 vars in 857 bytes} [Fri Mar  8 08:29:08 2019] GET /polls/send_resume/?sid=12 => generated 0 bytes in 10 msecs (HTTP/1.1 302) 6 headers in 369 bytes (1 switches on core 0)
+[pid: 9925|app: 0|req: 92/265] 113.110.229.114 () {40 vars in 1012 bytes} [Fri Mar  8 08:29:08 2019] GET /polls/list.html/ => generated 11776 bytes in 8 msecs (HTTP/1.1 200) 5 headers in 209 bytes (1 switches on core 0)
+Not Found: /static/css/bootstrap-select.min.css
+[pid: 9924|app: 0|req: 75/266] 113.110.229.114 () {38 vars in 776 bytes} [Fri Mar  8 08:29:08 2019] GET /static/css/bootstrap-select.min.css => generated 1826 bytes in 6 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+[pid: 9925|app: 0|req: 93/267] 113.110.229.114 () {40 vars in 853 bytes} [Fri Mar  8 08:29:12 2019] GET /polls/list.html/?page=3 => generated 6783 bytes in 9 msecs (HTTP/1.1 200) 4 headers in 124 bytes (1 switches on core 0)
+Not Found: /static/css/bootstrap-select.min.css
+[pid: 9924|app: 0|req: 76/268] 113.110.229.114 () {38 vars in 783 bytes} [Fri Mar  8 08:29:12 2019] GET /static/css/bootstrap-select.min.css => generated 1826 bytes in 3 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+[pid: 9927|app: 0|req: 60/269] 113.110.229.114 () {40 vars in 864 bytes} [Fri Mar  8 08:29:13 2019] GET /polls/send_resume/?sid=28 => generated 0 bytes in 11 msecs (HTTP/1.1 302) 6 headers in 369 bytes (1 switches on core 0)
+[pid: 9925|app: 0|req: 94/270] 113.110.229.114 () {40 vars in 1019 bytes} [Fri Mar  8 08:29:13 2019] GET /polls/list.html/ => generated 11776 bytes in 8 msecs (HTTP/1.1 200) 5 headers in 209 bytes (1 switches on core 0)
+Not Found: /static/css/bootstrap-select.min.css
+[pid: 9924|app: 0|req: 77/271] 113.110.229.114 () {38 vars in 776 bytes} [Fri Mar  8 08:29:13 2019] GET /static/css/bootstrap-select.min.css => generated 1826 bytes in 4 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+[pid: 9927|app: 0|req: 61/272] 113.110.229.114 () {40 vars in 853 bytes} [Fri Mar  8 08:29:17 2019] GET /polls/list.html/?page=1 => generated 11550 bytes in 8 msecs (HTTP/1.1 200) 4 headers in 125 bytes (1 switches on core 0)
+Not Found: /static/css/bootstrap-select.min.css
+[pid: 9925|app: 0|req: 95/273] 113.110.229.114 () {38 vars in 783 bytes} [Fri Mar  8 08:29:17 2019] GET /static/css/bootstrap-select.min.css => generated 1826 bytes in 3 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+[pid: 9924|app: 0|req: 78/274] 113.110.229.114 () {40 vars in 860 bytes} [Fri Mar  8 08:29:19 2019] GET /polls/list.html/?page=2 => generated 11556 bytes in 8 msecs (HTTP/1.1 200) 4 headers in 125 bytes (1 switches on core 0)
+Not Found: /static/css/bootstrap-select.min.css
+[pid: 9925|app: 0|req: 96/275] 113.110.229.114 () {38 vars in 783 bytes} [Fri Mar  8 08:29:19 2019] GET /static/css/bootstrap-select.min.css => generated 1826 bytes in 3 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+[pid: 9927|app: 0|req: 62/276] 113.110.229.114 () {40 vars in 864 bytes} [Fri Mar  8 08:29:19 2019] GET /polls/send_resume/?sid=21 => generated 0 bytes in 17 msecs (HTTP/1.1 302) 6 headers in 327 bytes (1 switches on core 0)
+[pid: 9925|app: 0|req: 97/277] 113.110.229.114 () {40 vars in 977 bytes} [Fri Mar  8 08:29:20 2019] GET /polls/list.html/ => generated 11758 bytes in 8 msecs (HTTP/1.1 200) 5 headers in 209 bytes (1 switches on core 0)
+Not Found: /static/css/bootstrap-select.min.css
+[pid: 9924|app: 0|req: 79/278] 113.110.229.114 () {38 vars in 776 bytes} [Fri Mar  8 08:29:20 2019] GET /static/css/bootstrap-select.min.css => generated 1826 bytes in 3 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+[pid: 9927|app: 0|req: 63/279] 113.110.229.114 () {40 vars in 848 bytes} [Fri Mar  8 08:29:23 2019] GET /polls/selfinfo.html/ => generated 8205 bytes in 9 msecs (HTTP/1.1 200) 5 headers in 292 bytes (1 switches on core 0)
+Not Found: /static/css/bootstrap-select.min.css
+[pid: 9925|app: 0|req: 98/280] 113.110.229.114 () {38 vars in 780 bytes} [Fri Mar  8 08:29:23 2019] GET /static/css/bootstrap-select.min.css => generated 1826 bytes in 3 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+[pid: 9924|app: 0|req: 80/281] 113.110.229.114 () {40 vars in 854 bytes} [Fri Mar  8 08:29:24 2019] GET /polls/notifyinfo.html => generated 0 bytes in 0 msecs (HTTP/1.1 301) 3 headers in 128 bytes (1 switches on core 0)
+[pid: 9926|app: 0|req: 41/282] 113.110.229.114 () {40 vars in 856 bytes} [Fri Mar  8 08:29:24 2019] GET /polls/notifyinfo.html/ => generated 5499 bytes in 7 msecs (HTTP/1.1 200) 4 headers in 124 bytes (1 switches on core 0)
+Not Found: /static/css/bootstrap-select.min.css
+[pid: 9925|app: 0|req: 99/283] 113.110.229.114 () {38 vars in 782 bytes} [Fri Mar  8 08:29:24 2019] GET /static/css/bootstrap-select.min.css => generated 1826 bytes in 4 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+[pid: 9924|app: 0|req: 81/284] 113.110.229.114 () {40 vars in 868 bytes} [Fri Mar  8 08:29:25 2019] GET /polls/resumeinfo.html/check => generated 20769 bytes in 49 msecs (HTTP/1.1 200) 5 headers in 293 bytes (1 switches on core 0)
+Not Found: /static/css/bootstrap-select.min.css
+[pid: 9925|app: 0|req: 100/285] 113.110.229.114 () {38 vars in 787 bytes} [Fri Mar  8 08:29:25 2019] GET /static/css/bootstrap-select.min.css => generated 1826 bytes in 6 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+[pid: 9927|app: 0|req: 64/286] 113.110.229.114 () {40 vars in 859 bytes} [Fri Mar  8 08:29:25 2019] GET /polls/selfinfo.html/ => generated 8205 bytes in 10 msecs (HTTP/1.1 200) 5 headers in 292 bytes (1 switches on core 0)
+Not Found: /static/css/bootstrap-select.min.css
+[pid: 9925|app: 0|req: 101/287] 113.110.229.114 () {38 vars in 780 bytes} [Fri Mar  8 08:29:25 2019] GET /static/css/bootstrap-select.min.css => generated 1826 bytes in 3 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+[pid: 9924|app: 0|req: 82/288] 113.110.229.114 () {40 vars in 866 bytes} [Fri Mar  8 08:29:26 2019] GET /polls/resumeinfo.html/check => generated 20769 bytes in 68 msecs (HTTP/1.1 200) 5 headers in 293 bytes (1 switches on core 0)
+Not Found: /static/css/bootstrap-select.min.css
+[pid: 9925|app: 0|req: 102/289] 113.110.229.114 () {38 vars in 787 bytes} [Fri Mar  8 08:29:26 2019] GET /static/css/bootstrap-select.min.css => generated 1826 bytes in 4 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+[pid: 9927|app: 0|req: 65/290] 113.110.229.114 () {40 vars in 859 bytes} [Fri Mar  8 08:29:28 2019] GET /polls/selfinfo.html/ => generated 8205 bytes in 10 msecs (HTTP/1.1 200) 5 headers in 292 bytes (1 switches on core 0)
+Not Found: /static/css/bootstrap-select.min.css
+[pid: 9925|app: 0|req: 103/291] 113.110.229.114 () {38 vars in 780 bytes} [Fri Mar  8 08:29:28 2019] GET /static/css/bootstrap-select.min.css => generated 1826 bytes in 3 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+[pid: 9924|app: 0|req: 83/292] 113.110.229.114 () {40 vars in 866 bytes} [Fri Mar  8 08:29:29 2019] GET /polls/resumeinfo.html/check => generated 20769 bytes in 47 msecs (HTTP/1.1 200) 5 headers in 293 bytes (1 switches on core 0)
+Not Found: /static/css/bootstrap-select.min.css
+[pid: 9925|app: 0|req: 104/293] 113.110.229.114 () {38 vars in 787 bytes} [Fri Mar  8 08:29:29 2019] GET /static/css/bootstrap-select.min.css => generated 1826 bytes in 4 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+[pid: 9927|app: 0|req: 66/294] 113.110.229.114 () {40 vars in 863 bytes} [Fri Mar  8 08:29:29 2019] GET /polls/notifyinfo.html/ => generated 5499 bytes in 7 msecs (HTTP/1.1 200) 4 headers in 124 bytes (1 switches on core 0)
+Not Found: /static/css/bootstrap-select.min.css
+[pid: 9925|app: 0|req: 105/295] 113.110.229.114 () {38 vars in 782 bytes} [Fri Mar  8 08:29:29 2019] GET /static/css/bootstrap-select.min.css => generated 1826 bytes in 3 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+[pid: 9924|app: 0|req: 84/296] 113.110.229.114 () {40 vars in 868 bytes} [Fri Mar  8 08:29:30 2019] GET /polls/resumeinfo.html/check => generated 20769 bytes in 51 msecs (HTTP/1.1 200) 5 headers in 293 bytes (1 switches on core 0)
+Not Found: /static/css/bootstrap-select.min.css
+[pid: 9925|app: 0|req: 106/297] 113.110.229.114 () {38 vars in 787 bytes} [Fri Mar  8 08:29:30 2019] GET /static/css/bootstrap-select.min.css => generated 1826 bytes in 4 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+[pid: 9927|app: 0|req: 67/298] 113.110.229.114 () {40 vars in 859 bytes} [Fri Mar  8 08:29:30 2019] GET /polls/selfinfo.html/ => generated 8205 bytes in 11 msecs (HTTP/1.1 200) 5 headers in 292 bytes (1 switches on core 0)
+Not Found: /static/css/bootstrap-select.min.css
+[pid: 9925|app: 0|req: 107/299] 113.110.229.114 () {38 vars in 780 bytes} [Fri Mar  8 08:29:30 2019] GET /static/css/bootstrap-select.min.css => generated 1826 bytes in 4 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+[pid: 9924|app: 0|req: 85/300] 113.110.229.114 () {40 vars in 856 bytes} [Fri Mar  8 08:29:31 2019] GET /polls/notifyinfo.html/ => generated 5499 bytes in 7 msecs (HTTP/1.1 200) 4 headers in 124 bytes (1 switches on core 0)
+Not Found: /static/css/bootstrap-select.min.css
+[pid: 9925|app: 0|req: 108/301] 113.110.229.114 () {38 vars in 782 bytes} [Fri Mar  8 08:29:31 2019] GET /static/css/bootstrap-select.min.css => generated 1826 bytes in 4 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+[pid: 9927|app: 0|req: 68/302] 113.110.229.114 () {40 vars in 854 bytes} [Fri Mar  8 08:29:32 2019] GET /polls/selfinfo.html/ => generated 8205 bytes in 9 msecs (HTTP/1.1 200) 5 headers in 292 bytes (1 switches on core 0)
+Not Found: /static/css/bootstrap-select.min.css
+[pid: 9925|app: 0|req: 109/303] 113.110.229.114 () {38 vars in 780 bytes} [Fri Mar  8 08:29:32 2019] GET /static/css/bootstrap-select.min.css => generated 1826 bytes in 3 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+[pid: 9924|app: 0|req: 86/304] 113.110.229.114 () {40 vars in 856 bytes} [Fri Mar  8 08:29:33 2019] GET /polls/notifyinfo.html/ => generated 5499 bytes in 9 msecs (HTTP/1.1 200) 4 headers in 124 bytes (1 switches on core 0)
+Not Found: /static/css/bootstrap-select.min.css
+[pid: 9925|app: 0|req: 110/305] 113.110.229.114 () {38 vars in 782 bytes} [Fri Mar  8 08:29:33 2019] GET /static/css/bootstrap-select.min.css => generated 1826 bytes in 3 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+[pid: 9927|app: 0|req: 69/306] 113.110.229.114 () {40 vars in 854 bytes} [Fri Mar  8 08:29:34 2019] GET /polls/selfinfo.html/ => generated 8205 bytes in 9 msecs (HTTP/1.1 200) 5 headers in 292 bytes (1 switches on core 0)
+Not Found: /static/css/bootstrap-select.min.css
+[pid: 9925|app: 0|req: 111/307] 113.110.229.114 () {38 vars in 780 bytes} [Fri Mar  8 08:29:34 2019] GET /static/css/bootstrap-select.min.css => generated 1826 bytes in 4 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+[pid: 9924|app: 0|req: 87/308] 113.110.229.114 () {40 vars in 856 bytes} [Fri Mar  8 08:29:34 2019] GET /polls/notifyinfo.html/ => generated 5499 bytes in 8 msecs (HTTP/1.1 200) 4 headers in 124 bytes (1 switches on core 0)
+Not Found: /static/css/bootstrap-select.min.css
+[pid: 9925|app: 0|req: 112/309] 113.110.229.114 () {38 vars in 782 bytes} [Fri Mar  8 08:29:34 2019] GET /static/css/bootstrap-select.min.css => generated 1826 bytes in 3 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+[pid: 9927|app: 0|req: 70/310] 113.110.229.114 () {40 vars in 848 bytes} [Fri Mar  8 08:29:35 2019] GET /polls/index.html/ => generated 17994 bytes in 5 msecs (HTTP/1.1 200) 4 headers in 125 bytes (1 switches on core 0)
+Not Found: /static/css/bootstrap-select.min.css
+[pid: 9924|app: 0|req: 88/311] 113.110.229.114 () {38 vars in 777 bytes} [Fri Mar  8 08:29:35 2019] GET /static/css/bootstrap-select.min.css => generated 1826 bytes in 4 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default4.jpg
+[pid: 9925|app: 0|req: 113/312] 113.110.229.114 () {38 vars in 792 bytes} [Fri Mar  8 08:29:35 2019] GET /polls/index.html/v3/default4.jpg => generated 4184 bytes in 5 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default5.jpg
+[pid: 9927|app: 0|req: 71/313] 113.110.229.114 () {38 vars in 792 bytes} [Fri Mar  8 08:29:35 2019] GET /polls/index.html/v3/default5.jpg => generated 4184 bytes in 4 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default6.jpg
+[pid: 9924|app: 0|req: 89/314] 113.110.229.114 () {38 vars in 792 bytes} [Fri Mar  8 08:29:35 2019] GET /polls/index.html/v3/default6.jpg => generated 4184 bytes in 4 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+[pid: 9925|app: 0|req: 114/315] 113.110.229.114 () {40 vars in 844 bytes} [Fri Mar  8 08:29:39 2019] GET /polls/index.html/? => generated 17994 bytes in 5 msecs (HTTP/1.1 200) 4 headers in 125 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default5.jpg
+[pid: 9927|app: 0|req: 72/316] 113.110.229.114 () {38 vars in 793 bytes} [Fri Mar  8 08:29:39 2019] GET /polls/index.html/v3/default5.jpg => generated 4184 bytes in 5 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /static/css/bootstrap-select.min.css
+Not Found: /polls/index.html/v3/default4.jpg
+[pid: 9926|app: 0|req: 42/317] 113.110.229.114 () {38 vars in 778 bytes} [Fri Mar  8 08:29:39 2019] GET /static/css/bootstrap-select.min.css => generated 1826 bytes in 7 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+[pid: 9924|app: 0|req: 90/318] 113.110.229.114 () {38 vars in 793 bytes} [Fri Mar  8 08:29:39 2019] GET /polls/index.html/v3/default4.jpg => generated 4184 bytes in 8 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default6.jpg
+[pid: 9925|app: 0|req: 115/319] 113.110.229.114 () {38 vars in 793 bytes} [Fri Mar  8 08:29:39 2019] GET /polls/index.html/v3/default6.jpg => generated 4184 bytes in 5 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default5.jpg
+[pid: 9927|app: 0|req: 73/320] 113.110.229.114 () {38 vars in 793 bytes} [Fri Mar  8 08:29:39 2019] GET /polls/index.html/v3/default5.jpg => generated 4184 bytes in 5 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+[pid: 9924|app: 0|req: 91/321] 113.87.162.32 () {36 vars in 810 bytes} [Fri Mar  8 08:30:34 2019] GET /polls => generated 0 bytes in 0 msecs (HTTP/1.1 301) 3 headers in 112 bytes (1 switches on core 0)
+[pid: 9926|app: 0|req: 43/322] 113.87.162.32 () {36 vars in 812 bytes} [Fri Mar  8 08:30:34 2019] GET /polls/ => generated 17641 bytes in 1 msecs (HTTP/1.1 200) 4 headers in 125 bytes (1 switches on core 0)
+[pid: 9924|app: 0|req: 92/323] 113.87.162.32 () {34 vars in 699 bytes} [Fri Mar  8 08:30:45 2019] GET /polls/ => generated 17641 bytes in 2 msecs (HTTP/1.1 200) 4 headers in 125 bytes (1 switches on core 0)
+Not Found: /favicon.ico
+[pid: 9925|app: 0|req: 116/324] 113.87.162.32 () {36 vars in 700 bytes} [Fri Mar  8 08:30:45 2019] GET /favicon.ico => generated 2210 bytes in 4 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+[pid: 9926|app: 0|req: 44/325] 113.87.162.32 () {38 vars in 765 bytes} [Fri Mar  8 08:31:05 2019] GET /polls/ => generated 17641 bytes in 1 msecs (HTTP/1.1 200) 4 headers in 125 bytes (1 switches on core 0)
+Not Found: /favicon.ico
+[pid: 9927|app: 0|req: 74/326] 113.87.162.32 () {40 vars in 766 bytes} [Fri Mar  8 08:31:06 2019] GET /favicon.ico => generated 2210 bytes in 3 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+[pid: 9924|app: 0|req: 93/327] 113.87.162.32 () {38 vars in 763 bytes} [Fri Mar  8 08:31:14 2019] GET /polls => generated 0 bytes in 0 msecs (HTTP/1.1 301) 3 headers in 112 bytes (1 switches on core 0)
+[pid: 9924|app: 0|req: 94/328] 113.87.162.32 () {38 vars in 765 bytes} [Fri Mar  8 08:31:14 2019] GET /polls/ => generated 17641 bytes in 1 msecs (HTTP/1.1 200) 4 headers in 125 bytes (1 switches on core 0)
+Not Found: /favicon.ico
+[pid: 9926|app: 0|req: 45/329] 113.87.162.32 () {40 vars in 766 bytes} [Fri Mar  8 08:31:14 2019] GET /favicon.ico => generated 2210 bytes in 4 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+[pid: 9925|app: 0|req: 117/330] 113.87.162.32 () {38 vars in 785 bytes} [Fri Mar  8 08:31:23 2019] GET /polls/index.html => generated 0 bytes in 0 msecs (HTTP/1.1 301) 3 headers in 123 bytes (1 switches on core 0)
+[pid: 9924|app: 0|req: 95/331] 113.87.162.32 () {38 vars in 787 bytes} [Fri Mar  8 08:31:24 2019] GET /polls/index.html/ => generated 17641 bytes in 2 msecs (HTTP/1.1 200) 4 headers in 125 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default4.jpg
+[pid: 9925|app: 0|req: 118/332] 113.87.162.32 () {40 vars in 819 bytes} [Fri Mar  8 08:31:24 2019] GET /polls/index.html/v3/default4.jpg => generated 4184 bytes in 5 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default5.jpg
+[pid: 9924|app: 0|req: 96/333] 113.87.162.32 () {40 vars in 819 bytes} [Fri Mar  8 08:31:24 2019] GET /polls/index.html/v3/default5.jpg => generated 4184 bytes in 5 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default6.jpg
+[pid: 9927|app: 0|req: 75/334] 113.87.162.32 () {40 vars in 819 bytes} [Fri Mar  8 08:31:24 2019] GET /polls/index.html/v3/default6.jpg => generated 4184 bytes in 5 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default4.jpg
+[pid: 9925|app: 0|req: 119/335] 113.87.162.32 () {40 vars in 819 bytes} [Fri Mar  8 08:31:24 2019] GET /polls/index.html/v3/default4.jpg => generated 4184 bytes in 6 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default5.jpg
+[pid: 9924|app: 0|req: 97/336] 113.87.162.32 () {40 vars in 819 bytes} [Fri Mar  8 08:31:24 2019] GET /polls/index.html/v3/default5.jpg => generated 4184 bytes in 6 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default6.jpg
+[pid: 9925|app: 0|req: 120/337] 113.87.162.32 () {40 vars in 819 bytes} [Fri Mar  8 08:31:24 2019] GET /polls/index.html/v3/default6.jpg => generated 4184 bytes in 4 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /favicon.ico
+[pid: 9927|app: 0|req: 76/338] 113.87.162.32 () {40 vars in 777 bytes} [Fri Mar  8 08:31:29 2019] GET /favicon.ico => generated 2210 bytes in 3 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+[pid: 9926|app: 0|req: 46/339] 101.91.60.105 () {32 vars in 488 bytes} [Fri Mar  8 08:31:34 2019] GET /polls => generated 0 bytes in 0 msecs (HTTP/1.1 301) 3 headers in 112 bytes (1 switches on core 0)
+[pid: 9926|app: 0|req: 47/340] 113.110.229.114 () {38 vars in 762 bytes} [Fri Mar  8 08:31:44 2019] GET /polls/ => generated 17994 bytes in 10 msecs (HTTP/1.1 200) 4 headers in 125 bytes (1 switches on core 0)
+Not Found: /polls/v3/default5.jpg
+Not Found: /static/css/bootstrap-select.min.css
+[pid: 9925|app: 0|req: 121/341] 113.110.229.114 () {38 vars in 766 bytes} [Fri Mar  8 08:31:44 2019] GET /static/css/bootstrap-select.min.css => generated 1826 bytes in 32 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/v3/default4.jpg
+[pid: 9924|app: 0|req: 98/342] 113.110.229.114 () {38 vars in 759 bytes} [Fri Mar  8 08:31:44 2019] GET /polls/v3/default5.jpg => generated 4151 bytes in 25 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+[pid: 9927|app: 0|req: 77/343] 113.110.229.114 () {38 vars in 759 bytes} [Fri Mar  8 08:31:44 2019] GET /polls/v3/default4.jpg => generated 4151 bytes in 27 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/v3/default6.jpg
+[pid: 9926|app: 0|req: 48/344] 113.110.229.114 () {38 vars in 759 bytes} [Fri Mar  8 08:31:44 2019] GET /polls/v3/default6.jpg => generated 4151 bytes in 8 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/v3/default5.jpg
+[pid: 9925|app: 0|req: 122/345] 113.110.229.114 () {38 vars in 759 bytes} [Fri Mar  8 08:31:44 2019] GET /polls/v3/default5.jpg => generated 4151 bytes in 9 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+[pid: 9924|app: 0|req: 99/346] 113.110.229.114 () {40 vars in 793 bytes} [Fri Mar  8 08:31:47 2019] GET /polls/ => generated 17994 bytes in 6 msecs (HTTP/1.1 200) 4 headers in 125 bytes (1 switches on core 0)
+Not Found: /static/css/bootstrap-select.min.css
+[pid: 9925|app: 0|req: 123/347] 113.110.229.114 () {38 vars in 766 bytes} [Fri Mar  8 08:31:47 2019] GET /static/css/bootstrap-select.min.css => generated 1826 bytes in 3 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/v3/default4.jpg
+[pid: 9927|app: 0|req: 78/348] 113.110.229.114 () {38 vars in 759 bytes} [Fri Mar  8 08:31:47 2019] GET /polls/v3/default4.jpg => generated 4151 bytes in 5 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/v3/default5.jpg
+[pid: 9924|app: 0|req: 100/349] 113.110.229.114 () {38 vars in 759 bytes} [Fri Mar  8 08:31:47 2019] GET /polls/v3/default5.jpg => generated 4151 bytes in 5 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/v3/default6.jpg
+[pid: 9925|app: 0|req: 124/350] 113.110.229.114 () {38 vars in 759 bytes} [Fri Mar  8 08:31:47 2019] GET /polls/v3/default6.jpg => generated 4151 bytes in 4 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+[pid: 9925|app: 0|req: 125/351] 183.61.51.51 () {32 vars in 483 bytes} [Fri Mar  8 08:40:42 2019] GET /polls/ => generated 17641 bytes in 2 msecs (HTTP/1.0 200) 4 headers in 125 bytes (1 switches on core 0)
+[pid: 9924|app: 0|req: 101/352] 113.110.229.114 () {40 vars in 830 bytes} [Fri Mar  8 08:40:53 2019] GET /polls/list.html/ => generated 11550 bytes in 8 msecs (HTTP/1.1 200) 4 headers in 125 bytes (1 switches on core 0)
+Not Found: /static/css/bootstrap-select.min.css
+[pid: 9925|app: 0|req: 126/353] 113.110.229.114 () {38 vars in 776 bytes} [Fri Mar  8 08:40:53 2019] GET /static/css/bootstrap-select.min.css => generated 1826 bytes in 4 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+[pid: 9927|app: 0|req: 79/354] 113.110.229.114 () {40 vars in 840 bytes} [Fri Mar  8 08:40:54 2019] GET /polls/index.html/ => generated 17994 bytes in 5 msecs (HTTP/1.1 200) 4 headers in 125 bytes (1 switches on core 0)
+Not Found: /static/css/bootstrap-select.min.css
+[pid: 9924|app: 0|req: 102/355] 113.110.229.114 () {38 vars in 775 bytes} [Fri Mar  8 08:40:54 2019] GET /static/css/bootstrap-select.min.css => generated 1826 bytes in 4 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default5.jpg
+[pid: 9925|app: 0|req: 127/356] 113.110.229.114 () {38 vars in 791 bytes} [Fri Mar  8 08:40:54 2019] GET /polls/index.html/v3/default5.jpg => generated 4184 bytes in 6 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default4.jpg
+[pid: 9924|app: 0|req: 103/357] 113.110.229.114 () {38 vars in 790 bytes} [Fri Mar  8 08:40:54 2019] GET /polls/index.html/v3/default4.jpg => generated 4184 bytes in 4 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /polls/index.html/v3/default6.jpg
+[pid: 9927|app: 0|req: 80/358] 113.110.229.114 () {38 vars in 791 bytes} [Fri Mar  8 08:40:54 2019] GET /polls/index.html/v3/default6.jpg => generated 4184 bytes in 5 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+[pid: 9925|app: 0|req: 128/359] 113.110.229.114 () {40 vars in 848 bytes} [Fri Mar  8 08:40:58 2019] GET /polls/selfinfo.html/ => generated 8205 bytes in 10 msecs (HTTP/1.1 200) 5 headers in 292 bytes (1 switches on core 0)
+Not Found: /static/css/bootstrap-select.min.css
+[pid: 9924|app: 0|req: 104/360] 113.110.229.114 () {38 vars in 779 bytes} [Fri Mar  8 08:40:58 2019] GET /static/css/bootstrap-select.min.css => generated 1826 bytes in 3 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)

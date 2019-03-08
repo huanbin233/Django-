@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<title>登陆/注册</title>
+	<link rel="stylesheet" href="/static/css/auth.css">
+</head>
+
+<body>
+	<div class="lowin lowin-blue">
+		<div class="lowin-brand">
+			<img src="/static/image/kodinger.jpg" alt="logo">
+		</div>
+		<div class="lowin-wrapper">
+			<div class="lowin-box lowin-login">
+				<div class="lowin-box-inner">
+					<form  method="post">
+						{% csrf_token %}
+						<p>请先登陆</p>
+						<div class="lowin-group">
+							<label>用户名 <a href="#" class="login-back-link">Sign in?</a></label>
+							{{LoginForm.username}}
+						</div>
+						<div class="lowin-group password-group">
+							<label>密码 <a href="#" class="forgot-link">Forgot Password?</a></label>
+							{{LoginForm.password}}
+						</div>
+                       <button class="lowin-btn login-btn submit" type="submit" name="login">
+							登陆
+						</button>
+
+						<div class="text-foot">
+							还没有账号？<a href="" class="stu_register-link">学生注册</a>
+                          <a href="" class="com_register-link">企业注册</a>
+						</div>
+
+					</form>
+				</div>
+			</div>
+
+			<div class="lowin-box lowin-stu_register">
+				<div class="lowin-box-inner">
+					<form method="post">
+						{% csrf_token %}
+						<p>在校学生 注册</p>
+						<div class="lowin-group">
+							<label>用户名</label>
+							{{stuRegisterForm.username}}
+						</div>
+						<div class="lowin-group">
+							<label>邮箱</label>
+							{{stuRegisterForm.email}}
+						</div>
+						<div class="lowin-group">
+							<label>手机</label>
+							{{stuRegisterForm.phone}}
+						</div>
+						<div class="lowin-group">
+							<label>密码</label>
+							{{stuRegisterForm.password}}
+						</div>
+						<button class="lowin-btn submit" type="submit" name="stu_register">
+							注册
+						</button>
+
+						<div class="text-foot">
+							已经有账户? <a href="" class="login-link">Login</a>
+						</div>
+					</form>
+				</div>
+			</div>
+
+          <div class="lowin-box lowin-com_register">
+				<div class="lowin-box-inner">
+					<form method="post">
+						{% csrf_token %}
+						<p>企业 注册</p>
+                      <div class="lowin-group">
+							<label>企业</label>
+							{{comRegisterForm.company}}
+						</div>
+						<div class="lowin-group">
+							<label>用户名</label>
+							{{comRegisterForm.username}}
+						</div>
+						<div class="lowin-group">
+							<label>邮箱</label>
+							{{comRegisterForm.email}}
+						</div>
+						<div class="lowin-group">
+							<label>手机</label>
+							{{comRegisterForm.phone}}
+						</div>
+						<div class="lowin-group">
+							<label>密码</label>
+							{{comRegisterForm.password}}
+						</div>
+
+						<button class="lowin-btn submit" type="submit" name="com_register">
+							注册
+						</button>
+
+						<div class="text-foot">
+							已经有账户? <a href="" class="login-link">Login</a>
+						</div>
+					</form>
+				</div>
+			</div>
+		 </div>
+	
+		<footer class="lowin-footer">
+			Design By <a href="http://fb.me/itskodinger">@itskodinger</a>
+		</footer>
+	</div>
+
+	<script src="/static/js/auth.js"></script>
+	<script>
+		Auth.init({
+			login_url: '#login',
+			forgot_url: '#forgot'
+		});
+	</script>
+</body>
+</html>
