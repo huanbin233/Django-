@@ -115,7 +115,7 @@ class ComRegisterForm(forms.Form):
     password = forms.CharField(label='', widget=forms.PasswordInput(attrs={'placeholder':'密码','class':'lowin-input'}))
     email = forms.CharField(label='', widget=forms.TextInput(attrs={'placeholder':'邮箱','class':'lowin-input'}))
     phone = forms.CharField(label='', widget=forms.TextInput(attrs={'placeholder':'手机','class':'lowin-input'}))
-    company = forms.CharField(label='', widget=forms.TextInput(attrs={'placeholder':'企业','class':'lowin-input'}))
+    #company = forms.CharField(label='', widget=forms.TextInput(attrs={'placeholder':'企业','class':'lowin-input'}))
     # Use clean methods to define custom validation rules
 
     def clean_username(self):

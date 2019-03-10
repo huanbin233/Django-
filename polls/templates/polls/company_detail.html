@@ -45,7 +45,7 @@
                             <li>
                                 <a href="/polls/list.html">职位</a>
                             </li>
-                            <li class="active">
+                            <li>
                                 <a href="/polls/company.html">公司</a>
                             </li>
                         </ul>
@@ -75,50 +75,96 @@
             </div>
         </div>
         <!-- head end -->
-        <div class="row clearfix">
-            <div class="col-md-12 column">
-                <div class="panel panel-primary">
-                    <div class="panel-body">
-                        {% for tmp in company_list %}
-                        <div class="col-md-4 column">
-                            <a href="/polls/company_detail.html/?id={{tmp.id}}&page=1">
-                                <div class="panel">
+        <div class="jumbotron">
+            <h1>
+                <img class="img-rounded" width=103px height=103px style="border:1px solid #e4e1e1" src="/static/image/{{com.name}}.png" />
+                {{com.name}}
+            </h1>
+            <p>
+                {{com.get_financing_display}}&nbsp;&nbsp;
+                |&nbsp;&nbsp;{{com.get_scale_display}}&nbsp;&nbsp;
+                |&nbsp;&nbsp;{{com.get_industry_type_display}}
+            </p>
+        </div>
+        <div class="tabbable" id="tabs-761440">
+            <ul class="nav nav-tabs">
+                <li class="active">
+                    <a href="#panel-720488" data-toggle="tab">公司简介</a>
+                </li>
+                <li>
+                    <a href="#panel-696348" data-toggle="tab">招聘岗位</a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane active" id="panel-720488">
+                    <p>
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                {{com.desc}}
+                            </div>
+                        </div>
+                    </p>
+                </div>
+                <div class="tab-pane" id="panel-696348">
+                    <p>
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                {% if not job_list %}
+                                该公司尚未发布任何岗位，敬请期待！
+                                {% endif %}
+                                {% for job in job_list %}
+                                <div class="panel" style="border:1px solid #e4e1e1">
                                     <div class="panel-body">
-                                        <div class="col-md-4 column">
-                                            <img class="img-rounded" width=57px height=57px style="border:1px solid #e4e1e1"
-                                                src="/static/image/{{tmp.name}}.png" />
-                                        </div>
-                                        <div class="col-md-8 column">
-                                            <h>{{tmp.name}}</h>
+                                        <div class="col-md-6 column">
                                             <p>
-                                                <font color="#DCDCDC" size='2'>{{tmp.get_financing_display}}|{{tmp.get_scale_display}}</font>
+                                                <font size='3'><b>{{ job.name }}</b></font> &nbsp;
+                                                <font color="#A52A2A" size='2'>{{job.salary1}}-{{job.salary2}}</font>
                                             </p>
+                                            <p>
+                                                <font color="#DCDCDC" size='2'>{{job.city}}&nbsp;&nbsp;</font>
+                                                <font color="#DCDCDC" size='2'>|&nbsp;&nbsp;{{job.get_edu_req_display}}
+                                                </font>
+                                            </p>
+                                        </div>
+                                        <div class="col-md-4 column">
+                                            <font color="#DCDCDC" size='2'>{{job.publisher.company}}&nbsp;&nbsp;</font>
+                                        </div>
+                                        <div class="col-md-2 column">
+                                            <a class="btn" href="#">详情</a>
+                                            <a class="btn btn-primary" href="/polls/send_resume/?sid={{job.id}}">投递简历</a>
                                         </div>
                                     </div>
                                 </div>
-                            </a>
-                        </div>
-                        {% endfor %}
-                        <div class="col-md-12 column">
-                            <ul class="pagination">
-                                {% if company_list.has_previous %}
-                                <li><a href="/polls/company.html/?page={{ company_list.previous_page_number }}">上一页</a></li>
-                                {% else %}
-                                <li class="disabled"><a href="#">上一页</a></li>
-                                {% endif %}
-
-                                {% for num in p.page_range %}
-                                <li><a href="/polls/company.html/?page={{ num }}">{{ num }}</a></li>
                                 {% endfor %}
-
-                                {% if company_list.has_next %}
-                                <li><a href="/polls/company.html/?page={{ company_list.next_page_number }}">下一页</a></li>
-                                {% else %}
-                                <li class="disabled"><a href="#">下一页</a></li>
+                                {% if messages %}
+                                <script>
+                                    {%for msg in messages %}
+                                        alert('{{ msg.message }}'); 
+                                    {% endfor %}
+                                </script>
                                 {% endif %}
-                            </ul>
+                                <div>
+                                    <ul class="pagination">
+                                        {% if job_list.has_previous %}
+                                        <li><a href="/polls/list.html/?page={{ job_list.previous_page_number }}">上一页</a></li>
+                                        {% else %}
+                                        <li class="disabled"><a href="#">上一页</a></li>
+                                        {% endif %}
+
+                                        {% for num in p.page_range %}
+                                        <li><a href="/polls/list.html/?page={{ num }}">{{ num }}</a></li>
+                                        {% endfor %}
+
+                                        {% if job_list.has_next %}
+                                        <li><a href="/polls/list.html/?page={{ job_list.next_page_number }}">下一页</a></li>
+                                        {% else %}
+                                        <li class="disabled"><a href="#">下一页</a></li>
+                                        {% endif %}
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                    </p>
                 </div>
             </div>
         </div>

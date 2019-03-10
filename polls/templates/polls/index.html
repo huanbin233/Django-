@@ -25,7 +25,7 @@
         <![endif]-->
 </head>
 
-<body style="background-color:#FCFCFC">
+<body>
   <div class="container">
     <!-- head -->
     <div class="row clearfix">
@@ -86,43 +86,21 @@
           </ol>
           <div class="carousel-inner">
             <div class="item">
-              <img alt="" src="/static/image/login_bg.jpg" />
-              <div class="carousel-caption">
-                <h4>
-                  First Thumbnail label
-                </h4>
-                <p>
-                  Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta
-                  gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
-                </p>
-              </div>
+              <a href="/polls/company_detail.html/?id={{tengxun.id}}&page=1"><img alt="" src="/static/image/bg1.jpg" /></a>
             </div>
             <div class="item active">
-              <img alt="" src="/static/image/login_bg.jpg" />
-              <div class="carousel-caption">
-                <h4>
-                  Second Thumbnail label
-                </h4>
-                <p>
-                  Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta
-                  gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
-                </p>
-              </div>
+              <a href="/polls/company_detail.html/?id={{alibaba.id}}&page=1"><img alt="" src="/static/image/bg2.jpg" /></a>
             </div>
             <div class="item">
-              <img alt="" src="/static/image/login_bg.jpg" />
-              <div class="carousel-caption">
-                <h4>
-                  Third Thumbnail label
-                </h4>
-                <p>
-                  Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta
-                  gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
-                </p>
-              </div>
+              <a href="/polls/company_detail.html/?id={{huawei.id}}&page=1"><img alt="" src="/static/image/bg3.jpg" /></a>
             </div>
-          </div> <a class="left carousel-control" href="#carousel-962164" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
-          <a class="right carousel-control" href="#carousel-962164" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+          </div> 
+          <a class="left carousel-control" href="#carousel-962164" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+          </a>
+          <a class="right carousel-control" href="#carousel-962164" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+          </a>
         </div>
 
 
@@ -131,123 +109,185 @@
         </h3>
         <div class="tabbable" id="tabs-613893">
           <ul class="nav nav-tabs">
-            <li>
+            <li class="active">
               <a href="#panel-886661" data-toggle="tab">IT·互联网</a>
             </li>
-            <li class="active">
+            <li>
               <a href="#panel-195701" data-toggle="tab">金融</a>
             </li>
           </ul>
           <div class="tab-content">
-            <div class="tab-pane" id="panel-886661">
+            <div class="tab-pane active" id="panel-886661" style="border:1px solid #e4e1e1">
               <div class="row">
-                <div class="col-md-4">
-                  <div class="thumbnail">
-                    <img alt="300x200" src="v3/default4.jpg" />
-                    <div class="caption">
-                      <h3>
-                        腾讯
-                      </h3>
-                      <p>
-                        Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta
-                        gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
-                      </p>
-                      <p>
-                        <a class="btn btn-primary" href="#">查看</a> <a class="btn" href="#">detail</a>
-                      </p>
-                    </div>
+                  <!--腾讯-->
+                  <div class="col-md-4 column">
+                      <a href="/polls/company_detail.html/?id={{tengxun.id}}&page=1">
+                          <div class="panel">
+                              <div class="panel-body">
+                                  <div class="col-md-4 column">
+                                      <img class="img-rounded" width=57px height=57px style="border:1px solid #e4e1e1" src="/static/image/{{tengxun.name}}.png" />
+                                  </div>
+                                  <div class="col-md-8 column">
+                                      <h>{{tengxun.name}}</h>
+                                      <p>
+                                          <font color="#DCDCDC" size='2'>{{tengxun.get_financing_display}}|{{tengxun.get_scale_display}}</font>
+                                      </p>
+                                  </div>
+                              </div>
+                          </div>
+                      </a>
                   </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="thumbnail">
-                    <img alt="300x200" src="v3/default5.jpg" />
-                    <div class="caption">
-                      <h3>
-                        百度
-                      </h3>
-                      <p>
-                        Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta
-                        gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
-                      </p>
-                      <p>
-                        <a class="btn btn-primary" href="#">查看</a> <a class="btn" href="#">detail</a>
-                      </p>
-                    </div>
+                  <!--百度-->
+                  <div class="col-md-4 column">
+                      <a href="/polls/company_detail.html/?id={{baidu.id}}&page=1">
+                          <div class="panel">
+                              <div class="panel-body">
+                                  <div class="col-md-4 column">
+                                      <img class="img-rounded" width=57px height=57px style="border:1px solid #e4e1e1" src="/static/image/{{baidu.name}}.png" />
+                                  </div>
+                                  <div class="col-md-8 column">
+                                      <h>{{baidu.name}}</h>
+                                      <p>
+                                          <font color="#DCDCDC" size='2'>{{baidu.get_financing_display}}|{{baidu.get_scale_display}}</font>
+                                      </p>
+                                  </div>
+                              </div>
+                          </div>
+                      </a>
                   </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="thumbnail">
-                    <img alt="300x200" src="v3/default6.jpg" />
-                    <div class="caption">
-                      <h3>
-                        阿里
-                      </h3>
-                      <p>
-                        Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta
-                        gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
-                      </p>
-                      <p>
-                        <a class="btn btn-primary" href="#">查看</a> <a class="btn" href="#">detail</a>
-                      </p>
-                    </div>
+                  <!--阿里巴巴-->
+                  <div class="col-md-4 column" >
+                      <a href="/polls/company_detail.html/?id={{alibaba.id}}&page=1">
+                          <div class="panel">
+                              <div class="panel-body">
+                                  <div class="col-md-4 column">
+                                      <img class="img-rounded" width=57px height=57px style="border:1px solid #e4e1e1" src="/static/image/{{alibaba.name}}.png" />
+                                  </div>
+                                  <div class="col-md-8 column">
+                                      <h>{{alibaba.name}}</h>
+                                      <p>
+                                          <font color="#DCDCDC" size='2'>{{alibaba.get_financing_display}}|{{alibaba.get_scale_display}}</font>
+                                      </p>
+                                  </div>
+                              </div>
+                          </div>
+                      </a>
                   </div>
-                </div>
               </div>
               <div class="row">
-                <div class="col-md-4">
-                  <div class="thumbnail">
-                    <img alt="300x200" src="v3/default4.jpg" />
-                    <div class="caption">
-                      <h3>
-                        腾讯
-                      </h3>
-                      <p>
-                        Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta
-                        gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
-                      </p>
-                      <p>
-                        <a class="btn btn-primary" href="#">查看</a> <a class="btn" href="#">detail</a>
-                      </p>
-                    </div>
+                <!--网易-->
+                  <div class="col-md-4 column">
+                      <a href="/polls/company_detail.html/?id={{wangyi.id}}&page=1">
+                          <div class="panel">
+                              <div class="panel-body">
+                                  <div class="col-md-4 column">
+                                      <img class="img-rounded" width=57px height=57px style="border:1px solid #e4e1e1" src="/static/image/{{wangyi.name}}.png" />
+                                  </div>
+                                  <div class="col-md-8 column">
+                                      <h>{{wangyi.name}}</h>
+                                      <p>
+                                          <font color="#DCDCDC" size='2'>{{wangyi.get_financing_display}}|{{wangyi.get_scale_display}}</font>
+                                      </p>
+                                  </div>
+                              </div>
+                          </div>
+                      </a>
                   </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="thumbnail">
-                    <img alt="300x200" src="v3/default5.jpg" />
-                    <div class="caption">
-                      <h3>
-                        百度
-                      </h3>
-                      <p>
-                        Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta
-                        gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
-                      </p>
-                      <p>
-                        <a class="btn btn-primary" href="#">查看</a> <a class="btn" href="#">detail</a>
-                      </p>
-                    </div>
+                  <!--京东-->
+                  <div class="col-md-4 column">
+                      <a href="/polls/company_detail.html/?id={{jingdong.id}}&page=1">
+                          <div class="panel">
+                              <div class="panel-body">
+                                  <div class="col-md-4 column">
+                                      <img class="img-rounded" width=57px height=57px style="border:1px solid #e4e1e1" src="/static/image/{{jingdong.name}}.png" />
+                                  </div>
+                                  <div class="col-md-8 column">
+                                      <h>{{jingdong.name}}</h>
+                                      <p>
+                                          <font color="#DCDCDC" size='2'>{{jingdong.get_financing_display}}|{{jingdong.get_scale_display}}</font>
+                                      </p>
+                                  </div>
+                              </div>
+                          </div>
+                      </a>
                   </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="thumbnail">
-                    <img alt="300x200" src="v3/default6.jpg" />
-                    <div class="caption">
-                      <h3>
-                        阿里
-                      </h3>
-                      <p>
-                        Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta
-                        gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
-                      </p>
-                      <p>
-                        <a class="btn btn-primary" href="#">查看</a> <a class="btn" href="#">detail</a>
-                      </p>
-                    </div>
+                  <!--搜狗-->
+                  <div class="col-md-4 column">
+                      <a href="/polls/company_detail.html/?id={{sougou.id}}&page=1">
+                          <div class="panel">
+                              <div class="panel-body">
+                                  <div class="col-md-4 column">
+                                      <img class="img-rounded" width=57px height=57px style="border:1px solid #e4e1e1" src="/static/image/{{sougou.name}}.png" />
+                                  </div>
+                                  <div class="col-md-8 column">
+                                      <h>{{sougou.name}}</h>
+                                      <p>
+                                          <font color="#DCDCDC" size='2'>{{sougou.get_financing_display}}|{{sougou.get_scale_display}}</font>
+                                      </p>
+                                  </div>
+                              </div>
+                          </div>
+                      </a>
                   </div>
-                </div>
               </div>
+              <div class="row">
+                  <!--美团-->
+                  <div class="col-md-4 column">
+                      <a href="/polls/company_detail.html/?id={{meituan.id}}&page=1">
+                          <div class="panel">
+                              <div class="panel-body">
+                                  <div class="col-md-4 column">
+                                      <img class="img-rounded" width=57px height=57px style="border:1px solid #e4e1e1" src="/static/image/{{meituan.name}}.png" />
+                                  </div>
+                                  <div class="col-md-8 column">
+                                      <h>{{meituan.name}}</h>
+                                      <p>
+                                          <font color="#DCDCDC" size='2'>{{meituan.get_financing_display}}|{{meituan.get_scale_display}}</font>
+                                      </p>
+                                  </div>
+                              </div>
+                          </div>
+                      </a>
+                  </div>
+                    <!--小米-->
+                    <div class="col-md-4 column">
+                        <a href="/polls/company_detail.html/?id={{xiaomi.id}}&page=1">
+                            <div class="panel">
+                                <div class="panel-body">
+                                    <div class="col-md-4 column">
+                                        <img class="img-rounded" width=57px height=57px style="border:1px solid #e4e1e1" src="/static/image/{{xiaomi.name}}.png" />
+                                    </div>
+                                    <div class="col-md-8 column">
+                                        <h>{{xiaomi.name}}</h>
+                                        <p>
+                                            <font color="#DCDCDC" size='2'>{{xiaomi.get_financing_display}}|{{xiaomi.get_scale_display}}</font>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <!--新浪-->
+                    <div class="col-md-4 column">
+                        <a href="/polls/company_detail.html/?id={{xinlang.id}}&page=1">
+                            <div class="panel">
+                                <div class="panel-body">
+                                    <div class="col-md-4 column">
+                                        <img class="img-rounded" width=57px height=57px style="border:1px solid #e4e1e1" src="/static/image/{{xinlang.name}}.png" />
+                                    </div>
+                                    <div class="col-md-8 column">
+                                        <h>{{xinlang.name}}</h>
+                                        <p>
+                                            <font color="#DCDCDC" size='2'>{{xinlang.get_financing_display}}|{{xinlang.get_scale_display}}</font>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
             </div>
-            <div class="tab-pane active" id="panel-195701">
+            <div class="tab-pane" id="panel-195701">
               <div class="row">
                 <div class="col-md-4">
                   <div class="thumbnail">

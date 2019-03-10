@@ -14,5 +14,6 @@ urlpatterns = [
     path('public_job.html/del_info',views.del_job,name='del_job'),
     path('list.html/',views.list_job, name='list'),
     path('company.html/',views.list_company, name='company'),
+    path('company_detail.html/',views.company_detail, name='company_detail'),
     path('send_resume/',views.send_resume, name='send_resume'),
 ]

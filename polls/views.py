@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.template import loader
 from django.http import Http404
 from django.contrib import messages
-from .models import UserProfile,Edu_experience,Pro_experience,Job_experience,Job_position,HRProfile,SendResume
+from .models import UserProfile,Edu_experience,Pro_experience,Job_experience,Job_position,HRProfile,SendResume,Company
 from django.contrib.auth.models import User
 from .forms import ComRegisterForm,StuRegisterForm,LoginForm,EduForm,ProForm,JobForm,StationForm
 from django.http import HttpResponseRedirect
@@ -13,7 +13,17 @@ from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator,EmptyPage,PageNotAnInteger
 #主页
 def index(request):
-    return render(request, 'polls/index.html', {'request':request})
+    tengxun = Company.objects.get(name="腾讯")
+    baidu = Company.objects.get(name="百度")
+    alibaba = Company.objects.get(name="阿里巴巴")
+    wangyi = Company.objects.get(name="网易")
+    jingdong = Company.objects.get(name="京东")
+    sougou = Company.objects.get(name="搜狗")
+    meituan = Company.objects.get(name="美团点评")
+    xiaomi  = Company.objects.get(name="小米")
+    xinlang = Company.objects.get(name="新浪")
+    huawei = Company.objects.get(name="华为")
+    return render(request, 'polls/index.html', locals())
 
 #登录or注册
 def login(request):
@@ -40,14 +50,14 @@ def login(request):
         #企业注册
         comRegister_Form = ComRegisterForm(request.POST)
         if comRegister_Form.is_valid():
-            company = comRegister_Form.cleaned_data['company']
+            #company = comRegister_Form.cleaned_data['company']
             username = comRegister_Form.cleaned_data['username']
             password = comRegister_Form.cleaned_data['password']
             email = comRegister_Form.cleaned_data['email']
             phone = comRegister_Form.cleaned_data['phone']
 
             user = User.objects.create_user(username=username, password=password, email=email)
-            hr_profile = HRProfile(user=user, phone=phone,company=company)
+            hr_profile = HRProfile(user=user, phone=phone)
 
             hr_profile.save()
         #学生注册
@@ -259,6 +269,20 @@ def list_job(request):
     new_list = job_list_all.order_by('pub_date')[:10]
     return render(request, 'polls/list.html', locals())
 def list_company(request):
+    company_lis_all = Company.objects.all()
+    p = Paginator(company_lis_all,12)# p就是每页的对象，
+    p.count  #数据总数
+    p.num_pages  #总页数
+    p.page_range#[1,2,3,4,5],得到页码，动态生成，
+
+    page_num = request.GET.get("page")#以get的方法从url地址中获取
+    try:
+        company_list = p.page(page_num)#括号里的是页数，显示指定页码的数据，动态显示数据，所以不能写死了
+    except PageNotAnInteger:#如果输入页码错误，就显示第一页
+        company_list = p.page(1)
+    except EmptyPage:#如果超过了页码范围，就把最后的页码显示出来，
+        company_list = p.page(p.num_pages)
+    
     return render(request, 'polls/company.html', locals())
 @login_required
 def send_resume(request):
@@ -279,3 +303,35 @@ def send_resume(request):
             position.save()
             messages.success(request,"投递成功！")
     return HttpResponseRedirect('/polls/list.html') 
+
+def company_detail(request):
+    com_id = request.GET.get("id")
+    com = Company.objects.get(id=com_id)
+
+    job_list_all = filter_job_with_company(com)
+    #book_list_all 是要被分页的对象，第二个参数，是每页显示的条数
+    p = Paginator(job_list_all,8)# p就是每页的对象，
+    p.count  #数据总数
+    p.num_pages  #总页数
+    p.page_range#[1,2,3,4,5],得到页码，动态生成，
+
+    page_num = request.GET.get("page")#以get的方法从url地址中获取
+    try:
+        job_list = p.page(page_num)#括号里的是页数，显示指定页码的数据，动态显示数据，所以不能写死了
+    except PageNotAnInteger:#如果输入页码错误，就显示第一页
+        job_list = p.page(1)
+    except EmptyPage:#如果超过了页码范围，就把最后的页码显示出来，
+        job_list = p.page(p.num_pages)
+    
+    if com:
+        return render(request, 'polls/company_detail.html', locals())
+
+#过滤出指定公司的岗位
+def filter_job_with_company(com):
+    job_list_all = Job_position.objects.all()
+    job_list = []
+    for job in job_list_all:
+        puber = job.publisher
+        if puber.company == com:
+            job_list.append(job)
+    return job_list

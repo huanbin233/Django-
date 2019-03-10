@@ -78,38 +78,30 @@
         <div class="row clearfix">
             <div class="col-md-8 column">
                 <div class="panel panel-primary">
-
                     <div class="panel-body">
                         {% for job in job_list %}
-                        <div class="panel box">
+                        <div class="panel" style="border:1px solid #e4e1e1">
                                 <div class="panel-body">
-                                        <div class="col-md-6 column">
-                                            <p>
-                                                <font  size='3'><b>{{ job.name }}</b></font> &nbsp;
-                                                <font color="#A52A2A" size='2'>{{job.salary1}}-{{job.salary2}}</font> 
-                                            </p>
-                                            <p>
-                                                <font  color="#DCDCDC" size='2'>{{job.city}}&nbsp;&nbsp;</font>
-                                                <font  color="#DCDCDC" size='2'>|&nbsp;&nbsp;
-                                                    {% if job.edu_req == '1' %} 不限
-                                                    {% elif job.edu_req == '2' %}专科
-                                                    {% elif job.edu_req == '3' %}本科
-                                                    {% elif job.edu_req == '4' %}硕士
-                                                    {% elif job.edu_req == '5' %}博士
-                                                    {% endif %}
-                                                </font>  
-                                            </p>
-                                        </div>
-                                        <div class="col-md-3 column">
-                                                <font  color="#DCDCDC" size='2'>{{job.publisher.company}}&nbsp;&nbsp;</font>
-                                        </div>
-                                        <div class="col-md-3 column">
-                                            <a class="btn" href="#">详情</a>
-                                            <a class="btn btn-primary" href="/polls/send_resume/?sid={{job.id}}">投递简历</a> 
-                                        </div>
+                                    <div class="col-md-6 column">
+                                        <p>
+                                            <font  size='3'><b>{{ job.name }}</b></font> &nbsp;
+                                            <font color="#A52A2A" size='2'>{{job.salary1}}-{{job.salary2}}</font> 
+                                        </p>
+                                        <p>
+                                            <font  color="#DCDCDC" size='2'>{{job.city}}&nbsp;&nbsp;</font>
+                                            <font  color="#DCDCDC" size='2'>|&nbsp;&nbsp;{{job.get_edu_req_display}}
+                                            </font>  
+                                        </p>
+                                    </div>
+                                    <div class="col-md-3 column">
+                                        <font  color="#DCDCDC" size='2'>{{job.publisher.company}}&nbsp;&nbsp;</font>
+                                    </div>
+                                    <div class="col-md-3 column">
+                                        <a class="btn" href="#">详情</a>
+                                        <a class="btn btn-primary" href="/polls/send_resume/?sid={{job.id}}">投递简历</a> 
+                                    </div>
                                 </div>
                         </div>
-                       
                         {% endfor %}
 
                         {% if messages %}
