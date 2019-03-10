@@ -14,10 +14,22 @@ class StationForm(forms.Form):
     edu_req = forms.CharField(widget=forms.Select(choices=(('1','不限'),('2','专科'),('3','本科'),('4','硕士'),('5','博士')),attrs={'class':'form-control'}))
     exp_req = forms.CharField(widget=forms.Select(choices=(('1','无'),('2','一年'),('3','两年'),('4','三年及以上')),attrs={'class':'form-control'}))
     city = forms.CharField(label='', widget=forms.TextInput(attrs={'placeholder':'例如：深圳','class':'form-control'}))
-    salary = forms.IntegerField(label='', widget=forms.TextInput(attrs={'placeholder':'例如：8000','class':'form-control'}))
+    salary1 = forms.IntegerField(label='', widget=forms.TextInput(attrs={'placeholder':'例如：8000','class':'form-control'}))
+    salary2 = forms.IntegerField(label='', widget=forms.TextInput(attrs={'placeholder':'例如：8000','class':'form-control'}))
     def clean_name(self):
         name = self.cleaned_data.get('name')
         return name
+    def clean(self):
+        cleaned_data = self.cleaned_data
+        salary1 = cleaned_data['salary1']
+        salary2 = cleaned_data['salary2']
+        if salary1 <= 0 or salary2 <= 0:
+            raise forms.ValidationError("salary can not be a negative.")
+        elif salary1 > salary2:
+            raise forms.ValidationError("invaile salary range.")
+        return cleaned_data
+        
+
 #教育经历表单
 class EduForm(forms.Form):
     school = forms.CharField(label='', widget=forms.TextInput(attrs={'placeholder':'例如：北京大学','class':'form-control'}))

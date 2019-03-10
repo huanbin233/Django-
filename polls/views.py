@@ -224,8 +224,9 @@ def public_job(request):
             exp_req = station_Form.cleaned_data['exp_req']
             job_desc = station_Form.cleaned_data['job_desc']
             city     = station_Form.cleaned_data['city']
-            salary = station_Form.cleaned_data['salary']
-            station = Job_position.objects.create(salary=salary,name=name,edu_req=edu_req,exp_req=exp_req,publisher=loginuser[0],job_desc=job_desc,city=city)
+            salary1= station_Form.cleaned_data['salary1']
+            salary2= station_Form.cleaned_data['salary2']
+            station = Job_position.objects.create(salary2=salary2,salary1=salary1,name=name,edu_req=edu_req,exp_req=exp_req,publisher=loginuser[0],job_desc=job_desc,city=city)
             station.save()
 
             return HttpResponseRedirect('/polls/public_job.html')
@@ -238,7 +239,7 @@ def del_job(request):
     Job_position.objects.filter(id=did).delete()
     return HttpResponseRedirect('/polls/public_job.html') 
     
-def list(request):
+def list_job(request):
     job_list_all = Job_position.objects.all()
     #book_list_all 是要被分页的对象，第二个参数，是每页显示的条数
     p = Paginator(job_list_all,8)# p就是每页的对象，
@@ -253,21 +254,28 @@ def list(request):
         job_list = p.page(1)
     except EmptyPage:#如果超过了页码范围，就把最后的页码显示出来，
         job_list = p.page(p.num_pages)
+    
+    hot_list = job_list_all.order_by('-hot_val')[:10]
+    new_list = job_list_all.order_by('pub_date')[:10]
     return render(request, 'polls/list.html', locals())
-
+def list_company(request):
+    return render(request, 'polls/company.html', locals())
 @login_required
 def send_resume(request):
-    loginuser = UserProfile.objects.filter(user__exact=request.user)
+    loginuser = UserProfile.objects.get(user__exact=request.user)
     sid = request.GET.get("sid")
-    position = Job_position.objects.filter(id=sid)
-    if loginuser.count() == 0 or position.count() == 0:
-        messages.error(request,"失败，请确保您已经以学生账号登录！")
+    position = Job_position.objects.get(id=sid)
+    if not loginuser or not position:
+        messages.error(request,"失败，请确保您已以学生账号登录！")
     else:
-        is_exists = SendResume.objects.filter(stu = loginuser[0], sta = position[0])
+        is_exists = SendResume.objects.filter(stu = loginuser, sta = position)
         if is_exists.count() != 0:
             messages.error(request,"失败，请不要重复投递！")
         else:
-            contact = SendResume.objects.create(stu = loginuser[0], sta = position[0])
+            contact = SendResume.objects.create(stu = loginuser, sta = position)
             contact.save()
+            #投递简历，岗位热度值要+10
+            position.hot_val += 10
+            position.save()
             messages.success(request,"投递成功！")
     return HttpResponseRedirect('/polls/list.html') 

@@ -46,7 +46,7 @@
                                 <a href="/polls/list.html">职位</a>
                             </li>
                             <li>
-                                <a href="#">公司</a>
+                                <a href="/polls/company.html">公司</a>
                             </li>
                         </ul>
                         <form class="navbar-form navbar-left" role="search">
@@ -78,52 +78,63 @@
         <div class="row clearfix">
             <div class="col-md-8 column">
                 <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">
-                            已发布的岗位
-                        </h3>
-                    </div>
+
                     <div class="panel-body">
                         {% for job in job_list %}
-                        <div class="thumbnail">
-                            <div class="caption">
-                                <h3>
-                                    {{ job.name }}
-                                </h3>
-                                <p>
-                                    {{ job.job_desc }}
-                                </p>
-                                <p>
-                                    <a class="btn btn-primary" href="/polls/send_resume/?sid={{job.id}}">投递简历</a> <a
-                                        class="btn" href="#">查看详情</a>
-                                </p>
-                            </div>
+                        <div class="panel box">
+                                <div class="panel-body">
+                                        <div class="col-md-6 column">
+                                            <p>
+                                                <font  size='3'><b>{{ job.name }}</b></font> &nbsp;
+                                                <font color="#A52A2A" size='2'>{{job.salary1}}-{{job.salary2}}</font> 
+                                            </p>
+                                            <p>
+                                                <font  color="#DCDCDC" size='2'>{{job.city}}&nbsp;&nbsp;</font>
+                                                <font  color="#DCDCDC" size='2'>|&nbsp;&nbsp;
+                                                    {% if job.edu_req == '1' %} 不限
+                                                    {% elif job.edu_req == '2' %}专科
+                                                    {% elif job.edu_req == '3' %}本科
+                                                    {% elif job.edu_req == '4' %}硕士
+                                                    {% elif job.edu_req == '5' %}博士
+                                                    {% endif %}
+                                                </font>  
+                                            </p>
+                                        </div>
+                                        <div class="col-md-3 column">
+                                                <font  color="#DCDCDC" size='2'>{{job.publisher.company}}&nbsp;&nbsp;</font>
+                                        </div>
+                                        <div class="col-md-3 column">
+                                            <a class="btn" href="#">详情</a>
+                                            <a class="btn btn-primary" href="/polls/send_resume/?sid={{job.id}}">投递简历</a> 
+                                        </div>
+                                </div>
                         </div>
+                       
                         {% endfor %}
+
                         {% if messages %}
                         <script>
                             {% for msg in messages %}
-                                alert('{{ msg.message }}');
+                                alert('{{ msg.message }}'); 
                             {% endfor %}
                         </script>
                         {% endif %}
                         <ul class="pagination">
                             {% if job_list.has_previous %}
-                            <li><a href="/polls/list.html/?page={{ job_list.previous_page_number }}">上一页</a></li>
+                                <li><a href="/polls/list.html/?page={{ job_list.previous_page_number }}">上一页</a></li>
                             {% else %}
-                            <li class="disabled"><a href="#">上一页</a></li>
+                                <li class="disabled"><a href="#">上一页</a></li>
                             {% endif %}
 
                             {% for num in p.page_range %}
-                            <li><a href="/polls/list.html/?page={{ num }}">{{ num }}</a></li>
+                                <li><a href="/polls/list.html/?page={{ num }}">{{ num }}</a></li>
                             {% endfor %}
 
                             {% if job_list.has_next %}
-                            <li><a href="/polls/list.html/?page={{ job_list.next_page_number }}">下一页</a></li>
+                                <li><a href="/polls/list.html/?page={{ job_list.next_page_number }}">下一页</a></li>
                             {% else %}
-                            <li class="disabled"><a href="#">下一页</a></li>
+                                <li class="disabled"><a href="#">下一页</a></li>
                             {% endif %}
-
                         </ul>
                     </div>
                 </div>
@@ -132,11 +143,32 @@
                 <div class="panel panel-primary">
                     <div class="panel-heading">
                         <h3 class="panel-title">
-                            热门前十
+                            热度前十名
                         </h3>
                     </div>
                     <div class="panel-body">
-                        Panel content
+                        {% if hot_list %}
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>热度值</th>
+                                        <th>岗位</th>
+                                        <th>公司</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for tmp in hot_list %}
+                                    <tr>
+                                        <td>{{tmp.hot_val}}</td>
+                                        <td>{{tmp.name}}</td>
+                                        <td>{{tmp.publisher.company}}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        {% else %}
+                            目前还没有商家发布岗位！
+                        {% endif %}
                     </div>
                 </div>
                 <div class="panel panel-primary">
@@ -146,7 +178,28 @@
                         </h3>
                     </div>
                     <div class="panel-body">
-                        Panel content
+                        {% if new_list %}
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>发布时间</th>
+                                        <th>岗位</th>
+                                        <th>公司</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for tmp in hot_list %}
+                                    <tr>
+                                        <td>{{tmp.pub_date}}</td>
+                                        <td>{{tmp.name}}</td>
+                                        <td>{{tmp.publisher.company}}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        {% else %}
+                            目前还没有商家发布岗位！
+                        {% endif %}
                     </div>
                 </div>
             </div>

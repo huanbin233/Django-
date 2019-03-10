@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'fwxi^1v^blf6gorv-w6ne!m9=^9b!**^s53p*l_^&u-#0*1s_$'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -123,7 +123,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'polls/').replace('\\', '/')
+STATIC_ROOT = os.path.join(BASE_DIR, 'polls/static').replace('\\', '/')
 STATICFILES_DIRS = (
     ('css', os.path.join(STATIC_ROOT, 'css').replace('\\', '/')),
     ('image', os.path.join(STATIC_ROOT, 'image').replace('\\', '/')),

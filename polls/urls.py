@@ -12,6 +12,7 @@ urlpatterns = [
     path('notifyinfo.html/',views.notify_info,name='notify_info'),
     path('public_job.html/',views.public_job,name='public_job'),
     path('public_job.html/del_info',views.del_job,name='del_job'),
-    path('list.html/',views.list, name='list'),
+    path('list.html/',views.list_job, name='list'),
+    path('company.html/',views.list_company, name='company'),
     path('send_resume/',views.send_resume, name='send_resume'),
 ]
