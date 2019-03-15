@@ -34,8 +34,8 @@ class StationForm(forms.Form):
 class EduForm(forms.Form):
     school = forms.CharField(label='', widget=forms.TextInput(attrs={'placeholder':'例如：北京大学','class':'form-control'}))
     pro = forms.CharField(label='', widget=forms.TextInput(attrs={'placeholder':'例如：计算机科学与技术','class':'form-control'}))
-    start_date = forms.DateField(label='', widget=forms.DateInput(attrs={'class':'form-control'},format='%d/%m/%Y'))
-    end_date = forms.DateField(label='', widget=forms.DateInput(attrs={'class':'form-control'},format='%d/%m/%Y'))
+    start_date = forms.DateField(label='', widget=forms.DateInput(attrs={'class':'form-control','type':'text','value':'','readonly':'True'},format='%d/%m/%Y'))
+    end_date = forms.DateField(label='', widget=forms.DateInput(attrs={'class':'form-control','type':'text','value':'','readonly':'True'},format='%d/%m/%Y'))
     edu = forms.ChoiceField(label='',choices=(('0','-----'),('1','专科'),('2','本科'),('3','硕士'),('4','博士')),widget=forms.Select(attrs={'class':'form-control'}))
 
     def clean_school(self):
@@ -46,8 +46,8 @@ class EduForm(forms.Form):
 class ProForm(forms.Form):
     job_name = forms.CharField(label='', widget=forms.TextInput(attrs={'placeholder':'例如：直聘网','class':'form-control'}))
     job_role = forms.CharField(label='', widget=forms.TextInput(attrs={'placeholder':'例如：UI设计师','class':'form-control'}))
-    start_date = forms.DateField(label='', widget=forms.DateInput(attrs={'class':'form-control'},format='%d/%m/%Y'))
-    end_date = forms.DateField(label='', widget=forms.DateInput(attrs={'class':'form-control'},format='%d/%m/%Y'))
+    start_date = forms.DateField(label='', widget=forms.DateInput(attrs={'class':'form-control','type':'text','value':'','readonly':'True'},format='%d/%m/%Y'))
+    end_date = forms.DateField(label='', widget=forms.DateInput(attrs={'class':'form-control','type':'text','value':'','readonly':'True'},format='%d/%m/%Y'))
     job_desc = forms.CharField(label='',widget=forms.Textarea(attrs={'class':'form-control','placeholder':'描述该项目，向BOSS展示你的项目经验\n例如：\n1.项目概述...\n2.人员分工...\n3.我的责任...'}))
 
     def clean_school(self):
@@ -56,8 +56,8 @@ class ProForm(forms.Form):
 
 #工作经历
 class JobForm(forms.Form):
-    start_date = forms.DateField(label='', widget=forms.DateInput(attrs={'class':'form-control'},format='%d/%m/%Y'))
-    end_date = forms.DateField(label='', widget=forms.DateInput(attrs={'class':'form-control'},format='%d/%m/%Y'))
+    start_date = forms.DateField(label='', widget=forms.DateInput(attrs={'class':'form-control','type':'text','value':'','readonly':'True'},format='%d/%m/%Y'))
+    end_date = forms.DateField(label='', widget=forms.DateInput(attrs={'class':'form-control','type':'text','value':'','readonly':'True'},format='%d/%m/%Y'))
     company_name = forms.CharField(label='', widget=forms.TextInput(attrs={'placeholder':'例如：深信服科技股份有限公司','class':'form-control'}))
     job_role = forms.CharField(label='', widget=forms.TextInput(attrs={'placeholder':'例如：C++开发工程师','class':'form-control'}))
     job_desc = forms.CharField(label='',widget=forms.Textarea(attrs={'class':'form-control','placeholder':'例如：\n1.主要负责新员工入职员工培训；\n2.分析制定员工每个月个人销售业绩；\n3.帮助员工提高每日客单价，整体店面等工作；'}))

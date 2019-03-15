@@ -10,6 +10,7 @@
 
     <!-- Bootstrap -->
     <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
     <link href="/static/css/bootstrap-select.min.css" rel="stylesheet" />
     <link href="/static/css/mystyle.css" rel="stylesheet">
     <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
@@ -56,14 +57,14 @@
                         </form>
                         <ul class="nav navbar-nav navbar-right">
                             {% if request.user.is_authenticated %}
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{request.user.username}}<strong
-                                            class="caret"></strong></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="/polls/selfinfo.html" target="_parent">个人中心</a></li>
-                                        <li><a href="/polls/logout" target="_parent">退出</a></li>
-                                    </ul>
-                                </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{request.user.username}}<strong
+                                        class="caret"></strong></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="/polls/selfinfo.html" target="_parent">个人中心</a></li>
+                                    <li><a href="/polls/logout" target="_parent">退出</a></li>
+                                </ul>
+                            </li>
                             {% else %}
                             <li><a href="/polls/login.html">登陆/注册</a></li>
                             {% endif %}
@@ -121,11 +122,7 @@
                                     <td>{{exp.gra_school}}</td>
                                     <td>{{exp.start_date}}-{{exp.end_date}}</td>
                                     <td>
-                                        {% if exp.edu == '1' %} 专科
-                                        {% elif exp.edu == '2' %} 本科
-                                        {% elif exp.edu == '3' %} 硕士
-                                        {% else %} 博士
-                                        {% endif %}
+                                        {{exp.get_edu_display}}
                                     </td>
                                     <td>{{exp.profession}}</td>
                                     <td><a href="/polls/resumeinfo.html/del_edu?did={{ exp.id }}">删除</a></td>
@@ -160,14 +157,25 @@
                                             <div class="form-group">
                                                 <label>时间段</label>
                                                 <div class="row">
-                                                    <div class="col-lg-6">
-                                                        {{edu_form.start_date}}
+                                                    <div class="col-md-6">
+                                                        <div class="input-group date form_date" data-date=""
+                                                            data-date-format="yyyy/mm/dd" data-link-field="dtp_input2"
+                                                            data-link-format="yyyy-mm-dd">
+                                                            <span class="input-group-addon">起始时间</span>
+                                                            {{edu_form.start_date}}
+                                                            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                                        </div>
                                                     </div>
-                                                    <div class="col-lg-6">
-                                                        {{edu_form.end_date}}
+                                                    <div class="col-md-6">
+                                                        <div class="input-group date form_date" data-date=""
+                                                            data-date-format="yyyy/mm/dd" data-link-field="dtp_input2"
+                                                            data-link-format="yyyy-mm-dd">
+                                                            <span class="input-group-addon">终止时间</span>
+                                                            {{edu_form.end_date}}
+                                                            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                                        </div>
                                                     </div>
                                                 </div>
-
                                             </div>
                                             <div class="form-group">
                                                 <label>学历</label>
@@ -248,11 +256,23 @@
                                             <div class="form-group">
                                                 <label>时间段</label>
                                                 <div class="row">
-                                                    <div class="col-lg-6">
-                                                        {{pro_form.start_date}}
+                                                    <div class="col-md-6">
+                                                        <div class="input-group date form_date" data-date=""
+                                                            data-date-format="yyyy/mm/dd" data-link-field="dtp_input2"
+                                                            data-link-format="yyyy-mm-dd">
+                                                            <span class="input-group-addon">起始时间</span>
+                                                            {{pro_form.start_date}}
+                                                            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                                        </div>
                                                     </div>
-                                                    <div class="col-lg-6">
-                                                        {{pro_form.end_date}}
+                                                    <div class="col-md-6">
+                                                        <div class="input-group date form_date" data-date=""
+                                                            data-date-format="yyyy/mm/dd" data-link-field="dtp_input2"
+                                                            data-link-format="yyyy-mm-dd">
+                                                            <span class="input-group-addon">终止时间</span>
+                                                            {{pro_form.end_date}}
+                                                            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -334,18 +354,30 @@
                                                 <label>公司名称</label>
                                                 {{job_form.company_name}}
                                             </div>
-
                                             <div class="form-group">
                                                 <label>在职时间</label>
                                                 <div class="row">
-                                                    <div class="col-lg-6">
-                                                        {{job_form.start_date}}
+                                                    <div class="col-md-6">
+                                                        <div class="input-group date form_date" data-date=""
+                                                            data-date-format="yyyy/mm/dd" data-link-field="dtp_input2"
+                                                            data-link-format="yyyy-mm-dd">
+                                                            <span class="input-group-addon">起始时间</span>
+                                                            {{job_form.start_date}}
+                                                            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                                        </div>
                                                     </div>
-                                                    <div class="col-lg-6">
-                                                        {{job_form.end_date}}
+                                                    <div class="col-md-6">
+                                                        <div class="input-group date form_date" data-date=""
+                                                            data-date-format="yyyy/mm/dd" data-link-field="dtp_input2"
+                                                            data-link-format="yyyy-mm-dd">
+                                                            <span class="input-group-addon">终止时间</span>
+                                                            {{job_form.end_date}}
+                                                            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
+
                                             <div class="form-group">
                                                 <label>工作职位</label>
                                                 {{job_form.job_role}}
@@ -374,6 +406,22 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript" src="/static/jquery-3.3.1.min.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="/static/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/static/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="/static/js/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
+    <script type="text/javascript">
+        $('.form_date').datetimepicker({
+            language: 'zh-CN',
+            weekStart: 1,
+            todayBtn: 1,
+            autoclose: 1,
+            todayHighlight: 1,
+            startView: 2,
+            minView: 2,
+            forceParse: 0
+        });
+    </script>
 </body>
 
 </html>
