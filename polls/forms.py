@@ -28,7 +28,44 @@ class StationForm(forms.Form):
         elif salary1 > salary2:
             raise forms.ValidationError("invaile salary range.")
         return cleaned_data
-        
+
+#公司信息过滤
+class Company_filter(forms.Form):
+    ind_choice = (
+        ('0','不限'),('1','电子商务'),('2','游戏'),('3','媒体'),('4','广告营销'),('5','数据服务'),
+        ('6','医疗健康'),('7','生活服务'),('8','O2O'),('9','旅游'),('10','分类信息'),
+        ('11','音乐视频阅读'),('12','在线教育'),('13','社交网络'),('14','人力资源服务'),
+        ('15','信息安全'),('16','智能硬件'),('17','移动互联网'),('18','互联网'),('19','计算机软件'),
+        ('20','通信/网络设备'),('21','广告/公关/会展'),('22','互联网金融'),('23','物流/仓储'),('24','贸易进出口'),
+        ('25','咨询'),('26','工程施工'),('27','汽车生产'),('28','其他行业'),
+    )
+    fin_choice = (
+        ('0','不限'),('1','未融资'),('2','天使轮'),
+        ('3','A轮'),('4','B轮'),
+        ('5','C轮'),('6','D轮及以上'),
+        ('7','已上市'),('8','不需要融资'),
+    )
+    sca_choice = (
+        ('0','不限'),('1','0-20人'),('2','20-99人'),
+        ('3','100-499人'),('4','500-999人'),
+        ('5','1000-9999人'),('6','10000人以上'),
+    )
+    #行业类型过滤
+    type_filter = forms.CharField(widget=forms.Select(choices=ind_choice,attrs={'class':'selectpicker show-tick form-control','data-live-search':'true'}))
+    #融资阶段过滤
+    fin_filter  = forms.CharField(widget=forms.Select(choices=fin_choice,attrs={'class':'selectpicker show-tick form-control','data-live-search':'true'}))
+    #公司规模过滤
+    sca_filter  = forms.CharField(widget=forms.Select(choices=sca_choice,attrs={'class':'selectpicker show-tick form-control','data-live-search':'true'}))
+    
+    #设置选中的行业类型
+    def set_type(self, type):
+        self.initial["type_filter"] = type
+    #设置选中的融资阶段
+    def set_fin(self, fin):
+        self.initial["fin_filter"] = fin
+    #设置选中的公司规模
+    def set_scale(self, sca):
+        self.initial["sca_filter"] = sca
 
 #教育经历表单
 class EduForm(forms.Form):

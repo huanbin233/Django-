@@ -5,7 +5,7 @@ from django.http import Http404
 from django.contrib import messages
 from .models import UserProfile,Edu_experience,Pro_experience,Job_experience,Job_position,HRProfile,SendResume,Company
 from django.contrib.auth.models import User
-from .forms import ComRegisterForm,StuRegisterForm,LoginForm,EduForm,ProForm,JobForm,StationForm
+from .forms import ComRegisterForm,StuRegisterForm,LoginForm,EduForm,ProForm,JobForm,StationForm,Company_filter
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.contrib import auth
@@ -100,10 +100,6 @@ def self_info(request):
         email = request.POST['email']
         phone = request.POST['phone']
         gender = request.POST['gender']
-
-
-
-
         user = User.objects.get(username=loginuser[0].user.username)
         if is_stu == False:
             profile = HRProfile.objects.get(user=user)
@@ -236,7 +232,8 @@ def public_job(request):
             city     = station_Form.cleaned_data['city']
             salary1= station_Form.cleaned_data['salary1']
             salary2= station_Form.cleaned_data['salary2']
-            station = Job_position.objects.create(salary2=salary2,salary1=salary1,name=name,edu_req=edu_req,exp_req=exp_req,publisher=loginuser[0],job_desc=job_desc,city=city)
+            station = Job_position.objects.create(salary2=salary2,salary1=salary1,name=name,
+                edu_req=edu_req,exp_req=exp_req,publisher=loginuser[0],job_desc=job_desc,city=city)
             station.save()
 
             return HttpResponseRedirect('/polls/public_job.html')
@@ -268,8 +265,28 @@ def list_job(request):
     hot_list = job_list_all.order_by('-hot_val')[:10]
     new_list = job_list_all.order_by('pub_date')[:10]
     return render(request, 'polls/list.html', locals())
-def list_company(request):
+
+#公司列表,第二个参数是筛选结果a_b_c分别对应每个select下拉框的筛选值
+def list_company(request, ret):
+    if request.method == 'POST':
+        type_filter = request.POST.get('type_filter')
+        fin_filter = request.POST.get('fin_filter')
+        sca_filter = request.POST.get('sca_filter')
+        result = [str(type_filter), str(fin_filter), str(sca_filter)]
+        return HttpResponseRedirect('/polls/company.html/' + "_".join(result))
+    
+    filter = ret.split("_")
+    com_filter = Company_filter()
+    com_filter.set_type(filter[0])
+    com_filter.set_fin(filter[1])
+    com_filter.set_scale(filter[2])
     company_lis_all = Company.objects.all()
+    if filter[0] != '0':
+        company_lis_all = company_lis_all.filter(industry_type=filter[0])
+    if filter[1] != '0':
+        company_lis_all = company_lis_all.filter(financing=filter[1])
+    if filter[2] != '0':
+        company_lis_all = company_lis_all.filter(scale=filter[2])
     p = Paginator(company_lis_all,12)# p就是每页的对象，
     p.count  #数据总数
     p.num_pages  #总页数
@@ -284,6 +301,8 @@ def list_company(request):
         company_list = p.page(p.num_pages)
     
     return render(request, 'polls/company.html', locals())
+
+#简历投递
 @login_required
 def send_resume(request):
     loginuser = UserProfile.objects.get(user__exact=request.user)
@@ -304,6 +323,7 @@ def send_resume(request):
             messages.success(request,"投递成功！")
     return HttpResponseRedirect('/polls/list.html') 
 
+#公司详情信息
 def company_detail(request):
     com_id = request.GET.get("id")
     com = Company.objects.get(id=com_id)
