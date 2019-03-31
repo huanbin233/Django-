@@ -11,6 +11,9 @@ from django.urls import reverse
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator,EmptyPage,PageNotAnInteger
+
+from django_tables2 import RequestConfig
+from .tables import PersonTable
 #主页
 def index(request):
     tengxun = Company.objects.get(name="腾讯")
@@ -87,12 +90,11 @@ def logout(request):
 @login_required
 def self_info(request):
     is_stu = True
-    loginuser = UserProfile.objects.filter(user__exact=request.user)
-    if loginuser.count() == 0:
-        loginuser = HRProfile.objects.filter(user__exact=request.user)
+    try:
+        loginuser = UserProfile.objects.get(user__exact=request.user)
+    except:
+        loginuser = HRProfile.objects.get(user__exact=request.user)
         is_stu = False
-
-    context={'request':request,'loginuser':loginuser[0],'is_stu':is_stu}
     if request.method == 'POST':
         #获取当前的用户
         #在这个基础上修改
@@ -119,7 +121,7 @@ def self_info(request):
         user.save()
         profile.save()
         return HttpResponseRedirect('/polls/selfinfo.html')
-    return render(request, 'polls/selfinfo.html', context)
+    return render(request, 'polls/selfinfo.html', locals())
 
 #个人简历，包括工作经历,教育经历,项目经历等等
 @login_required
@@ -137,26 +139,13 @@ def resume_info(request,op):
         Job_experience.objects.filter(id=did).delete()
         return HttpResponseRedirect('/polls/resumeinfo.html/check')        
 
-    loginuser = UserProfile.objects.filter(user__exact=request.user)
-    context={'request':request,'loginuser':loginuser[0]}
-
-    edu_exp = Edu_experience.objects.filter(owner=loginuser[0])
-    context['edu_exp'] = edu_exp
-
-    pro_exp = Pro_experience.objects.filter(owner=loginuser[0])
-    context['pro_exp'] = pro_exp
-
-    job_exp = Job_experience.objects.filter(owner=loginuser[0])
-    context['job_exp'] = job_exp
-
+    loginuser = UserProfile.objects.get(user__exact=request.user)
+    edu_exp = Edu_experience.objects.filter(owner=loginuser)
+    pro_exp = Pro_experience.objects.filter(owner=loginuser)
+    job_exp = Job_experience.objects.filter(owner=loginuser)
     edu_form = EduForm()
-    context['edu_form'] = edu_form  
-
     pro_form = ProForm()
-    context['pro_form'] = pro_form
-
     job_form = JobForm()
-    context['job_form'] = job_form
 
     if request.method == 'POST':
         edu_Form = EduForm(request.POST)
@@ -196,31 +185,27 @@ def resume_info(request,op):
             exp.save()
             return HttpResponseRedirect('/polls/resumeinfo.html/check')
 
-    return render(request, 'polls/resumeinfo.html', context)
+    return render(request, 'polls/resumeinfo.html', locals())
 
 #通知消息
 @login_required
 def notify_info(request):
     is_stu = True
-    loginuser = UserProfile.objects.filter(user__exact=request.user)
-    if loginuser.count() == 0:
-        loginuser = HRProfile.objects.filter(user__exact=request.user)
+    try:
+        loginuser = UserProfile.objects.get(user__exact=request.user)
+    except:
+        loginuser = HRProfile.objects.get(user__exact=request.user)
         is_stu = False
-    context={'request':request,'loginuser':loginuser[0],'is_stu':is_stu}
-
-    return render(request, 'polls/notifyinfo.html', context)
+    table = PersonTable(UserProfile.objects.all())
+    RequestConfig(request, paginate={'per_page': 1}).configure(table)
+    return render(request, 'polls/notifyinfo.html', locals())
 
 #已发布招聘
 @login_required
 def public_job(request):
-    loginuser = HRProfile.objects.filter(user__exact=request.user)
-    context={'request':request,'loginuser':loginuser[0]}
-
-    pub_job = Job_position.objects.filter(publisher=loginuser[0])
-    context['pub_job'] = pub_job
-
+    loginuser = HRProfile.objects.get(user__exact=request.user)
+    pub_job = Job_position.objects.filter(publisher=loginuser)
     stationForm = StationForm()
-    context['stationForm'] = stationForm  
 
     if request.method == 'POST':
         station_Form = StationForm(request.POST)
@@ -233,19 +218,19 @@ def public_job(request):
             salary1= station_Form.cleaned_data['salary1']
             salary2= station_Form.cleaned_data['salary2']
             station = Job_position.objects.create(salary2=salary2,salary1=salary1,name=name,
-                edu_req=edu_req,exp_req=exp_req,publisher=loginuser[0],job_desc=job_desc,city=city)
+                edu_req=edu_req,exp_req=exp_req,publisher=loginuser,job_desc=job_desc,city=city)
             station.save()
 
             return HttpResponseRedirect('/polls/public_job.html')
         
-    return render(request, 'polls/public_job.html', context)
+    return render(request, 'polls/public_job.html', locals())
 
 @login_required
 def del_job(request):
-    did = request.GET.get('did')
-    Job_position.objects.filter(id=did).delete()
+    id = request.GET.get('id')
+    Job_position.objects.filter(id=id).delete()
     return HttpResponseRedirect('/polls/public_job.html') 
-    
+
 def list_job(request):
     job_list_all = Job_position.objects.all()
     #book_list_all 是要被分页的对象，第二个参数，是每页显示的条数
@@ -305,23 +290,30 @@ def list_company(request, ret):
 #简历投递
 @login_required
 def send_resume(request):
-    loginuser = UserProfile.objects.get(user__exact=request.user)
     sid = request.GET.get("sid")
+    cur_page = request.GET.get("cur_page")
     position = Job_position.objects.get(id=sid)
-    if not loginuser or not position:
-        messages.error(request,"失败，请确保您已以学生账号登录！")
-    else:
+    try:
+        loginuser = UserProfile.objects.get(user__exact=request.user)
         is_exists = SendResume.objects.filter(stu = loginuser, sta = position)
         if is_exists.count() != 0:
-            messages.error(request,"失败，请不要重复投递！")
+            messages.error(request,"请不要重复投递！")
         else:
             contact = SendResume.objects.create(stu = loginuser, sta = position)
             contact.save()
             #投递简历，岗位热度值要+10
             position.hot_val += 10
             position.save()
-            messages.success(request,"投递成功！")
-    return HttpResponseRedirect('/polls/list.html') 
+            messages.success(request,"简历投递成功，请耐心等候通知！")
+    except:
+        messages.error(request,"您当前的身份不能进行简历投递！") 
+    if cur_page == '2':
+        return HttpResponseRedirect('/polls/job_detail.html?id=%s' % (sid)) 
+    elif cur_page == '3':
+        return HttpResponseRedirect('/polls/company_detail.html?id=%s' 
+                                        % (position.publisher.company.id))         
+    else:
+        return HttpResponseRedirect('/polls/list.html') 
 
 #公司详情信息
 def company_detail(request):
@@ -345,6 +337,11 @@ def company_detail(request):
     
     if com:
         return render(request, 'polls/company_detail.html', locals())
+
+def job_detail(request):
+    job_id = request.GET.get("id")
+    job = Job_position.objects.get(id=job_id)
+    return render(request, 'polls/job_detail.html', locals())
 
 #过滤出指定公司的岗位
 def filter_job_with_company(com):

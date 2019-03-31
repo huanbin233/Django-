@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="X-UA-jobpatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
     <title>大学生直聘-大学生就业神器！</title>
@@ -77,97 +77,81 @@
         <!-- head end -->
         <div class="jumbotron" style="background-image: url(/static/image/job_bg.jpg)">
             <h1>
-                <img class="img-rounded" width=103px height=103px style="border:1px solid #e4e1e1" src="/static/image/{{com.name}}.png" />
-                <font color="white">{{com.name}}</font>
+                <font color="white">{{job.name}}</font>
+                <font size="6" color="#A52A2A">{{job.salary1}}K-{{job.salary2}}K</font>
+                <div class="pull-right">
+                        <a class="btn btn-primary btn-block btn-lg" href="/polls/send_resume/?sid={{job.id}}&cur_page=2">立即投递简历</a> 
+                </div>
+                {% if messages %}
+                <script>
+                    {% for msg in messages %}
+                        alert('{{ msg.message }}'); 
+                    {% endfor %}
+                </script>
+                {% endif %}
             </h1>
             <p>
                 <font color="white">
-                    {{com.get_financing_display}}&nbsp;&nbsp;
-                    |&nbsp;&nbsp;{{com.get_scale_display}}&nbsp;&nbsp;
-                    |&nbsp;&nbsp;{{com.get_industry_type_display}}
+                    {{job.city}}&nbsp;&nbsp;
+                    |&nbsp;&nbsp;学历{{job.get_edu_req_display}}&nbsp;&nbsp;
                 </font>
             </p>
+
+
         </div>
         <div class="tabbable" id="tabs-761440">
             <ul class="nav nav-tabs">
                 <li class="active">
-                    <a href="#panel-720488" data-toggle="tab">公司简介</a>
+                    <a href="#panel-720488" data-toggle="tab">职位描述</a>
                 </li>
                 <li>
-                    <a href="#panel-696348" data-toggle="tab">招聘岗位</a>
+                    <a href="#panel-696348" data-toggle="tab">公司简介</a>
                 </li>
+                {% if request.user == job.publisher.user %}
+                    <li>
+                        <a href="#panel-696347" data-toggle="tab">岗位投递情况</a>
+                    </li>
+                {% endif %}
             </ul>
             <div class="tab-content">
+                <!--岗位描述-->
                 <div class="tab-pane active" id="panel-720488">
                     <p>
                         <div class="panel panel-default">
                             <div class="panel-body">
-                                <h2><font size="4">{{com.desc}}</font></h2>
+                                {{job.job_desc}}
                             </div>
                         </div>
                     </p>
                 </div>
+                <!--公司简介-->
                 <div class="tab-pane" id="panel-696348">
                     <p>
                         <div class="panel panel-default">
                             <div class="panel-body">
-                                {% if not job_list %}
-                                该公司尚未发布任何岗位，敬请期待！
-                                {% endif %}
-                                {% for job in job_list %}
-                                <div class="panel" style="border:1px solid #e4e1e1">
-                                    <div class="panel-body">
-                                        <div class="col-md-6 column">
-                                            <p>
-                                                <font size='3'><b>{{ job.name }}</b></font> &nbsp;
-                                                <font color="#A52A2A" size='2'>{{job.salary1}}K-{{job.salary2}}K</font>
-                                            </p>
-                                            <p>
-                                                <font color="#DCDCDC" size='2'>{{job.city}}&nbsp;&nbsp;</font>
-                                                <font color="#DCDCDC" size='2'>|&nbsp;&nbsp;{{job.get_edu_req_display}}
-                                                </font>
-                                            </p>
-                                        </div>
-                                        <div class="col-md-4 column">
-                                            <font color="#DCDCDC" size='2'>{{job.publisher.company}}&nbsp;&nbsp;</font>
-                                        </div>
-                                        <div class="col-md-2 column">
-                                            <a class="btn" href="/polls/job_detail.html?id={{job.id}}">详情</a>
-                                            <a class="btn btn-primary" href="/polls/send_resume/?sid={{job.id}}&cur_page=3">投递简历</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                {% endfor %}
-                                {% if messages %}
-                                <script>
-                                    {%for msg in messages %}
-                                        alert('{{ msg.message }}'); 
-                                    {% endfor %}
-                                </script>
-                                {% endif %}
-                                <div>
-                                    <ul class="pagination">
-                                        {% if job_list.has_previous %}
-                                        <li><a href="/polls/list.html/?page={{ job_list.previous_page_number }}">上一页</a></li>
-                                        {% else %}
-                                        <li class="disabled"><a href="#">上一页</a></li>
-                                        {% endif %}
-
-                                        {% for num in p.page_range %}
-                                        <li><a href="/polls/list.html/?page={{ num }}">{{ num }}</a></li>
-                                        {% endfor %}
-
-                                        {% if job_list.has_next %}
-                                        <li><a href="/polls/list.html/?page={{ job_list.next_page_number }}">下一页</a></li>
-                                        {% else %}
-                                        <li class="disabled"><a href="#">下一页</a></li>
-                                        {% endif %}
-                                    </ul>
+                                <h2>
+                                    <font size="4">{{job.publisher.company.desc}}</font>
+                                </h2>
+                                <div class ="pull-right">
+                                    <a href="/polls/company_detail.html?id={{job.publisher.company.id}}">详细...</a>
                                 </div>
                             </div>
+
                         </div>
                     </p>
                 </div>
+                <!--投递情况，只用于岗位发布者-->
+                {% if request.user == job.publisher.user %}
+                    <div class="tab-pane" id="panel-696347">
+                        <p>
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+
+                                </div>
+                            </div>
+                        </p>
+                    </div>
+                {% endif %}
             </div>
         </div>
         <div class="blog-footer">

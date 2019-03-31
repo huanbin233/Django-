@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.models import User
 
-
+#公司信息
 class Company(models.Model):
     sca_choice = (
         ('0','不限'),('1','0-20人'),('2','20-99人'),
@@ -158,9 +158,32 @@ class Job_position(models.Model):
         return self.name
 
 
-#投递信息
+#简历投递情况
 class SendResume(models.Model):
-    stu                = models.ForeignKey(UserProfile,on_delete=models.CASCADE,null=False)
-    sta                = models.ForeignKey(Job_position,on_delete=models.CASCADE,null=False)
+    #学生
+    stu                = models.ForeignKey(UserProfile,on_delete=models.CASCADE,null=False,verbose_name="学生")
+    #岗位
+    sta                = models.ForeignKey(Job_position,on_delete=models.CASCADE,null=False,verbose_name="岗位")
+    #投递时间
+    time               = models.DateField(auto_now_add=True,verbose_name='发布时间')
     def __str__(self):
-        return self.stu.name + " " + self.sta.name
+        return str(self.time) + ":" + self.stu.name + " 投递了 " + self.sta.name + " 岗位"
+
+#消息通知
+#class Notify_s(models.Model):
+#    stu                = models.ForeignKey(UserProfile,on_delete=models.CASCADE,null=False)
+#    info               = models.CharField(max_length=100,default='',verbose_name='信息')
+
+#消息通知,某学生头投递某岗位
+class Notify_h(models.Model):
+    #简历投递信息，可以获取学生信息和学生投递的岗位
+    delivery            = models.ForeignKey(SendResume,on_delete=models.CASCADE,null=False)
+    #两种状态，True：未查看，False：已查看
+    status              = models.BooleanField(verbose_name='已读',default=True)
+    def __str__(self):
+        if self.status:
+            info = "信息已查看："
+        else:
+            info = "信息未查看："
+        info += self.delivery.stu.name + " 投递了 " + self.delivery.sta.name + " 岗位"
+        return info

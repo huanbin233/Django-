@@ -85,7 +85,7 @@
                                     <div class="col-md-6 column">
                                         <p>
                                             <font  size='3'><b>{{ job.name }}</b></font> &nbsp;
-                                            <font color="#A52A2A" size='2'>{{job.salary1}}-{{job.salary2}}</font> 
+                                            <font color="#A52A2A" size='2'>{{job.salary1}}K-{{job.salary2}}K</font> 
                                         </p>
                                         <p>
                                             <font  color="#DCDCDC" size='2'>{{job.city}}&nbsp;&nbsp;</font>
@@ -97,7 +97,7 @@
                                         <font  color="#DCDCDC" size='2'>{{job.publisher.company}}&nbsp;&nbsp;</font>
                                     </div>
                                     <div class="col-md-3 column">
-                                        <a class="btn" href="#">详情</a>
+                                        <a class="btn" href="/polls/job_detail.html?id={{job.id}}">详情</a>
                                         <a class="btn btn-primary" href="/polls/send_resume/?sid={{job.id}}">投递简历</a> 
                                     </div>
                                 </div>

@@ -29,49 +29,48 @@
   <div class="container">
     <!-- head -->
     <div class="row clearfix">
-      <div class="col-md-12 column">
-        <nav class="navbar navbar-default" role="navigation">
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-              <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span
-                class="icon-bar"></span></button> <a class="navbar-brand" href="#">大学生直聘</a>
-          </div>
-          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-              <li>
-                <a href="/polls/index.html">首页</a>
-              </li>
-              <li>
-                <a href="/polls/list.html">职位</a>
-              </li>
-              <li>
-                <a href="#">公司</a>
-              </li>
-            </ul>
-            <form class="navbar-form navbar-left" role="search">
-              <div class="form-group">
-                <input type="text" class="form-control" />
-              </div>
-              <button type="submit" class="btn btn-default">搜索</button>
-            </form>
-            <ul class="nav navbar-nav navbar-right">
-              {% if request.user.is_authenticated %}
-              <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{request.user.username}}<strong class="caret"></strong></a>
-                  <ul class="dropdown-menu">
-                    <li><a href="/polls/selfinfo.html" target="_parent">个人中心</a></li>
-                    <li><a href="/polls/logout" target="_parent">退出</a></li>
-                  </ul>
-                </li>
-              </ul>
-              {% else %}
-              <li><a href="/polls/login.html">登陆/注册</a></li>
-              {% endif %}
-            </ul>
-          </div>
-        </nav>
-      </div>
+        <div class="col-md-12 column">
+            <nav class="navbar navbar-default" role="navigation">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span
+                            class="icon-bar"></span></button> <a class="navbar-brand" href="#">大学生直聘</a>
+                </div>
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <a href="/polls/index.html">首页</a>
+                        </li>
+                        <li>
+                            <a href="/polls/list.html">职位</a>
+                        </li>
+                        <li>
+                            <a href="/polls/company.html/0_0_0">公司</a>
+                        </li>
+                    </ul>
+                    <form class="navbar-form navbar-left" role="search">
+                        <div class="form-group">
+                            <input type="text" class="form-control" />
+                        </div>
+                        <button type="submit" class="btn btn-default">搜索</button>
+                    </form>
+                    <ul class="nav navbar-nav navbar-right">
+                        {% if request.user.is_authenticated %}
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{request.user.username}}<strong
+                                        class="caret"></strong></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="/polls/selfinfo.html" target="_parent">个人中心</a></li>
+                                    <li><a href="/polls/logout" target="_parent">退出</a></li>
+                                </ul>
+                            </li>
+                        {% else %}
+                        <li><a href="/polls/login.html">登陆/注册</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </nav>
+        </div>
     </div>
     <!-- head end-->
     <div class="row clearfix">
@@ -122,7 +121,10 @@
                       <td>{{temp.name}}</td>
                       <td>{{temp.city}}</td>
                       <td>{{temp.salary1}}-{{temp.salary2}}</td>
-                      <td><a href="/polls/public_job.html/del_info?did={{ temp.id }}">删除</a></td>
+                      <td>
+                        <a href="/polls/job_detail.html?id={{ temp.id }}">详情</a>
+                        <a href="/polls/public_job.html/del_info?id={{ temp.id }}">删除</a>
+                      </td>
                     </tr>
                     {% endfor %}
                 </tbody>
