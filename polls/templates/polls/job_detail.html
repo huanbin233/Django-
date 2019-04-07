@@ -96,8 +96,6 @@
                     |&nbsp;&nbsp;学历{{job.get_edu_req_display}}&nbsp;&nbsp;
                 </font>
             </p>
-
-
         </div>
         <div class="tabbable" id="tabs-761440">
             <ul class="nav nav-tabs">
@@ -119,7 +117,7 @@
                     <p>
                         <div class="panel panel-default">
                             <div class="panel-body">
-                                {{job.job_desc}}
+                                <font size="4">{{job.job_desc|linebreaks }}</font>
                             </div>
                         </div>
                     </p>
@@ -129,9 +127,7 @@
                     <p>
                         <div class="panel panel-default">
                             <div class="panel-body">
-                                <h2>
-                                    <font size="4">{{job.publisher.company.desc}}</font>
-                                </h2>
+                                <font size="4">{{job.publisher.company.desc|linebreaks }}</font>
                                 <div class ="pull-right">
                                     <a href="/polls/company_detail.html?id={{job.publisher.company.id}}">详细...</a>
                                 </div>

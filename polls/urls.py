@@ -16,4 +16,5 @@ urlpatterns = [
     path('company.html/<str:ret>',views.list_company, name='company'),
     path('company_detail.html/',views.company_detail, name='company_detail'),
     path('send_resume/',views.send_resume, name='send_resume'),
+    path('resume/',views.resume_show, name='resume_show'),
 ]

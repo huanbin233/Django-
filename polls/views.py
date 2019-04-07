@@ -139,7 +139,7 @@ def resume_info(request,op):
         Job_experience.objects.filter(id=did).delete()
         return HttpResponseRedirect('/polls/resumeinfo.html/check')        
 
-    loginuser = UserProfile.objects.get(user__exact=request.user)
+    loginuser = UserProfile.objects.get(user=request.user)
     edu_exp = Edu_experience.objects.filter(owner=loginuser)
     pro_exp = Pro_experience.objects.filter(owner=loginuser)
     job_exp = Job_experience.objects.filter(owner=loginuser)
@@ -156,7 +156,7 @@ def resume_info(request,op):
             end_date = edu_Form.cleaned_data['end_date']
             edu = edu_Form.cleaned_data['edu']
 
-            exp = Edu_experience.objects.create(gra_school=school,profession=pro,start_date=start_date,end_date=end_date,edu=edu,owner=loginuser[0])
+            exp = Edu_experience.objects.create(gra_school=school,profession=pro,start_date=start_date,end_date=end_date,edu=edu,owner=loginuser)
             exp.save()
             return HttpResponseRedirect('/polls/resumeinfo.html/check')
 
@@ -168,7 +168,7 @@ def resume_info(request,op):
             start_date = pro_Form.cleaned_data['start_date']
             end_date = pro_Form.cleaned_data['end_date']
 
-            exp = Pro_experience.objects.create(job_name=job_name,job_desc=job_desc,job_role=job_role,start_date=start_date,end_date=end_date,owner=loginuser[0])
+            exp = Pro_experience.objects.create(job_name=job_name,job_desc=job_desc,job_role=job_role,start_date=start_date,end_date=end_date,owner=loginuser)
             exp.save()
             return HttpResponseRedirect('/polls/resumeinfo.html/check')
 
@@ -181,7 +181,7 @@ def resume_info(request,op):
             end_date = job_Form.cleaned_data['end_date']
             industry = job_Form.cleaned_data['industry']
 
-            exp = Job_experience.objects.create(company_name=company_name,job_desc=job_desc,job_role=job_role,start_date=start_date,end_date=end_date,industry=industry,owner=loginuser[0])
+            exp = Job_experience.objects.create(company_name=company_name,job_desc=job_desc,job_role=job_role,start_date=start_date,end_date=end_date,industry=industry,owner=loginuser)
             exp.save()
             return HttpResponseRedirect('/polls/resumeinfo.html/check')
 
@@ -248,7 +248,7 @@ def list_job(request):
         job_list = p.page(p.num_pages)
     
     hot_list = job_list_all.order_by('-hot_val')[:10]
-    new_list = job_list_all.order_by('pub_date')[:10]
+    new_list = job_list_all.order_by('-pub_date')[:10]
     return render(request, 'polls/list.html', locals())
 
 #公司列表,第二个参数是筛选结果a_b_c分别对应每个select下拉框的筛选值
@@ -341,6 +341,7 @@ def company_detail(request):
 def job_detail(request):
     job_id = request.GET.get("id")
     job = Job_position.objects.get(id=job_id)
+    candidate = SendResume.objects.filter(sta=job)
     return render(request, 'polls/job_detail.html', locals())
 
 #过滤出指定公司的岗位
@@ -352,3 +353,23 @@ def filter_job_with_company(com):
         if puber.company == com:
             job_list.append(job)
     return job_list
+
+#简历展示页面
+def resume_show(request):
+    #获得学生id
+    stu_id = request.GET.get("id")
+    #检验学生id数据是否有效
+    if stu_id == '':
+        return render(request, 'polls/404_not_found.html', locals())
+    try:
+        #获取个人信息
+        self_info = UserProfile.objects.get(id = stu_id)
+        #获取工作经历
+        job_exp = Job_experience.objects.filter(owner=self_info)
+        #获取项目经历
+        pro_exp = Pro_experience.objects.filter(owner=self_info)
+        #获取教育经历
+        edu_exp = Edu_experience.objects.filter(owner=self_info)
+        return render(request, 'polls/resume.html', locals())
+    except:
+        return render(request, 'polls/404_not_found.html', locals())
