@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
+
 import re
 
 
@@ -12,7 +13,8 @@ class StationForm(forms.Form):
     name = forms.CharField(label='', widget=forms.TextInput(attrs={'placeholder':'例如：UI设计师','class':'form-control'}))
     job_desc = forms.CharField(label='',widget=forms.Textarea(attrs={'class':'form-control','placeholder':'描述岗位职责，要求等'}))
     edu_req = forms.CharField(widget=forms.Select(choices=(('1','不限'),('2','专科'),('3','本科'),('4','硕士'),('5','博士')),attrs={'class':'form-control'}))
-    exp_req = forms.CharField(widget=forms.Select(choices=(('1','无'),('2','一年'),('3','两年'),('4','三年及以上')),attrs={'class':'form-control'}))
+    #exp_req = forms.CharField(widget=forms.Select(choices=(('1','无'),('2','一年'),('3','两年'),('4','三年及以上')),attrs={'class':'form-control'}))
+    need = forms.IntegerField(label='', widget=forms.TextInput(attrs={'placeholder':'岗位人数需求','class':'form-control'}))
     city = forms.CharField(label='', widget=forms.TextInput(attrs={'placeholder':'例如：深圳','class':'form-control'}))
     salary1 = forms.IntegerField(label='', widget=forms.TextInput(attrs={'placeholder':'例如：8000','class':'form-control'}))
     salary2 = forms.IntegerField(label='', widget=forms.TextInput(attrs={'placeholder':'例如：8000','class':'form-control'}))
@@ -106,95 +108,93 @@ class JobForm(forms.Form):
 
 #学生注册
 class StuRegisterForm(forms.Form):
-    username = forms.CharField(label='', widget=forms.TextInput(attrs={'placeholder':'用户名','class':'lowin-input'}))
-    password = forms.CharField(label='', widget=forms.PasswordInput(attrs={'placeholder':'密码','class':'lowin-input'}))
-    email = forms.CharField(label='', widget=forms.TextInput(attrs={'placeholder':'邮箱','class':'lowin-input'}))
-    phone = forms.CharField(label='', widget=forms.TextInput(attrs={'placeholder':'手机','class':'lowin-input'}))
+    username = forms.CharField(label='', widget=forms.TextInput(
+        attrs={'placeholder':'','required':'','class':'name','type':'text','name':'name'}))
+    password = forms.CharField(label='', widget=forms.PasswordInput(
+        attrs={'placeholder':'','required':'','class':'password','type':'password','name':'password'}))
+    comfirm_passwd = forms.CharField(label='', widget=forms.PasswordInput(
+        attrs={'placeholder':'','required':'','class':'password','type':'password','name':'password'}))
+    email = forms.CharField(label='', widget=forms.TextInput(
+         attrs={'placeholder':'','required':'','class':'name','type':'text','name':'email'}))
+    
     # Use clean methods to define custom validation rules
 
     def clean_username(self):
         username = self.cleaned_data.get('username')
-        if len(username) < 6:
-            raise forms.ValidationError("Your username must be at least 6 characters long.")
-        elif len(username) > 50:
-            raise forms.ValidationError("Your username is too long.")
-        else:
-            filter_result = User.objects.filter(username__exact=username)
-            if len(filter_result) > 0:
-                raise forms.ValidationError("Your username already exists.")
+        filter_result = User.objects.filter(username__exact=username)
+        if filter_result.count() > 0:
+            raise forms.ValidationError("用户名已存在!")
         return username
-    """
     def clean_email(self):
         email = self.cleaned_data.get('email')
+        right = False
+        if len(email) > 7:
+            if re.match("^.+\\@(\\[?)[a-zA-Z0-9\\-\\.]+\\.([a-zA-Z]{2,3}|[0-9]{1,3})(\\]?)$", email) != None:
+                right=True
+        if not right:
+            raise forms.ValidationError('请输入合法的邮箱！')
+        return email 
 
-        if email_check(email):
-            filter_result = User.objects.filter(email__exact=email)
-            if len(filter_result) > 0:
-                raise forms.ValidationError("Your email already exists.")
-            else:
-                raise forms.ValidationError("Please enter a valid email.")
-        return email
-    """
-    """
-    def clean_password(self):
-        password = self.cleaned_data.get('password')
+    def clean(self):
+        cleaned_data = self.cleaned_data
+        pwd1 = cleaned_data['password']
+        pwd2 = cleaned_data['comfirm_passwd']
+        #print(pwd1,pwd2)
+        if pwd1 != pwd2:
+            raise forms.ValidationError('二次输入密码不匹配!')    
+        return cleaned_data 
 
-        if len(password) < 6:
-            raise forms.ValidationError("Your password is too short.")
-        elif len(password) > 20:
-            raise forms.ValidationError("Your password is too long.")
-
-        return password
-    """
 #企业注册
 class ComRegisterForm(forms.Form):
-    username = forms.CharField(label='', widget=forms.TextInput(attrs={'placeholder':'用户名','class':'lowin-input'}))
-    password = forms.CharField(label='', widget=forms.PasswordInput(attrs={'placeholder':'密码','class':'lowin-input'}))
-    email = forms.CharField(label='', widget=forms.TextInput(attrs={'placeholder':'邮箱','class':'lowin-input'}))
-    phone = forms.CharField(label='', widget=forms.TextInput(attrs={'placeholder':'手机','class':'lowin-input'}))
-    #company = forms.CharField(label='', widget=forms.TextInput(attrs={'placeholder':'企业','class':'lowin-input'}))
-    # Use clean methods to define custom validation rules
+    username = forms.CharField(label='', widget=forms.TextInput(
+        attrs={'placeholder':'','required':'','class':'name','type':'text','name':'name'}))
+    password = forms.CharField(label='', widget=forms.PasswordInput(
+        attrs={'placeholder':'','required':'','class':'password','type':'password','name':'password'}))
+    comfirm_passwd = forms.CharField(label='', widget=forms.PasswordInput(
+        attrs={'placeholder':'','required':'','class':'password','type':'password','name':'password'}))
+    email = forms.CharField(label='', widget=forms.TextInput(
+         attrs={'placeholder':'','required':'','class':'name','type':'text','name':'email'}))
 
     def clean_username(self):
         username = self.cleaned_data.get('username')
-        if len(username) < 6:
-            raise forms.ValidationError("Your username must be at least 6 characters long.")
-        elif len(username) > 50:
-            raise forms.ValidationError("Your username is too long.")
-        else:
-            filter_result = User.objects.filter(username__exact=username)
-            if len(filter_result) > 0:
-                raise forms.ValidationError("Your username already exists.")
+        filter_result = User.objects.filter(username__exact=username)
+        if filter_result.count() > 0:
+            raise forms.ValidationError("用户名已存在!")
         return username
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        right = False
+        if len(email) > 7:
+            if re.match("^.+\\@(\\[?)[a-zA-Z0-9\\-\\.]+\\.([a-zA-Z]{2,3}|[0-9]{1,3})(\\]?)$", email) != None:
+                right=True
+        if not right:
+            raise forms.ValidationError('请输入合法的邮箱！')
+        return email 
 
-    def clean_com_name(self):
-        company = self.cleaned_data.get('company')
-        return company
+    def clean(self):
+        cleaned_data = self.cleaned_data
+        pwd1 = cleaned_data['password']
+        pwd2 = cleaned_data['comfirm_passwd']
+        #print(pwd1,pwd2)
+        if pwd1 != pwd2:
+            raise forms.ValidationError('二次输入密码不匹配!')    
+        return cleaned_data 
 
 #登陆
 class LoginForm(forms.Form):
-    username = forms.CharField(label='', widget=forms.TextInput(attrs={'placeholder':'用户名','class':'lowin-input'}))
-    password = forms.CharField(label='', widget=forms.PasswordInput(attrs={'placeholder':'密码','class':'lowin-input'}))
-    def clean_username(self):
-        username = self.cleaned_data.get('username')
+    username = forms.CharField(label='', widget=forms.TextInput(
+        attrs={'placeholder':'','required':'','class':'name','type':'text','name':'name'}))
+    password = forms.CharField(label='', widget=forms.PasswordInput(
+        attrs={'placeholder':'','required':'','class':'password','type':'password','name':'password'}))
 
+    def clean(self):
+        cleaned_data = self.cleaned_data
+        username = cleaned_data['username']
+        password = cleaned_data['password']
         filter_result = User.objects.filter(username__exact=username)
-        if not filter_result:
-                raise forms.ValidationError("This username does not exist. Please register first.")
-        return username
-
-    # Use clean methods to define custom validation rules
-    """
-    def clean_username(self):
-        username = self.cleaned_data.get('username')
-
-        if email_check(username):
-            filter_result = User.objects.filter(email__exact=username)
-            if not filter_result:
-                raise forms.ValidationError("This email does not exist.")
-            else:
-                filter_result = User.objects.filter(username__exact=username)
-                if not filter_result:
-                    raise forms.ValidationError("This username does not exist. Please register first.")
-        reuturn username
-    """
+        if filter_result.count() > 0:
+            if not filter_result[0].check_password(password):
+                raise forms.ValidationError("用户名或密码错误！")
+        else:
+            raise forms.ValidationError("用户名不存在，请先注册！")
+        return cleaned_data

@@ -17,4 +17,10 @@ urlpatterns = [
     path('company_detail.html/',views.company_detail, name='company_detail'),
     path('send_resume/',views.send_resume, name='send_resume'),
     path('resume/',views.resume_show, name='resume_show'),
+    path('eliminate/',views.eliminate_stu, name='eliminate_stu'),
+    path('employ_success/',views.employ_success, name='employ_success'),
+    path('del_his_resume/',views.del_his_resume, name='del_his_resume'),
+    path('register_stu/',views.register_stu, name='register_stu'),
+    path('register_com/',views.register_com, name='register_com'),
+
 ]

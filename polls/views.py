@@ -11,6 +11,7 @@ from django.urls import reverse
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator,EmptyPage,PageNotAnInteger
+from django.forms.utils import ErrorDict
 
 from django_tables2 import RequestConfig
 from .tables import PersonTable
@@ -28,6 +29,62 @@ def index(request):
     huawei = Company.objects.get(name="华为")
     return render(request, 'polls/index.html', locals())
 
+#登陆
+def login(request):
+    login_Form = LoginForm()
+    if request.method == 'POST':
+        #登陆
+        login_Form = LoginForm(request.POST)
+        if login_Form.is_valid():
+            username = login_Form.cleaned_data['username']
+            password = login_Form.cleaned_data['password']
+            user = auth.authenticate(username=username, password=password)
+            if user is not None and user.is_active:
+                auth.login(request, user)
+                return redirect('/polls/index.html',locals())
+        else:
+            print(login_Form.non_field_errors())
+    return render(request,'polls/signin.html',locals())
+
+#学生注册
+def register_stu(request):
+    is_stu = 1
+    Register_Form = StuRegisterForm()
+    if request.method == 'POST':
+        Register_Form = StuRegisterForm(request.POST)
+        if Register_Form.is_valid():
+            username = Register_Form.cleaned_data['username']
+            password = Register_Form.cleaned_data['password']
+            comfirm_passwd = Register_Form.cleaned_data['comfirm_passwd']
+            email = Register_Form.cleaned_data['email']
+
+            user = User.objects.create_user(username=username, password=password,email=email)
+            user_profile = UserProfile.objects.create(user = user)
+            return HttpResponseRedirect('/polls/login.html')
+        else:
+            print(Register_Form.non_field_errors())
+    return render(request,'polls/signup.html',locals()) 
+
+#企业注册
+def register_com(request):
+    is_stu = 0
+    Register_Form = ComRegisterForm()
+    if request.method == 'POST':
+        Register_Form = ComRegisterForm(request.POST)
+        if Register_Form.is_valid():
+            username = Register_Form.cleaned_data['username']
+            password = Register_Form.cleaned_data['password']
+            email = Register_Form.cleaned_data['email']
+            comfirm_passwd = Register_Form.cleaned_data['comfirm_passwd']
+
+            user = User.objects.create_user(username=username, password=password, email=email)
+            hr_profile = HRProfile.objects.create(user = user)
+            return HttpResponseRedirect('/polls/login.html')
+        else:
+            print(Register_Form.non_field_errors())
+    return render(request,'polls/signup.html',locals()) 
+    
+'''
 #登录or注册
 def login(request):
     context={}
@@ -78,8 +135,8 @@ def login(request):
 
 
             #messages.add_message(request, messages.INFO, "注册成功，跳转到登录界面")                                                
-    return render(request,'polls/login.html',context)
-
+    return render(request,'polls/signin.html',context)
+'''
 #退出登录
 def logout(request):
     auth.logout(request)
@@ -212,13 +269,13 @@ def public_job(request):
         if station_Form.is_valid():
             name = station_Form.cleaned_data['name']
             edu_req = station_Form.cleaned_data['edu_req']
-            exp_req = station_Form.cleaned_data['exp_req']
+            need = station_Form.cleaned_data['need']
             job_desc = station_Form.cleaned_data['job_desc']
             city     = station_Form.cleaned_data['city']
             salary1= station_Form.cleaned_data['salary1']
             salary2= station_Form.cleaned_data['salary2']
             station = Job_position.objects.create(salary2=salary2,salary1=salary1,name=name,
-                edu_req=edu_req,exp_req=exp_req,publisher=loginuser,job_desc=job_desc,city=city)
+                edu_req=edu_req,need=need,publisher=loginuser,job_desc=job_desc,city=city)
             station.save()
 
             return HttpResponseRedirect('/polls/public_job.html')
@@ -232,7 +289,7 @@ def del_job(request):
     return HttpResponseRedirect('/polls/public_job.html') 
 
 def list_job(request):
-    job_list_all = Job_position.objects.all()
+    job_list_all = Job_position.objects.exclude(need__lte=0)
     #book_list_all 是要被分页的对象，第二个参数，是每页显示的条数
     p = Paginator(job_list_all,8)# p就是每页的对象，
     p.count  #数据总数
@@ -292,8 +349,8 @@ def list_company(request, ret):
 def send_resume(request):
     sid = request.GET.get("sid")
     cur_page = request.GET.get("cur_page")
-    position = Job_position.objects.get(id=sid)
     try:
+        position = Job_position.objects.get(id=sid)
         loginuser = UserProfile.objects.get(user__exact=request.user)
         is_exists = SendResume.objects.filter(stu = loginuser, sta = position)
         if is_exists.count() != 0:
@@ -303,26 +360,32 @@ def send_resume(request):
             contact.save()
             #投递简历，岗位热度值要+10
             position.hot_val += 10
+            #统计投递人数
+            position.reg_num += 1
             position.save()
             messages.success(request,"简历投递成功，请耐心等候通知！")
     except:
         messages.error(request,"您当前的身份不能进行简历投递！") 
+    #在职位详情页面投递简历
     if cur_page == '2':
         return HttpResponseRedirect('/polls/job_detail.html?id=%s' % (sid)) 
+    #在公司详情页面投递简历
     elif cur_page == '3':
         return HttpResponseRedirect('/polls/company_detail.html?id=%s' 
                                         % (position.publisher.company.id))         
+    #在职位列表页面投递简历
     else:
-        return HttpResponseRedirect('/polls/list.html') 
+        page_num = request.GET.get("page")
+        return HttpResponseRedirect('/polls/list.html?page=%s' % (page_num)) 
 
 #公司详情信息
 def company_detail(request):
     com_id = request.GET.get("id")
     com = Company.objects.get(id=com_id)
-
+    active_panel = 1
     job_list_all = filter_job_with_company(com)
     #book_list_all 是要被分页的对象，第二个参数，是每页显示的条数
-    p = Paginator(job_list_all,8)# p就是每页的对象，
+    p = Paginator(job_list_all,5)# p就是每页的对象，
     p.count  #数据总数
     p.num_pages  #总页数
     p.page_range#[1,2,3,4,5],得到页码，动态生成，
@@ -330,6 +393,7 @@ def company_detail(request):
     page_num = request.GET.get("page")#以get的方法从url地址中获取
     try:
         job_list = p.page(page_num)#括号里的是页数，显示指定页码的数据，动态显示数据，所以不能写死了
+        active_panel = 3
     except PageNotAnInteger:#如果输入页码错误，就显示第一页
         job_list = p.page(1)
     except EmptyPage:#如果超过了页码范围，就把最后的页码显示出来，
@@ -341,12 +405,28 @@ def company_detail(request):
 def job_detail(request):
     job_id = request.GET.get("id")
     job = Job_position.objects.get(id=job_id)
-    candidate = SendResume.objects.filter(sta=job)
+    stu_list_all = SendResume.objects.filter(sta=job,show='1')
+    active_panel = 1
+    p = Paginator(stu_list_all,5)# p就是每页的对象，
+    p.count  #数据总数
+    p.num_pages  #总页数
+    p.page_range#[1,2,3,4,5],得到页码，动态生成，
+
+    page_num = request.GET.get("page")#以get的方法从url地址中获取
+    try:
+        stu_list = p.page(page_num)#括号里的是页数，显示指定页码的数据，动态显示数据，所以不能写死了
+        active_panel = 3
+    except PageNotAnInteger:#如果输入页码错误，就显示第一页
+        stu_list = p.page(1)
+        page_num = 1
+    except EmptyPage:#如果超过了页码范围，就把最后的页码显示出来，
+        stu_list = p.page(p.num_pages)
+        page_num = p.num_pages
     return render(request, 'polls/job_detail.html', locals())
 
 #过滤出指定公司的岗位
 def filter_job_with_company(com):
-    job_list_all = Job_position.objects.all()
+    job_list_all = Job_position.objects.exclude(need__lte=0)
     job_list = []
     for job in job_list_all:
         puber = job.publisher
@@ -371,5 +451,50 @@ def resume_show(request):
         #获取教育经历
         edu_exp = Edu_experience.objects.filter(owner=self_info)
         return render(request, 'polls/resume.html', locals())
+    except:
+        return render(request, 'polls/404_not_found.html', locals())
+
+#淘汰学生
+def eliminate_stu(request):
+    resume_id = request.GET.get("id")
+    page = request.GET.get("page")
+    try:
+        resumeinfo = SendResume.objects.get(id=resume_id)
+        job_id = resumeinfo.sta.id;
+        resumeinfo.delete()
+        if page=='':
+            page=1
+        return HttpResponseRedirect('/polls/job_detail.html?id={0}&page={1}'.format(job_id,page))
+    except:
+        return render(request, 'polls/404_not_found.html', locals())
+
+#录用
+def employ_success(request):
+    resume_id = request.GET.get("id")
+    page = request.GET.get("page")
+    try:
+        resumeinfo = SendResume.objects.get(id=resume_id)
+        job_id = resumeinfo.sta.id;
+        resumeinfo.sta.need -= 1
+        resumeinfo.is_employ = '1'
+        resumeinfo.sta.save()
+        resumeinfo.save()
+        if page=='':
+            page=1
+        return HttpResponseRedirect('/polls/job_detail.html?id={0}&page={1}'.format(job_id,page))
+    except:
+        return render(request, 'polls/404_not_found.html', locals())
+
+def del_his_resume(request):
+    resume_id = request.GET.get("id")
+    page = request.GET.get("page")
+    try:
+        resumeinfo = SendResume.objects.get(id=resume_id)
+        job_id = resumeinfo.sta.id;
+        resumeinfo.show = '0'
+        resumeinfo.save()
+        if page=='':
+            page=1
+        return HttpResponseRedirect('/polls/job_detail.html?id={0}&page={1}'.format(job_id,page))
     except:
         return render(request, 'polls/404_not_found.html', locals())

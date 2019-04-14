@@ -46,7 +46,7 @@ class UserProfile(models.Model):
     name = models.CharField(max_length=50,verbose_name="姓名",blank=False,default='')
     gender = models.CharField(max_length=2, choices=(('1','男'),('2','女'),('3','未填写')),verbose_name="性别",blank=True,default='3')
     phone = models.CharField(max_length=200,verbose_name="联系方式",blank=True,default='')
-
+    
     def __str__(self):
         return self.user.username
 
@@ -56,7 +56,7 @@ class HRProfile(models.Model):
     name = models.CharField(max_length=50,verbose_name="姓名",blank=False,default='')
     gender = models.CharField(max_length=2, choices=(('1','男'),('2','女'),('3','未填写')),verbose_name="性别",blank=True,default='3')
     phone = models.CharField(max_length=200,verbose_name="联系方式",blank=True,default='')
-    company = models.ForeignKey(Company,on_delete=models.CASCADE,null=False)
+    company = models.ForeignKey(Company,on_delete=models.CASCADE,null=True)
     identify = models.CharField(max_length=2, choices=(('1','已认证'),('2','未认证')),verbose_name="认证",blank=False,default='2')
     def __str__(self):
         return self.user.username
@@ -154,18 +154,27 @@ class Job_position(models.Model):
     salary2            = models.IntegerField(verbose_name='薪资范围2',default=0)
     #热度值
     hot_val            = models.IntegerField(verbose_name='热度值',default=0)
+    #人数需求
+    need               = models.IntegerField(verbose_name='人数需求',default=0)
+    #投递简历人数
+    reg_num            = models.IntegerField(verbose_name='投递人数',default=0)
     def __str__(self):
-        return self.name
+        return self.name+" " + self.publisher.company.name + " 需求: " + str(self.need) + "人"
 
 
 #简历投递情况
 class SendResume(models.Model):
+
     #学生
     stu                = models.ForeignKey(UserProfile,on_delete=models.CASCADE,null=False,verbose_name="学生")
     #岗位
     sta                = models.ForeignKey(Job_position,on_delete=models.CASCADE,null=False,verbose_name="岗位")
     #投递时间
     time               = models.DateField(auto_now_add=True,verbose_name='发布时间')
+    #录用状况
+    is_employ          = models.CharField(max_length=2,choices=(('1','录取'),('0','待考验')),default='0',verbose_name='录取情况')
+    #是否显示在前端页面
+    show               = models.CharField(max_length=2,choices=(('1','显示'),('0','隐藏')),default='1',verbose_name='显示在页面')
     def __str__(self):
         return str(self.time) + ":" + self.stu.name + " 投递了 " + self.sta.name + " 岗位"
 

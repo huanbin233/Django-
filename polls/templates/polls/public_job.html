@@ -48,12 +48,6 @@
                             <a href="/polls/company.html/0_0_0">公司</a>
                         </li>
                     </ul>
-                    <form class="navbar-form navbar-left" role="search">
-                        <div class="form-group">
-                            <input type="text" class="form-control" />
-                        </div>
-                        <button type="submit" class="btn btn-default">搜索</button>
-                    </form>
                     <ul class="nav navbar-nav navbar-right">
                         {% if request.user.is_authenticated %}
                             <li class="dropdown">
@@ -112,7 +106,8 @@
                     <th>名称</th>
                     <th>城市</th>
                     <th>薪资</th>
-                    <th></th>
+                    <th>投递人数</th>
+                    <th>操作</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -121,6 +116,7 @@
                       <td>{{temp.name}}</td>
                       <td>{{temp.city}}</td>
                       <td>{{temp.salary1}}K-{{temp.salary2}}K</td>
+                      <td>{{temp.reg_num}}</td>
                       <td>
                         <a href="/polls/job_detail.html?id={{ temp.id }}">详情</a>
                         <a href="/polls/public_job.html/del_info?id={{ temp.id }}">删除</a>
@@ -156,13 +152,14 @@
                         <label>学历要求</label>{{stationForm.edu_req}}
                       </div>
                       <div class="form-group">
-                        <label>工作经验</label>{{stationForm.exp_req}}
+                        <label>人数需求</label>{{stationForm.need}}
                       </div>
                       <div class="form-group">
                         <label>工作城市</label>{{stationForm.city}}
                       </div>
                       <div class="form-group">
-                          <label>薪资范围</label>{{stationForm.salary1}}-{{stationForm.salary2}}
+                          <label>薪资范围</label>
+                          {{stationForm.salary1}}-{{stationForm.salary2}}
                       </div>
                       <div class="form-group">
                         <label>岗位描述</label>
