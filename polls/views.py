@@ -5,7 +5,7 @@ from django.http import Http404
 from django.contrib import messages
 from .models import UserProfile,Edu_experience,Pro_experience,Job_experience,Job_position,HRProfile,SendResume,Company
 from django.contrib.auth.models import User
-from .forms import ComRegisterForm,StuRegisterForm,LoginForm,EduForm,ProForm,JobForm,StationForm,Company_filter
+from .forms import ComRegisterForm,StuRegisterForm,LoginForm,EduForm,ProForm,JobForm,StationForm,Company_filter,Job_filter
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.contrib import auth
@@ -84,59 +84,6 @@ def register_com(request):
             print(Register_Form.non_field_errors())
     return render(request,'polls/signup.html',locals()) 
     
-'''
-#登录or注册
-def login(request):
-    context={}
-    login_Form = LoginForm()
-    stuRegister_Form = StuRegisterForm()
-    comRegister_Form = ComRegisterForm()
-
-    context['LoginForm'] = login_Form
-    context['stuRegisterForm'] = stuRegister_Form
-    context['comRegisterForm'] = comRegister_Form
-    if request.method == 'POST':
-        #登陆
-        login_Form = LoginForm(request.POST)
-        if login_Form.is_valid():
-            username = login_Form.cleaned_data['username']
-            password = login_Form.cleaned_data['password']
-            user = auth.authenticate(username=username, password=password)
-            if user is not None and user.is_active:
-                auth.login(request, user)
-                return redirect('/polls/index.html',{'request':request})
-            else:
-                return render(request, 'polls/login.html', context)
-        #企业注册
-        comRegister_Form = ComRegisterForm(request.POST)
-        if comRegister_Form.is_valid():
-            #company = comRegister_Form.cleaned_data['company']
-            username = comRegister_Form.cleaned_data['username']
-            password = comRegister_Form.cleaned_data['password']
-            email = comRegister_Form.cleaned_data['email']
-            phone = comRegister_Form.cleaned_data['phone']
-
-            user = User.objects.create_user(username=username, password=password, email=email)
-            hr_profile = HRProfile(user=user, phone=phone)
-
-            hr_profile.save()
-        #学生注册
-        stuRegister_Form = StuRegisterForm(request.POST)
-        if stuRegister_Form.is_valid():
-            username = stuRegister_Form.cleaned_data['username']
-            password = stuRegister_Form.cleaned_data['password']
-            email = stuRegister_Form.cleaned_data['email']
-            phone = stuRegister_Form.cleaned_data['phone']
-
-            user = User.objects.create_user(username=username, password=password,email=email)
-            user_profile = UserProfile(user = user,phone=phone)
-
-            user_profile.save()
-
-
-            #messages.add_message(request, messages.INFO, "注册成功，跳转到登录界面")                                                
-    return render(request,'polls/signin.html',context)
-'''
 #退出登录
 def logout(request):
     auth.logout(request)
@@ -288,10 +235,41 @@ def del_job(request):
     Job_position.objects.filter(id=id).delete()
     return HttpResponseRedirect('/polls/public_job.html') 
 
-def list_job(request):
+#过滤岗位信息
+def job_filter_all(ret,job_list_all):
+    filter = ret.split("_")
+    job_filter = Job_filter()
+    job_filter.set_city(filter[0])
+    job_filter.set_salary_req(filter[1])
+
+    salary_min_vec = [0,0,3,5,10,15,20,25,30]
+    salary_max_vec = [0,3,5,10,15,20,25,20,1000000]
+    #城市筛选信息非 不限
+    if filter[0] != '0':
+        job_list_all = job_list_all.filter(city=filter[0])
+    #薪资筛选信息非 不限
+    if filter[1] != '0':
+        salary_min = salary_min_vec[int(filter[1])]
+        salary_max = salary_max_vec[int(filter[1])]
+        job_list_all = job_list_all.filter(salary1__gte=salary_min)
+        job_list_all = job_list_all.filter(salary1__lte=salary_max)
+    
+    return job_filter,job_list_all
+
+def list_job(request,ret):
+    if request.method == 'POST':
+        city_filter = request.POST.get('city_filter')
+        salary_filter = request.POST.get('salary_filter')
+        result = [str(city_filter), str(salary_filter)]
+        return HttpResponseRedirect('/polls/list.html/' + "_".join(result))
+    
     job_list_all = Job_position.objects.exclude(need__lte=0)
+    
+    #根据过滤条件,过滤掉信息
+    job_filter,job_list_all = job_filter_all(ret,job_list_all)
+
     #book_list_all 是要被分页的对象，第二个参数，是每页显示的条数
-    p = Paginator(job_list_all,8)# p就是每页的对象，
+    p = Paginator(job_list_all,7)# p就是每页的对象，
     p.count  #数据总数
     p.num_pages  #总页数
     p.page_range#[1,2,3,4,5],得到页码，动态生成，

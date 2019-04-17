@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.models import User
 
 import re
-
+from . import common
 
 def email_check(email):
     pattern = re.compile(r"\"?([-a-zA-Z0-9.`?{}]+@\w+\.\w+)\"?")
@@ -15,7 +15,8 @@ class StationForm(forms.Form):
     edu_req = forms.CharField(widget=forms.Select(choices=(('1','不限'),('2','专科'),('3','本科'),('4','硕士'),('5','博士')),attrs={'class':'form-control'}))
     #exp_req = forms.CharField(widget=forms.Select(choices=(('1','无'),('2','一年'),('3','两年'),('4','三年及以上')),attrs={'class':'form-control'}))
     need = forms.IntegerField(label='', widget=forms.TextInput(attrs={'placeholder':'岗位人数需求','class':'form-control'}))
-    city = forms.CharField(label='', widget=forms.TextInput(attrs={'placeholder':'例如：深圳','class':'form-control'}))
+    city  = forms.CharField(widget=forms.Select(choices=common.city_choice,attrs={'class':'form-control selectpicker show-tick','data-live-search':'true'}))    
+    #city = forms.CharField(label='', widget=forms.TextInput(attrs={'placeholder':'例如：深圳','class':'form-control'}))
     salary1 = forms.IntegerField(label='', widget=forms.TextInput(attrs={'placeholder':'例如：8000','class':'form-control'}))
     salary2 = forms.IntegerField(label='', widget=forms.TextInput(attrs={'placeholder':'例如：8000','class':'form-control'}))
     def clean_name(self):
@@ -31,33 +32,28 @@ class StationForm(forms.Form):
             raise forms.ValidationError("invaile salary range.")
         return cleaned_data
 
+#岗位信息过滤
+class Job_filter(forms.Form):
+    #就业城市过滤
+    city_filter = forms.CharField(widget=forms.Select(choices=common.city_choice,attrs={'class':'selectpicker show-tick form-control','data-live-search':'true'}))
+    #薪资过滤
+    salary_filter = forms.CharField(widget=forms.Select(choices=common.salary_choice,attrs={'class':'selectpicker show-tick form-control','data-live-search':'true'}))
+
+    #设置选中的城市
+    def set_city(self,city):
+        self.initial["city_filter"] = city
+    #设置薪资要求
+    def set_salary_req(self,sal):
+        self.initial["salary_filter"] = sal        
+
 #公司信息过滤
 class Company_filter(forms.Form):
-    ind_choice = (
-        ('0','不限'),('1','电子商务'),('2','游戏'),('3','媒体'),('4','广告营销'),('5','数据服务'),
-        ('6','医疗健康'),('7','生活服务'),('8','O2O'),('9','旅游'),('10','分类信息'),
-        ('11','音乐视频阅读'),('12','在线教育'),('13','社交网络'),('14','人力资源服务'),
-        ('15','信息安全'),('16','智能硬件'),('17','移动互联网'),('18','互联网'),('19','计算机软件'),
-        ('20','通信/网络设备'),('21','广告/公关/会展'),('22','互联网金融'),('23','物流/仓储'),('24','贸易进出口'),
-        ('25','咨询'),('26','工程施工'),('27','汽车生产'),('28','其他行业'),
-    )
-    fin_choice = (
-        ('0','不限'),('1','未融资'),('2','天使轮'),
-        ('3','A轮'),('4','B轮'),
-        ('5','C轮'),('6','D轮及以上'),
-        ('7','已上市'),('8','不需要融资'),
-    )
-    sca_choice = (
-        ('0','不限'),('1','0-20人'),('2','20-99人'),
-        ('3','100-499人'),('4','500-999人'),
-        ('5','1000-9999人'),('6','10000人以上'),
-    )
     #行业类型过滤
-    type_filter = forms.CharField(widget=forms.Select(choices=ind_choice,attrs={'class':'selectpicker show-tick form-control','data-live-search':'true'}))
+    type_filter = forms.CharField(widget=forms.Select(choices=common.ind_choice,attrs={'class':'selectpicker show-tick form-control','data-live-search':'true'}))
     #融资阶段过滤
-    fin_filter  = forms.CharField(widget=forms.Select(choices=fin_choice,attrs={'class':'selectpicker show-tick form-control','data-live-search':'true'}))
+    fin_filter  = forms.CharField(widget=forms.Select(choices=common.fin_choice,attrs={'class':'selectpicker show-tick form-control','data-live-search':'true'}))
     #公司规模过滤
-    sca_filter  = forms.CharField(widget=forms.Select(choices=sca_choice,attrs={'class':'selectpicker show-tick form-control','data-live-search':'true'}))
+    sca_filter  = forms.CharField(widget=forms.Select(choices=common.sca_choice,attrs={'class':'selectpicker show-tick form-control','data-live-search':'true'}))
     
     #设置选中的行业类型
     def set_type(self, type):
