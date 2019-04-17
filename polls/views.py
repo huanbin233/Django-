@@ -323,10 +323,11 @@ def list_company(request, ret):
     return render(request, 'polls/company.html', locals())
 
 #简历投递
-@login_required
 def send_resume(request):
     sid = request.GET.get("sid")
     cur_page = request.GET.get("cur_page")
+    ret = request.GET.get("ret")
+    page_num = request.GET.get("page")
     try:
         position = Job_position.objects.get(id=sid)
         loginuser = UserProfile.objects.get(user__exact=request.user)
@@ -343,7 +344,7 @@ def send_resume(request):
             position.save()
             messages.success(request,"简历投递成功，请耐心等候通知！")
     except:
-        messages.error(request,"您当前的身份不能进行简历投递！") 
+        messages.error(request,"请您先已学生身份登陆后重试！")
     #在职位详情页面投递简历
     if cur_page == '2':
         return HttpResponseRedirect('/polls/job_detail.html?id=%s' % (sid)) 
@@ -353,8 +354,7 @@ def send_resume(request):
                                         % (position.publisher.company.id))         
     #在职位列表页面投递简历
     else:
-        page_num = request.GET.get("page")
-        return HttpResponseRedirect('/polls/list.html?page=%s' % (page_num)) 
+        return HttpResponseRedirect('/polls/list.html/{0}?page={1}'.format(ret,page_num))
 
 #公司详情信息
 def company_detail(request):
