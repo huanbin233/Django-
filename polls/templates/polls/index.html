@@ -282,111 +282,173 @@
                     </div>
                 </div>
             </div>
-            <div class="tab-pane" id="panel-195701">
+            <div class="tab-pane" id="panel-195701" style="border:1px solid #e4e1e1">
               <div class="row">
-                <div class="col-md-4">
-                  <div class="thumbnail">
-                    <img alt="300x200" src="v3/default4.jpg" />
-                    <div class="caption">
-                      <h3>
-                        软通动力
-                      </h3>
-                      <p>
-                        Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta
-                        gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
-                      </p>
-                      <p>
-                        <a class="btn btn-primary" href="#">查看</a> <a class="btn" href="#">detail</a>
-                      </p>
-                    </div>
+                  <!--平安银行-->
+                  <div class="col-md-4 column">
+                      <a href="/polls/company_detail.html/?id={{pingan.id}}&page=1">
+                          <div class="panel">
+                              <div class="panel-body">
+                                  <div class="col-md-4 column">
+                                      <img class="img-rounded" width=57px height=57px style="border:1px solid #e4e1e1" src="/static/image/{{pingan.name}}.png" />
+                                  </div>
+                                  <div class="col-md-8 column">
+                                      <h>{{pingan.name}}</h>
+                                      <p>
+                                          <font color="#DCDCDC" size='2'>{{pingan.get_financing_display}}|{{pingan.get_scale_display}}</font>
+                                      </p>
+                                  </div>
+                              </div>
+                          </div>
+                      </a>
                   </div>
+                  <!--招商证券-->
+                  <div class="col-md-4 column">
+                      <a href="/polls/company_detail.html/?id={{zhengquan.id}}&page=1">
+                          <div class="panel">
+                              <div class="panel-body">
+                                  <div class="col-md-4 column">
+                                      <img class="img-rounded" width=57px height=57px style="border:1px solid #e4e1e1" src="/static/image/{{zhengquan.name}}.png" />
+                                  </div>
+                                  <div class="col-md-8 column">
+                                      <h>{{zhengquan.name}}</h>
+                                      <p>
+                                          <font color="#DCDCDC" size='2'>{{zhengquan.get_financing_display}}|{{zhengquan.get_scale_display}}</font>
+                                      </p>
+                                  </div>
+                              </div>
+                          </div>
+                      </a>
+                  </div>
+                  <!--招商银行信用卡中心-->
+                  <div class="col-md-4 column" >
+                      <a href="/polls/company_detail.html/?id={{xinyongka.id}}&page=1">
+                          <div class="panel">
+                              <div class="panel-body">
+                                  <div class="col-md-4 column">
+                                      <img class="img-rounded" width=57px height=57px style="border:1px solid #e4e1e1" src="/static/image/{{xinyongka.name}}.png" />
+                                  </div>
+                                  <div class="col-md-8 column">
+                                      <h>{{xinyongka.name}}</h>
+                                      <p>
+                                          <font color="#DCDCDC" size='2'>{{xinyongka.get_financing_display}}|{{xinyongka.get_scale_display}}</font>
+                                      </p>
+                                  </div>
+                              </div>
+                          </div>
+                      </a>
+                  </div>
+              </div>
+              <div class="row">
+                <!--蚂蚁金服-->
+                <div class="col-md-4 column">
+                    <a href="/polls/company_detail.html/?id={{jinfu.id}}&page=1">
+                        <div class="panel">
+                            <div class="panel-body">
+                                <div class="col-md-4 column">
+                                    <img class="img-rounded" width=57px height=57px style="border:1px solid #e4e1e1" src="/static/image/{{jinfu.name}}.png" />
+                                </div>
+                                <div class="col-md-8 column">
+                                    <h>{{jinfu.name}}</h>
+                                    <p>
+                                        <font color="#DCDCDC" size='2'>{{jinfu.get_financing_display}}|{{jinfu.get_scale_display}}</font>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
                 </div>
-                <div class="col-md-4">
-                  <div class="thumbnail">
-                    <img alt="300x200" src="v3/default5.jpg" />
-                    <div class="caption">
-                      <h3>
-                        幸福金科
-                      </h3>
-                      <p>
-                        Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta
-                        gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
-                      </p>
-                      <p>
-                        <a class="btn btn-primary" href="#">查看</a> <a class="btn" href="#">detail</a>
-                      </p>
-                    </div>
-                  </div>
+                <!--中国人寿-->
+                <div class="col-md-4 column">
+                    <a href="/polls/company_detail.html/?id={{renshou.id}}&page=1">
+                        <div class="panel">
+                            <div class="panel-body">
+                                <div class="col-md-4 column">
+                                    <img class="img-rounded" width=57px height=57px style="border:1px solid #e4e1e1" src="/static/image/{{renshou.name}}.png" />
+                                </div>
+                                <div class="col-md-8 column">
+                                    <h>{{renshou.name}}</h>
+                                    <p>
+                                        <font color="#DCDCDC" size='2'>{{renshou.get_financing_display}}|{{renshou.get_scale_display}}</font>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
                 </div>
-                <div class="col-md-4">
-                  <div class="thumbnail">
-                    <img alt="300x200" src="v3/default6.jpg" />
-                    <div class="caption">
-                      <h3>
-                        苏宁金融
-                      </h3>
-                      <p>
-                        Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta
-                        gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
-                      </p>
-                      <p>
-                        <a class="btn btn-primary" href="#">查看</a> <a class="btn" href="#">detail</a>
-                      </p>
-                    </div>
-                  </div>
+                <!--趣店-->
+                <div class="col-md-4 column" >
+                    <a href="/polls/company_detail.html/?id={{qudian.id}}&page=1">
+                        <div class="panel">
+                            <div class="panel-body">
+                                <div class="col-md-4 column">
+                                    <img class="img-rounded" width=57px height=57px style="border:1px solid #e4e1e1" src="/static/image/{{qudian.name}}.png" />
+                                </div>
+                                <div class="col-md-8 column">
+                                    <h>{{qudian.name}}</h>
+                                    <p>
+                                        <font color="#DCDCDC" size='2'>{{qudian.get_financing_display}}|{{qudian.get_scale_display}}</font>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
                 </div>
               </div>
               <div class="row">
-                <div class="col-md-4">
-                  <div class="thumbnail">
-                    <img alt="300x200" src="v3/default4.jpg" />
-                    <div class="caption">
-                      <h3>
-                        软通动力
-                      </h3>
-                      <p>
-                        Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta
-                        gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
-                      </p>
-                      <p>
-                        <a class="btn btn-primary" href="#">查看</a> <a class="btn" href="#">detail</a>
-                      </p>
-                    </div>
-                  </div>
+                <!--中国太保-->
+                <div class="col-md-4 column">
+                    <a href="/polls/company_detail.html/?id={{taibao.id}}&page=1">
+                        <div class="panel">
+                            <div class="panel-body">
+                                <div class="col-md-4 column">
+                                    <img class="img-rounded" width=57px height=57px style="border:1px solid #e4e1e1" src="/static/image/{{taibao.name}}.png" />
+                                </div>
+                                <div class="col-md-8 column">
+                                    <h>{{taibao.name}}</h>
+                                    <p>
+                                        <font color="#DCDCDC" size='2'>{{taibao.get_financing_display}}|{{taibao.get_scale_display}}</font>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
                 </div>
-                <div class="col-md-4">
-                  <div class="thumbnail">
-                    <img alt="300x200" src="v3/default5.jpg" />
-                    <div class="caption">
-                      <h3>
-                        幸福金科
-                      </h3>
-                      <p>
-                        Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta
-                        gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
-                      </p>
-                      <p>
-                        <a class="btn btn-primary" href="#">查看</a> <a class="btn" href="#">detail</a>
-                      </p>
-                    </div>
-                  </div>
+                <!--兴业银行-->
+                <div class="col-md-4 column">
+                    <a href="/polls/company_detail.html/?id={{xingye.id}}&page=1">
+                        <div class="panel">
+                            <div class="panel-body">
+                                <div class="col-md-4 column">
+                                    <img class="img-rounded" width=57px height=57px style="border:1px solid #e4e1e1" src="/static/image/{{xingye.name}}.png" />
+                                </div>
+                                <div class="col-md-8 column">
+                                    <h>{{xingye.name}}</h>
+                                    <p>
+                                        <font color="#DCDCDC" size='2'>{{xingye.get_financing_display}}|{{xingye.get_scale_display}}</font>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
                 </div>
-                <div class="col-md-4">
-                  <div class="thumbnail">
-                    <img alt="300x200" src="v3/default6.jpg" />
-                    <div class="caption">
-                      <h3>
-                        苏宁金融
-                      </h3>
-                      <p>
-                        Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta
-                        gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
-                      </p>
-                      <p>
-                        <a class="btn btn-primary" href="#">查看</a> <a class="btn" href="#">detail</a>
-                      </p>
-                    </div>
-                  </div>
+                <!--中国太平洋保险公司-->
+                <div class="col-md-4 column" >
+                    <a href="/polls/company_detail.html/?id={{taipingyang.id}}&page=1">
+                        <div class="panel">
+                            <div class="panel-body">
+                                <div class="col-md-4 column">
+                                    <img class="img-rounded" width=57px height=57px style="border:1px solid #e4e1e1" src="/static/image/{{taipingyang.name}}.png" />
+                                </div>
+                                <div class="col-md-8 column">
+                                    <h>{{taipingyang.name}}</h>
+                                    <p>
+                                        <font color="#DCDCDC" size='2'>{{taipingyang.get_financing_display}}|{{taipingyang.get_scale_display}}</font>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
                 </div>
               </div>
             </div>

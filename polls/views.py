@@ -27,6 +27,16 @@ def index(request):
     xiaomi  = Company.objects.get(name="小米")
     xinlang = Company.objects.get(name="新浪")
     huawei = Company.objects.get(name="华为")
+    qudian = Company.objects.get(name="趣店")
+    renshou = Company.objects.get(name="中国人寿")
+    jinfu = Company.objects.get(name="蚂蚁金服")
+    xinyongka = Company.objects.get(name="招商银行信用卡中心")
+    pingan = Company.objects.get(name="中国平安")
+    zhengquan = Company.objects.get(name="招商证券")
+    taibao = Company.objects.get(name="中国太保")
+    xingye = Company.objects.get(name="兴业银行")
+    taipingyang = Company.objects.get(name="中国太平洋保险公司")
+
     return render(request, 'polls/index.html', locals())
 
 #登陆
@@ -354,6 +364,8 @@ def send_resume(request):
                                         % (position.publisher.company.id))         
     #在职位列表页面投递简历
     else:
+        if page_num=='':
+            page_num=1
         return HttpResponseRedirect('/polls/list.html/{0}?page={1}'.format(ret,page_num))
 
 #公司详情信息

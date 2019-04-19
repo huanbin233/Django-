@@ -14,9 +14,9 @@ class Company(models.Model):
     #行业类型
     industry_type      = models.CharField(max_length=2,choices=common.ind_choice,default='1',verbose_name='行业类型')
     #公司简介
-    desc               = models.TextField(max_length=600,verbose_name='公司简介')
+    desc               = models.TextField(max_length=2000,verbose_name='公司简介')
     #公司地点
-    city               = models.CharField(max_length=80,default='',verbose_name='地点')
+    city               = models.CharField(max_length=2,choices=common.city_choice,default='0',verbose_name='公司总部')
     #热度值 = 所有岗位热度值之和
     hot_val            = models.IntegerField(verbose_name='热度值',default=0)
     def __str__(self):
@@ -75,7 +75,7 @@ class Pro_experience(models.Model):
     #项目名称
     job_name           = models.CharField(max_length=100)
     #项目描述
-    job_desc           = models.TextField(max_length=600)
+    job_desc           = models.TextField(max_length=2000)
 
     owner              = models.ForeignKey(UserProfile,on_delete=models.CASCADE,null=False)
 
@@ -93,7 +93,7 @@ class Job_experience(models.Model):
     #工作职位
     job_role           = models.CharField(max_length=50,default='')
     #工作描述
-    job_desc           = models.TextField(max_length=600,default='')
+    job_desc           = models.TextField(max_length=2000,default='')
     #所属行业
     industry           = models.CharField(max_length=50,default='')            
 
@@ -107,7 +107,7 @@ class Job_position(models.Model):
     #岗位名字
     name               = models.CharField(max_length=30,verbose_name='岗位',default='')
     #工作描述
-    job_desc           = models.TextField(max_length=600,verbose_name='岗位描述')
+    job_desc           = models.TextField(max_length=2000,verbose_name='岗位描述')
     #就业城市
     city               = models.CharField(max_length=2,choices=common.city_choice,default='0',verbose_name='就业城市')
     #学历要求
