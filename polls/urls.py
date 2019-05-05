@@ -22,5 +22,6 @@ urlpatterns = [
     path('del_his_resume/',views.del_his_resume, name='del_his_resume'),
     path('register_stu/',views.register_stu, name='register_stu'),
     path('register_com/',views.register_com, name='register_com'),
+    path('hr_del_notify/',views.hr_del_notify, name='hr_del_notify'),
 
 ]

@@ -99,8 +99,12 @@
                 {% endif %}
                     <a href="#panel-696348" data-toggle="tab">在招岗位</a>
                 </li>
+                <li>
+                    <a href="#panel-696340" data-toggle="tab">评价</a>
+                </li>
             </ul>
             <div class="tab-content">
+                <!--公司介绍-->
                 {% if active_panel == 1 %}
                 <div class="tab-pane active" id="panel-720488">
                 {% else %}
@@ -114,6 +118,7 @@
                         </div>
                     </p>
                 </div>
+                <!--在招岗位-->
                 {% if active_panel == 1 %}
                 <div class="tab-pane" id="panel-696348">
                 {% else %}
@@ -134,7 +139,7 @@
                                                 <font color="#A52A2A" size='2'>{{job.salary1}}K-{{job.salary2}}K</font>
                                             </p>
                                             <p>
-                                                <font color="#DCDCDC" size='2'>{{job.city}}&nbsp;&nbsp;</font>
+                                                <font color="#DCDCDC" size='2'>{{job.get_city_display}}&nbsp;&nbsp;</font>
                                                 <font color="#DCDCDC" size='2'>|&nbsp;&nbsp;{{job.get_edu_req_display}}
                                                 </font>
                                             </p>
@@ -144,7 +149,7 @@
                                         </div>
                                         <div class="col-md-2 column">
                                             <a class="btn" href="/polls/job_detail.html?id={{job.id}}">详情</a>
-                                            <a class="btn btn-primary" href="/polls/send_resume/?sid={{job.id}}&cur_page=3">投递简历</a>
+                                            <a class="btn btn-primary" href="/polls/send_resume/?sid={{job.id}}&cur_page=3&page={{page_num}}">投递简历</a>
                                         </div>
                                     </div>
                                 </div>
@@ -180,7 +185,42 @@
                         </div>
                     </p>
                 </div>
+                <!--评论中心-->
+                <div class="tab-pane" id="panel-696340">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            {% if not comments_list %}
+                                        评论区空空如也~
+                            {% else %}
+                            {% for tmp in comments_list %}
+                            <div class="panel" style="border:1px solid #e4e1e1">
+                                <div class="panel-body">
+                                    <label>{{tmp.created}}&nbsp;&nbsp;
+                                    &nbsp;{{tmp.stu.name}}</label>
+                                    <p>
+                                        {{tmp.com}}
+                                    </p>
+                                </div>
+                            </div>
+                            {% endfor %}
+                            {% endif %} 
+                        </div>
+                        <div class="panel-footer">
+                            <form role="form" method="post">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <label>添加新的评论</label>
+                                    {{comments.com}}
+                                </div>
+                                <div class="form-group">
+                                    <button class="btn btn-primary submit" type="submit">提交</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
+
         </div>
         <div class="blog-footer">
             <p>Design by wuhuanbin,2019</p>

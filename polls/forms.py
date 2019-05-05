@@ -32,6 +32,16 @@ class StationForm(forms.Form):
             raise forms.ValidationError("invaile salary range.")
         return cleaned_data
 
+#评论表单
+class CommentForm(forms.Form):
+    #内容
+    com = forms.CharField(label='',widget=forms.Textarea(attrs={'class':'form-control','placeholder':'只有登陆后的学生用户才能评论哦~'}))
+
+    def clean_com(self):
+        com = self.cleaned_data.get('com')
+        return com        
+
+
 #岗位信息过滤
 class Job_filter(forms.Form):
     #就业城市过滤

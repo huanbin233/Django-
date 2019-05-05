@@ -3,9 +3,9 @@ from django.http import HttpResponse
 from django.template import loader
 from django.http import Http404
 from django.contrib import messages
-from .models import UserProfile,Edu_experience,Pro_experience,Job_experience,Job_position,HRProfile,SendResume,Company
+from .models import UserProfile,Edu_experience,Pro_experience,Job_experience,Job_position,HRProfile,SendResume,Company,Comment
 from django.contrib.auth.models import User
-from .forms import ComRegisterForm,StuRegisterForm,LoginForm,EduForm,ProForm,JobForm,StationForm,Company_filter,Job_filter
+from .forms import ComRegisterForm,StuRegisterForm,LoginForm,EduForm,ProForm,JobForm,StationForm,Company_filter,Job_filter,CommentForm
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.contrib import auth
@@ -202,6 +202,10 @@ def resume_info(request,op):
     return render(request, 'polls/resumeinfo.html', locals())
 
 #通知消息
+# xx学生投递了xx岗位
+# xxhr查看了您的简历！
+# 您在xx岗位投递的简历已被淘汰！
+# 您已被xx岗位录取！
 @login_required
 def notify_info(request):
     is_stu = True
@@ -209,10 +213,21 @@ def notify_info(request):
         loginuser = UserProfile.objects.get(user__exact=request.user)
     except:
         loginuser = HRProfile.objects.get(user__exact=request.user)
+        info = SendResume.objects.filter(sta__publisher = loginuser)
         is_stu = False
-    table = PersonTable(UserProfile.objects.all())
-    RequestConfig(request, paginate={'per_page': 1}).configure(table)
+
     return render(request, 'polls/notifyinfo.html', locals())
+
+@login_required
+def hr_del_notify(request):
+    id = request.GET.get("id")
+    try:
+        notify = SendResume.objects.get(id = id)
+        notify.show_notify = '0'
+        notify.save()
+        return HttpResponseRedirect('/polls/notifyinfo.html')
+    except:
+        return render(request, 'polls/404_not_found.html', locals())
 
 #已发布招聘
 @login_required
@@ -338,6 +353,8 @@ def send_resume(request):
     cur_page = request.GET.get("cur_page")
     ret = request.GET.get("ret")
     page_num = request.GET.get("page")
+    if str(page_num) == 0 or page_num=='None':
+        page_num='1'
     try:
         position = Job_position.objects.get(id=sid)
         loginuser = UserProfile.objects.get(user__exact=request.user)
@@ -360,16 +377,22 @@ def send_resume(request):
         return HttpResponseRedirect('/polls/job_detail.html?id=%s' % (sid)) 
     #在公司详情页面投递简历
     elif cur_page == '3':
-        return HttpResponseRedirect('/polls/company_detail.html?id=%s' 
-                                        % (position.publisher.company.id))         
+        return HttpResponseRedirect('/polls/company_detail.html?id={0}&page={1}'.format(position.publisher.company.id,page_num))         
     #在职位列表页面投递简历
     else:
-        if page_num=='':
-            page_num=1
         return HttpResponseRedirect('/polls/list.html/{0}?page={1}'.format(ret,page_num))
 
 #公司详情信息
 def company_detail(request):
+    is_stu = True
+    try:
+        loginuser = UserProfile.objects.get(user__exact=request.user)
+    except:
+        try:
+            loginuser = HRProfile.objects.get(user__exact=request.user)
+        except:
+            loginuser = None
+        is_stu = False
     com_id = request.GET.get("id")
     com = Company.objects.get(id=com_id)
     active_panel = 1
@@ -389,8 +412,21 @@ def company_detail(request):
     except EmptyPage:#如果超过了页码范围，就把最后的页码显示出来，
         job_list = p.page(p.num_pages)
     
-    if com:
-        return render(request, 'polls/company_detail.html', locals())
+    #评论提交
+    comments = CommentForm()
+    comments_list = Comment.objects.filter(company = com)
+    if request.method == 'POST':
+        comments = CommentForm(request.POST)
+        if loginuser == None:
+            messages.error(request,"登陆后才能评论哦~")
+        elif is_stu == False:
+            messages.error(request,"您不是学生用户哦~")
+        elif comments.is_valid():
+            desc = comments.cleaned_data['com']
+            tmp = Comment.objects.create(com=desc,company=com,stu=loginuser)
+            tmp.save()
+        return HttpResponseRedirect('/polls/company_detail.html?id={}'.format(com_id))
+    return render(request, 'polls/company_detail.html', locals())
 
 def job_detail(request):
     job_id = request.GET.get("id")

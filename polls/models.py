@@ -133,7 +133,6 @@ class Job_position(models.Model):
 
 #简历投递情况
 class SendResume(models.Model):
-
     #学生
     stu                = models.ForeignKey(UserProfile,on_delete=models.CASCADE,null=False,verbose_name="学生")
     #岗位
@@ -144,15 +143,31 @@ class SendResume(models.Model):
     is_employ          = models.CharField(max_length=2,choices=(('1','录取'),('0','待考验')),default='0',verbose_name='录取情况')
     #是否显示在前端页面
     show               = models.CharField(max_length=2,choices=(('1','显示'),('0','隐藏')),default='1',verbose_name='显示在页面')
+    #消息中心显示
+    show_notify        = models.CharField(max_length=2,choices=(('1','显示'),('0','隐藏')),default='1',verbose_name='显示在消息中心')
     def __str__(self):
         return str(self.time) + ":" + self.stu.name + " 投递了 " + self.sta.name + " 岗位"
+
+#评论,一个公司有多条评论
+class Comment(models.Model):
+    #评论对象
+    company = models.ForeignKey(Company,on_delete=models.CASCADE,null=False,verbose_name="被评论公司")
+    #评论人，只能是学生
+    stu     = models.ForeignKey(UserProfile,on_delete=models.CASCADE,null=False,verbose_name="评论人")
+    #评论内容
+    com     = models.TextField(max_length=2000,verbose_name='评论内容')
+    #评论时间
+    created = models.DateTimeField(auto_now_add=True,verbose_name='评论时间')
+    def __str__(self):
+        return str(self.created)+"  "+str(self.stu.name)+ "发表了评论"
+        
 
 #消息通知
 #class Notify_s(models.Model):
 #    stu                = models.ForeignKey(UserProfile,on_delete=models.CASCADE,null=False)
 #    info               = models.CharField(max_length=100,default='',verbose_name='信息')
 
-#消息通知,某学生头投递某岗位
+#消息通知企业,某学生头投递某岗位
 class Notify_h(models.Model):
     #简历投递信息，可以获取学生信息和学生投递的岗位
     delivery            = models.ForeignKey(SendResume,on_delete=models.CASCADE,null=False)
@@ -165,3 +180,5 @@ class Notify_h(models.Model):
             info = "信息未查看："
         info += self.delivery.stu.name + " 投递了 " + self.delivery.sta.name + " 岗位"
         return info
+
+#消息通知学生，某hr查看了自己的简历、你的简历被淘汰、恭喜您收到OFFER

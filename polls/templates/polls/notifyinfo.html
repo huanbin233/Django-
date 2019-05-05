@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -110,50 +109,36 @@
                     </div>
                     <div class="ui panel-body">
                         <!--hr-->
+                        {% if is_stu == False %}
+                        
                         <table class="table table-hover">
                             <thead>
                                 <tr>
-                                    <th>消息</th>
-                                    <th>处理状态</th>
-                                    <th>处理</th>
+                                    <th></th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
+                            {% for tmp in info %}
+                                {% if tmp.show_notify != '0' %}
                                 <tr>
-                                    <td>1</td>
-                                    <td>Default</td>
-                                    <td>
-                                        <a href="#">查看</a>
-                                        <a href="#">删除</a>
+                                    <td class="col-md-10">
+                                    <a href="/polls/resume?id={{tmp.stu.id}}">{{tmp.stu.name}}</a>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;投递了&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <a href="/polls/job_detail.html?id={{tmp.sta.id}}">{{tmp.sta.name}}
+                                    </td>
+                                    <td class="col-md-2">
+                                        <a href="/polls/hr_del_notify?id={{tmp.id}}"">删除</a>
                                     </td>
                                 </tr>
-                                <tr class="success">
-                                    <td>1</td>
-                                    <td>Default</td>
-                                    <td>
-                                        <a href="#">查看</a>
-                                        <a href="#">删除</a>
-                                    </td>
-                                </tr>
-                                <tr class="error">
-                                    <td>1</td>
-                                    <td>Default</td>
-                                    <td>
-                                        <a href="#">查看</a>
-                                        <a href="#">删除</a>
-                                    </td>
-                                </tr>
-                                <tr class="warning">
-                                    <td>1</td>
-                                    <td>Default</td>
-                                    <td>
-                                        <a href="#">查看</a>
-                                        <a href="#">删除</a>
-                                    </td>
-                                </tr>
+                                {% endif %}
+                            {% endfor %}
                             </tbody>
                         </table>
+                        
                         <!--stu-->
+                        {% else %}
+                        {% endif %}
                     </div>
                 </div>
             </div>
