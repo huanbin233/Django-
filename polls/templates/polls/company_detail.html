@@ -99,7 +99,11 @@
                 {% endif %}
                     <a href="#panel-696348" data-toggle="tab">在招岗位</a>
                 </li>
+                {% if active_panel == 2 %}
+                <li class="active">
+                {% else %}
                 <li>
+                {% endif %}
                     <a href="#panel-696340" data-toggle="tab">评价</a>
                 </li>
             </ul>
@@ -119,10 +123,10 @@
                     </p>
                 </div>
                 <!--在招岗位-->
-                {% if active_panel == 1 %}
-                <div class="tab-pane" id="panel-696348">
-                {% else %}
+                {% if active_panel == 3 %}
                 <div class="tab-pane active" id="panel-696348">
+                {% else %}
+                <div class="tab-pane" id="panel-696348">
                 {% endif %}
                     <p>
                         <div class="panel panel-default">
@@ -186,7 +190,11 @@
                     </p>
                 </div>
                 <!--评论中心-->
+                {% if active_panel == 2 %}
+                <div class="tab-pane active" id="panel-696340">
+                {% else %}
                 <div class="tab-pane" id="panel-696340">
+                {% endif %}
                     <div class="panel panel-default">
                         <div class="panel-body">
                             {% if not comments_list %}
@@ -203,6 +211,25 @@
                                 </div>
                             </div>
                             {% endfor %}
+                            <div>
+                                <ul class="pagination">
+                                    {% if comments_list.has_previous %}
+                                    <li><a href="/polls/company_detail.html/?id={{com.id}}&c_page={{ comments_list.previous_page_number }}">上一页</a></li>
+                                    {% else %}
+                                    <li class="disabled"><a href="#">上一页</a></li>
+                                    {% endif %}
+
+                                    {% for num in c_p.page_range %}
+                                    <li><a href="/polls/company_detail.html/?id={{com.id}}&c_page={{ num }}">{{ num }}</a></li>
+                                    {% endfor %}
+
+                                    {% if comments_list.has_next %}
+                                    <li><a href="/polls/company_detail.html/?id={{com.id}}&c_page={{ comments_list.next_page_number }}">下一页</a></li>
+                                    {% else %}
+                                    <li class="disabled"><a href="#">下一页</a></li>
+                                    {% endif %}
+                                </ul>
+                            </div>
                             {% endif %} 
                         </div>
                         <div class="panel-footer">

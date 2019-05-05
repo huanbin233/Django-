@@ -415,6 +415,22 @@ def company_detail(request):
     #评论提交
     comments = CommentForm()
     comments_list = Comment.objects.filter(company = com)
+    comments_list = comments_list.order_by('-created')
+
+    c_p = Paginator(comments_list,5)# p就是每页的对象，
+    c_p.count  #数据总数
+    c_p.num_pages  #总页数
+    c_p.page_range#[1,2,3,4,5],得到页码，动态生成，
+
+    c_page_num = request.GET.get("c_page")#以get的方法从url地址中获取
+    try:
+        comments_list = c_p.page(c_page_num)#括号里的是页数，显示指定页码的数据，动态显示数据，所以不能写死了
+        active_panel = 2
+    except PageNotAnInteger:#如果输入页码错误，就显示第一页
+        comments_list = c_p.page(1)
+    except EmptyPage:#如果超过了页码范围，就把最后的页码显示出来，
+        comments_list = c_p.page(c_p.num_pages)
+
     if request.method == 'POST':
         comments = CommentForm(request.POST)
         if loginuser == None:
@@ -426,6 +442,7 @@ def company_detail(request):
             tmp = Comment.objects.create(com=desc,company=com,stu=loginuser)
             tmp.save()
         return HttpResponseRedirect('/polls/company_detail.html?id={}'.format(com_id))
+    
     return render(request, 'polls/company_detail.html', locals())
 
 def job_detail(request):
