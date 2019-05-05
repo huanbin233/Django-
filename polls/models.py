@@ -24,22 +24,22 @@ class Company(models.Model):
 
 #学生用户 的信息
 class UserProfile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='StuProfile')
-    name = models.CharField(max_length=50,verbose_name="姓名",blank=False,default='')
-    gender = models.CharField(max_length=2, choices=(('1','男'),('2','女'),('3','未填写')),verbose_name="性别",blank=True,default='3')
-    phone = models.CharField(max_length=200,verbose_name="联系方式",blank=True,default='')
+    user               = models.OneToOneField(User, on_delete=models.CASCADE, related_name='StuProfile')
+    name               = models.CharField(max_length=50,verbose_name="姓名",blank=False,default='')
+    gender             = models.CharField(max_length=2, choices=(('1','男'),('2','女'),('3','未填写')),verbose_name="性别",blank=True,default='3')
+    phone              = models.CharField(max_length=200,verbose_name="联系方式",blank=True,default='')
     
     def __str__(self):
         return self.user.username
 
 #人事专业HR 的信息
 class HRProfile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='HRProfile')
-    name = models.CharField(max_length=50,verbose_name="姓名",blank=False,default='')
-    gender = models.CharField(max_length=2, choices=(('1','男'),('2','女'),('3','未填写')),verbose_name="性别",blank=True,default='3')
-    phone = models.CharField(max_length=200,verbose_name="联系方式",blank=True,default='')
-    company = models.ForeignKey(Company,on_delete=models.CASCADE,null=True)
-    identify = models.CharField(max_length=2, choices=(('1','已认证'),('2','未认证')),verbose_name="认证",blank=False,default='2')
+    user               = models.OneToOneField(User, on_delete=models.CASCADE, related_name='HRProfile')
+    name               = models.CharField(max_length=50,verbose_name="姓名",blank=False,default='')
+    gender             = models.CharField(max_length=2, choices=(('1','男'),('2','女'),('3','未填写')),verbose_name="性别",blank=True,default='3')
+    phone              = models.CharField(max_length=200,verbose_name="联系方式",blank=True,default='')
+    company            = models.ForeignKey(Company,on_delete=models.CASCADE,null=True)
+    identify           = models.CharField(max_length=2, choices=(('1','已认证'),('2','未认证')),verbose_name="认证",blank=False,default='2')
     def __str__(self):
         return self.user.username
 
@@ -160,25 +160,3 @@ class Comment(models.Model):
     created = models.DateTimeField(auto_now_add=True,verbose_name='评论时间')
     def __str__(self):
         return str(self.created)+"  "+str(self.stu.name)+ "发表了评论"
-        
-
-#消息通知
-#class Notify_s(models.Model):
-#    stu                = models.ForeignKey(UserProfile,on_delete=models.CASCADE,null=False)
-#    info               = models.CharField(max_length=100,default='',verbose_name='信息')
-
-#消息通知企业,某学生头投递某岗位
-class Notify_h(models.Model):
-    #简历投递信息，可以获取学生信息和学生投递的岗位
-    delivery            = models.ForeignKey(SendResume,on_delete=models.CASCADE,null=False)
-    #两种状态，True：未查看，False：已查看
-    status              = models.BooleanField(verbose_name='已读',default=True)
-    def __str__(self):
-        if self.status:
-            info = "信息已查看："
-        else:
-            info = "信息未查看："
-        info += self.delivery.stu.name + " 投递了 " + self.delivery.sta.name + " 岗位"
-        return info
-
-#消息通知学生，某hr查看了自己的简历、你的简历被淘汰、恭喜您收到OFFER

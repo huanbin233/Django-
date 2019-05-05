@@ -86,7 +86,13 @@
                                 <a href="/polls/resumeinfo.html/check">简历</a>
                             </li>
                             <li>
-                                <a href="/polls/notifyinfo.html">消息</a>
+                                <a href="/polls/notifyinfo.html">
+                                 {% if is_stu == False %}
+                                    消息
+                                {% else %}
+                                    简历状态
+                                {% endif %}
+                                </a>
                             </li>
                         </ul>
                     </div>

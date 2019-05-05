@@ -83,7 +83,13 @@
               {% else %}
               <li><a href="/polls/public_job.html">发布招聘信息</a></li>
               {% endif %}
-              <li><a href="/polls/notifyinfo.html">消息</a></li>
+              <li><a href="/polls/notifyinfo.html">
+              {% if is_stu == False %}
+              消息
+              {% else %}
+              简历状态
+              {% endif %}
+              </a></li>
             </ul>
           </div>
 

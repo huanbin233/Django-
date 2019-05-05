@@ -14,9 +14,9 @@ from django.core.paginator import Paginator,EmptyPage,PageNotAnInteger
 from django.forms.utils import ErrorDict
 
 from django_tables2 import RequestConfig
-from .tables import PersonTable
 #主页
 def index(request):
+    #前端页面展示的一些公司信息
     tengxun = Company.objects.get(name="腾讯")
     baidu = Company.objects.get(name="百度")
     alibaba = Company.objects.get(name="阿里巴巴")
@@ -211,6 +211,7 @@ def notify_info(request):
     is_stu = True
     try:
         loginuser = UserProfile.objects.get(user__exact=request.user)
+        info = SendResume.objects.filter(stu = loginuser)
     except:
         loginuser = HRProfile.objects.get(user__exact=request.user)
         info = SendResume.objects.filter(sta__publisher = loginuser)

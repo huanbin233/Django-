@@ -47,7 +47,7 @@
                                 <a href="/polls/index.html">首页</a>
                             </li>
                             <li>
-                                <a href="/polls/list.html">职位</a>
+                                <a href="/polls/list.html/0_0">职位</a>
                             </li>
                             <li>
                                 <a href="/polls/company.html/0_0_0">公司</a>
@@ -93,7 +93,13 @@
                             <li><a href="/polls/public_job.html">发布招聘信息</a></li>
                             {% endif %}
                             <li class="active">
-                                <a href="/polls/notifyinfo.html">消息</a>
+                                <a href="/polls/notifyinfo.html">
+                                {% if is_stu == False %}
+                                    消息
+                                {% else %}
+                                    简历状态
+                                {% endif %}
+                                </a>
                             </li>
                         </ul>
                     </div>
@@ -104,7 +110,11 @@
                 <div class="panel panel-primary">
                     <div class="panel-heading">
                         <h3 class="panel-title">
+                            {% if is_stu == False %}
                             消息
+                            {% else %}
+                            简历状态
+                            {% endif %}
                         </h3>
                     </div>
                     <div class="ui panel-body">
@@ -138,6 +148,32 @@
                         
                         <!--stu-->
                         {% else %}
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>时间</th>
+                                    <th>岗位</th>
+                                    <th>状态</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% for tmp in info %}
+                                {% if tmp.show_notify != '0' %}
+                                <tr>
+                                    <td>
+                                        {{tmp.time}}
+                                    </td>
+                                    <td>
+                                        {{tmp.sta.name}}
+                                    </td>
+                                    <td>
+                                        {{tmp.get_is_employ_display}}
+                                    </td>
+                                </tr>
+                                {% endif %}
+                            {% endfor %}
+                            </tbody>
+                        </table>                        
                         {% endif %}
                     </div>
                 </div>
